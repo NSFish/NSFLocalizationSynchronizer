@@ -1,0 +1,15 @@
+//
+//  PrefixHeader.pch
+//  NSFLocalizationSynchronizer
+//
+//  Created by 乐星宇 on 16/6/8.
+//  Copyright © 2016年 乐星宇. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import <ReactiveCocoa.h>
+
+
+#endif /* PrefixHeader_pch */
