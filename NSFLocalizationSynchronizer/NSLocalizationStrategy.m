@@ -35,21 +35,11 @@
         
         for (NSFLanguagePackLineModel *languagePackModel in modelsFromExcel)
         {
-            if ([[languagePackModel.zh_Hans precomposedStringWithCanonicalMapping] containsString:[@"被邀请人将收到邮件" precomposedStringWithCanonicalMapping]])
-            {
-                NSLog(@"...");
-            }
-            
             //暴力对比所有的文案，三种语言的文案全部一致的，即为工程中对应的key
             NSFStringsIntermediaModel *stringModel = [[modelsFromStrings.rac_sequence filter:^BOOL(NSFStringsIntermediaModel *model) {
-                BOOL result = [[model.zh_Hans precomposedStringWithCanonicalMapping] isEqualToString:[languagePackModel.zh_Hans precomposedStringWithCanonicalMapping]];
-                result = [[model.zh_Hant precomposedStringWithCanonicalMapping] isEqualToString:[languagePackModel.zh_Hant precomposedStringWithCanonicalMapping]];
-                result = [[model.en precomposedStringWithCanonicalMapping] isEqualToString:[languagePackModel.en precomposedStringWithCanonicalMapping]];
-                return result;
-                
-//                return [[model.zh_Hans precomposedStringWithCanonicalMapping] isEqualToString:[languagePackModel.zh_Hans precomposedStringWithCanonicalMapping]]
-//                && [[model.zh_Hant precomposedStringWithCanonicalMapping] isEqualToString:[languagePackModel.zh_Hant precomposedStringWithCanonicalMapping]]
-//                && [[model.en precomposedStringWithCanonicalMapping] isEqualToString:[languagePackModel.en precomposedStringWithCanonicalMapping]];
+                return [[model.zh_Hans precomposedStringWithCanonicalMapping] isEqualToString:languagePackModel.zh_Hans]
+                        && [model.zh_Hant isEqualToString:languagePackModel.zh_Hant]
+                        && [model.en isEqualToString:languagePackModel.en];
             }].array firstObject];
             
             if (stringModel)//找到了工程中的对应翻译，更新key
