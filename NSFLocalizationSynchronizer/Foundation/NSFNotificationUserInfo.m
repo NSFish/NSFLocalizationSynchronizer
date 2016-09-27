@@ -11,6 +11,7 @@
 @interface NSFDidUpdateProjectNotificationUserInfo()
 @property (nonatomic, assign) NSUInteger updateCount;
 @property (nonatomic, copy)   NSString   *uselessLogFilePath;
+@property (nonatomic, copy)   NSString   *multipleMatchXmlPath;
 
 @end
 
@@ -23,10 +24,12 @@
 
 + (instancetype)userInfoWithUpdateCount:(NSUInteger)updateCount
                      uselessLogFilePath:(NSString *)uselessLogFilePath
+                   multipleMatchXmlPath:(NSString *)multipleMatchXmlPath
 {
     NSFDidUpdateProjectNotificationUserInfo *userInfo = [NSFDidUpdateProjectNotificationUserInfo new];
     userInfo.updateCount = updateCount;
     userInfo.uselessLogFilePath = uselessLogFilePath;
+    userInfo.multipleMatchXmlPath = multipleMatchXmlPath;
     
     return userInfo;
 }

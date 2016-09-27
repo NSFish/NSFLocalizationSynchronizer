@@ -8,15 +8,19 @@
 
 #import "NSFNotificationUserInfoProtocol.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  更新完工程中所有.strings文件的文案的消息附带的数据
  */
 @interface NSFDidUpdateProjectNotificationUserInfo : NSDictionary<NSFNotificationUserInfo>
 @property (nonatomic, assign, readonly) NSUInteger updateCount;
 @property (nonatomic, copy, readonly)   NSString   *uselessLogFilePath;
+@property (nonatomic, copy, readonly)   NSString   *multipleMatchXmlPath;
 
 + (instancetype)userInfoWithUpdateCount:(NSUInteger)updateCount
-                     uselessLogFilePath:(NSString *)uselessLogFilePath;
+                     uselessLogFilePath:(NSString *)uselessLogFilePath
+                   multipleMatchXmlPath:(nullable NSString *)multipleMatchXmlPath;
 
 - (instancetype)init NS_UNAVAILABLE;
 
@@ -32,8 +36,10 @@
 
 + (instancetype)userInfoWithUpdateCount:(NSUInteger)updateCount
                      uselessLogFilePath:(NSString *)uselessLogFilePath
-                  duplicatedLogFilePath:(NSString *)duplicatedLogFilePath;
+                  duplicatedLogFilePath:(nullable NSString *)duplicatedLogFilePath;
 
 - (instancetype)init NS_UNAVAILABLE;
 
 @end
+
+NS_ASSUME_NONNULL_END

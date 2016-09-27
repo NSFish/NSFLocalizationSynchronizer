@@ -11,9 +11,10 @@
 
 @interface NSLocalizationStrategy : NSObject
 
-+ (void)updateStringFilesInProject;
 + (void)updateKeysInLanguagePack;
 
-+ (void)findDuplicatedZh_HansTranslations;
++ (void)updateStringFilesInProject_strict;
+
++ (void)updateStringFilesInProject_normal;
 
 @end

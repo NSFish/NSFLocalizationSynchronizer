@@ -33,10 +33,9 @@
     NSMenu *menu = [NSMenu new];
     [menu addItemWithTitle:@"设置" action:@selector(openSettingWC) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
-    [menu addItemWithTitle:@"同步工程文件到语言包(更新key)" action:@selector(updateLanguageFile) keyEquivalent:@""];
-    [menu addItemWithTitle:@"同步语言包到工程文件(更新文案)" action:@selector(updateStringFilesInProject) keyEquivalent:@""];
-    [menu addItemWithTitle:@"双向同步(先更新Key，再更新文案)" action:@selector(bidirectionSync) keyEquivalent:@""];
-    [menu addItemWithTitle:@"检查工程文件中简体中文文案一致的翻译" action:@selector(findZh_HansEqualTranslations) keyEquivalent:@""];
+    [menu addItemWithTitle:@"更新key到excel中" action:@selector(updateLanguageFile) keyEquivalent:@""];
+    [menu addItemWithTitle:@"更新文案到工程中【严格】" action:@selector(updateStringFilesInProject_strict) keyEquivalent:@""];
+    [menu addItemWithTitle:@"更新文案到工程中【兼容】" action:@selector(updateStringFilesInProject_normal) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
     [menu addItemWithTitle:@"退出" action:@selector(terminate:) keyEquivalent:@""];
     
@@ -53,30 +52,6 @@
     [self.settingWC showWindow:nil];
     
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
-}
-
-- (void)updateStringFilesInProject
-{
-    [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:[NSFDidUpdateProjectNotificationUserInfo notificationName] object:nil] take:1] subscribeNext:^(NSNotification *notification) {
-        //TODO:如何避免这个警告？
-        NSFDidUpdateProjectNotificationUserInfo *userInfo = (NSFDidUpdateProjectNotificationUserInfo *)notification.userInfo;
-
-        NSUserNotification *userNotification = [NSUserNotification new];
-        userNotification.title = [NSString stringWithFormat:@"更新了%@条文案", @(userInfo.updateCount)];
-        
-        if (userInfo.uselessLogFilePath)
-        {
-            userNotification.informativeText = @"发现工程中存在语言包里没有的文案，点击查看";
-            userNotification.userInfo = @{@"path": userInfo.uselessLogFilePath};
-        }
-        
-        userNotification.soundName = NSUserNotificationDefaultSoundName;
-        NSUserNotificationCenter *notificationCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
-        notificationCenter.delegate = self;
-        [notificationCenter deliverNotification:userNotification];
-    }];
-    
-    [NSLocalizationStrategy updateStringFilesInProject];
 }
 
 - (void)updateLanguageFile
@@ -110,18 +85,61 @@
         notificationCenter.delegate = self;
         [notificationCenter deliverNotification:userNotification];
     }];
-
+    
     [NSLocalizationStrategy updateKeysInLanguagePack];
 }
 
-- (void)bidirectionSync
+- (void)updateStringFilesInProject_strict
 {
+    [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:[NSFDidUpdateProjectNotificationUserInfo notificationName] object:nil] take:1] subscribeNext:^(NSNotification *notification) {
+        //TODO:如何避免这个警告？
+        NSFDidUpdateProjectNotificationUserInfo *userInfo = (NSFDidUpdateProjectNotificationUserInfo *)notification.userInfo;
+        
+        NSUserNotification *userNotification = [NSUserNotification new];
+        userNotification.title = [NSString stringWithFormat:@"更新了%@条文案", @(userInfo.updateCount)];
+        
+        if (userInfo.multipleMatchXmlPath)
+        {
+            userNotification.informativeText = @"工程中文案在语言包中存在多个匹配项，点击查看";
+            userNotification.userInfo = @{@"path": userInfo.multipleMatchXmlPath};
+        }
+        else if (userInfo.uselessLogFilePath)
+        {
+            userNotification.informativeText = @"工程中存在语言包里没有的文案，点击查看";
+            userNotification.userInfo = @{@"path": userInfo.uselessLogFilePath};
+        }
+        
+        userNotification.soundName = NSUserNotificationDefaultSoundName;
+        NSUserNotificationCenter *notificationCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+        notificationCenter.delegate = self;
+        [notificationCenter deliverNotification:userNotification];
+    }];
     
+    [NSLocalizationStrategy updateStringFilesInProject_strict];
 }
 
-- (void)findZh_HansEqualTranslations
+- (void)updateStringFilesInProject_normal
 {
-    [NSLocalizationStrategy findDuplicatedZh_HansTranslations];
+    [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:[NSFDidUpdateProjectNotificationUserInfo notificationName] object:nil] take:1] subscribeNext:^(NSNotification *notification) {
+        //TODO:如何避免这个警告？
+        NSFDidUpdateProjectNotificationUserInfo *userInfo = (NSFDidUpdateProjectNotificationUserInfo *)notification.userInfo;
+
+        NSUserNotification *userNotification = [NSUserNotification new];
+        userNotification.title = [NSString stringWithFormat:@"更新了%@条文案", @(userInfo.updateCount)];
+        
+        if (userInfo.uselessLogFilePath)
+        {
+            userNotification.informativeText = @"发现工程中存在语言包里没有的文案，点击查看";
+            userNotification.userInfo = @{@"path": userInfo.uselessLogFilePath};
+        }
+        
+        userNotification.soundName = NSUserNotificationDefaultSoundName;
+        NSUserNotificationCenter *notificationCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+        notificationCenter.delegate = self;
+        [notificationCenter deliverNotification:userNotification];
+    }];
+    
+    [NSLocalizationStrategy updateStringFilesInProject_normal];
 }
 
 #pragma mark - NSUserNotificationCenterDelegate
