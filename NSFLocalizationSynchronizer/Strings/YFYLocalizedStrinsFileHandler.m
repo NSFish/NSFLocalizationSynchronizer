@@ -40,9 +40,9 @@
 - (NSArray<NSFStringsIntermediaModel *> *)intermediaModels
 {
     NSArray<NSURL *> *stringFileURLs = [self stringFilesUnderProjectRootDirectory];
-    //    NSArray<NSURL *> *stringFileURLs = [[self stringFilesUnderProjectRootDirectory].rac_sequence filter:^BOOL(id value) {
-    //        return [[value path] containsString:@"FileFunction"];
-    //    }].array;
+//        NSArray<NSURL *> *stringFileURLs = [[self stringFilesUnderProjectRootDirectory].rac_sequence filter:^BOOL(id value) {
+//            return [[value path] containsString:@"InfoPlist"];
+//        }].array;
     
     //先逐个解析.strings文件，生成初级的中间数据
     NSMutableArray *lineModels = [NSMutableArray array];
@@ -63,12 +63,16 @@
     NSMutableDictionary<NSString *, NSFStringsReduntantableIntermediaModel *> *intermediaModelDicts = [NSMutableDictionary dictionary];
     for (YFYKeyValueModel *lineModel in usefulLineModels)
     {
-        NSFStringsReduntantableIntermediaModel *model = intermediaModelDicts[lineModel.key];
-        if (![intermediaModelDicts.allKeys containsObject:lineModel.key])
+        //不同的.strings文件中可能存在key相同，但表征不同意义的键值对，比如多个target的infoPlist.strings文件中可能都有CFBundleDisplayName，因此这里需要
+        //将文件路径也加入判定
+        NSString *stringsFileRootFolder = [[[lineModel.file absoluteString] stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
+        NSString *uniqueKey = [NSString stringWithFormat:@"%@_%@", lineModel.key, stringsFileRootFolder];
+        NSFStringsReduntantableIntermediaModel *model = intermediaModelDicts[uniqueKey];
+        if (!model)
         {
             model = [NSFStringsReduntantableIntermediaModel new];
             model.key = lineModel.key;
-            intermediaModelDicts[lineModel.key] = model;
+            intermediaModelDicts[uniqueKey] = model;
         }
         
         [model setValue:lineModel.value forKey:[self yfy_language2PropertyName:lineModel.language]];
@@ -232,7 +236,10 @@
         
         if ([isDirectory boolValue])
         {
-            if ([filename hasPrefix:@"Pods"] || [filename isEqualToString:@"Base.lproj"])
+            if ([filename hasPrefix:@"Pods"]
+                || [filename isEqualToString:@"Carthage"]
+                || [filename isEqualToString:@"Base.lproj"]
+                || [filename containsString:@"Test"])
             {
                 [enumerator skipDescendants];
             }
