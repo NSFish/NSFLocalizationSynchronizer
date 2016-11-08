@@ -41,7 +41,7 @@
 {
     NSArray<NSURL *> *stringFileURLs = [self stringFilesUnderProjectRootDirectory];
 //        NSArray<NSURL *> *stringFileURLs = [[self stringFilesUnderProjectRootDirectory].rac_sequence filter:^BOOL(id value) {
-//            return [[value path] containsString:@"InfoPlist"];
+//            return [[value path] containsString:@"Message.strings"];
 //        }].array;
     
     //先逐个解析.strings文件，生成初级的中间数据
@@ -54,7 +54,7 @@
     //暂存起来供写回.strings文件时使用
     self.lineModels = [NSArray arrayWithArray:lineModels];
     
-    //合并初级的中间数据
+    //只取包含键值对的行
     NSArray<YFYKeyValueModel *> *usefulLineModels = [lineModels.rac_sequence filter:^BOOL(NSFStringsLineModel *model) {
         return [model isKindOfClass:[YFYKeyValueModel class]];
     }].array;
@@ -127,23 +127,26 @@
         }].array firstObject];
         
         NSString *newValue = [model valueForKey:[self yfy_language2PropertyName:language]];
-        if (!lineModel)
+        if (newValue)
         {
-            YFYKeyValueModel *firstModel = [matchedLineModels firstObject];
-            NSURL *file = [firstModel file];
-            NSString *filePath = [[file path] stringByReplacingOccurrencesOfString:firstModel.language withString:language];
-            file = [NSURL fileURLWithPath:filePath];
-            
-            lineModel = [YFYKeyValueModel modelAtFile:file order:self.lineModels.count key:key value:newValue language:language];
-            [mLineModels addObject:lineModel];
-        }
-        else
-        {
-            lineModel.value = newValue;
+            if (!lineModel)
+            {
+                YFYKeyValueModel *firstModel = [matchedLineModels firstObject];
+                NSURL *file = [firstModel file];
+                NSString *filePath = [[file path] stringByReplacingOccurrencesOfString:firstModel.language withString:language];
+                file = [NSURL fileURLWithPath:filePath];
+                
+                lineModel = [YFYKeyValueModel modelAtFile:file order:self.lineModels.count key:key value:newValue language:language];
+                [mLineModels addObject:lineModel];
+            }
+            else
+            {
+                lineModel.value = newValue;
+            }
         }
     };
     
-    //反向生成为LineModels
+    //反向生成行数据
     for (NSFStringsIntermediaModel *intermediaModel in intermediaModels)
     {
         [intermediaModel.keys enumerateObjectsUsingBlock:^(NSString * _Nonnull key, NSUInteger idx, BOOL * _Nonnull stop) {
