@@ -41,7 +41,7 @@
 {
     NSArray<NSURL *> *stringFileURLs = [self stringFilesUnderProjectRootDirectory];
 //        NSArray<NSURL *> *stringFileURLs = [[self stringFilesUnderProjectRootDirectory].rac_sequence filter:^BOOL(id value) {
-//            return [[value path] containsString:@"Message.strings"];
+//            return [[value path] containsString:@"Localizable"];
 //        }].array;
     
     //先逐个解析.strings文件，生成初级的中间数据

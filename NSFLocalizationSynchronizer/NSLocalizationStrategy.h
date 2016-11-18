@@ -13,6 +13,7 @@
 
 + (void)updateKeysInLanguagePack;
 
+//严格模式，即完全根据key进行匹配
 + (void)updateStringFilesInProject_strict;
 
 + (void)updateStringFilesInProject_normal;
