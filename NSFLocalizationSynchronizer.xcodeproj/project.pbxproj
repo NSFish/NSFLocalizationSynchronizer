@@ -23,6 +23,7 @@
 		A92C98641D0FE87E00CA4E29 /* NSFSettingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92C98621D0FE87E00CA4E29 /* NSFSettingWindowController.xib */; };
 		A92C98681D0FE8C500CA4E29 /* YFYLocalizedExcelFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98671D0FE8C500CA4E29 /* YFYLocalizedExcelFileHandler.m */; };
 		A92C986E1D0FF4C800CA4E29 /* NSFNotificationUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C986D1D0FF4C800CA4E29 /* NSFNotificationUserInfo.m */; };
+		A938E7141F136FF200E07C90 /* NSFSourceCodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = A938E7131F136FF200E07C90 /* NSFSourceCodeScanner.m */; };
 		A99A13C11D07EA8E0088ACFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A99A13C01D07EA8E0088ACFA /* AppDelegate.m */; };
 		A99A13C41D07EA8E0088ACFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A99A13C31D07EA8E0088ACFA /* main.m */; };
 		A99A13C61D07EA8E0088ACFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99A13C51D07EA8E0088ACFA /* Assets.xcassets */; };
@@ -84,6 +85,8 @@
 		A92C986C1D0FF4C800CA4E29 /* NSFNotificationUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFNotificationUserInfo.h; sourceTree = "<group>"; };
 		A92C986D1D0FF4C800CA4E29 /* NSFNotificationUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFNotificationUserInfo.m; sourceTree = "<group>"; };
 		A92C986F1D0FFB7400CA4E29 /* NSFNotificationUserInfoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFNotificationUserInfoProtocol.h; sourceTree = "<group>"; };
+		A938E7121F136FF200E07C90 /* NSFSourceCodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFSourceCodeScanner.h; sourceTree = "<group>"; };
+		A938E7131F136FF200E07C90 /* NSFSourceCodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFSourceCodeScanner.m; sourceTree = "<group>"; };
 		A99A13BC1D07EA8E0088ACFA /* NSFLocalizationSynchronizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSFLocalizationSynchronizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A99A13BF1D07EA8E0088ACFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A99A13C01D07EA8E0088ACFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -182,6 +185,23 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
+		A938E7101F136FCF00E07C90 /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				A938E7111F136FDE00E07C90 /* SourceCode */,
+			);
+			path = Project;
+			sourceTree = "<group>";
+		};
+		A938E7111F136FDE00E07C90 /* SourceCode */ = {
+			isa = PBXGroup;
+			children = (
+				A938E7121F136FF200E07C90 /* NSFSourceCodeScanner.h */,
+				A938E7131F136FF200E07C90 /* NSFSourceCodeScanner.m */,
+			);
+			path = SourceCode;
+			sourceTree = "<group>";
+		};
 		A99A13B31D07EA8E0088ACFA = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +223,7 @@
 		A99A13BE1D07EA8E0088ACFA /* NSFLocalizationSynchronizer */ = {
 			isa = PBXGroup;
 			children = (
+				A938E7101F136FCF00E07C90 /* Project */,
 				A92C986B1D0FF4AC00CA4E29 /* Foundation */,
 				A92C98651D0FE8C500CA4E29 /* LanguagePack */,
 				A92C985F1D0FE87E00CA4E29 /* UI */,
@@ -393,6 +414,7 @@
 				A92C985A1D0FE85900CA4E29 /* NSFSetting.m in Sources */,
 				A92C985E1D0FE85900CA4E29 /* YFYLocalizedStrinsFileHandler.m in Sources */,
 				A929A7031D110B8F00F4E5E1 /* NSFStringsIntermediaModel.m in Sources */,
+				A938E7141F136FF200E07C90 /* NSFSourceCodeScanner.m in Sources */,
 				A99A13C11D07EA8E0088ACFA /* AppDelegate.m in Sources */,
 				A92C986E1D0FF4C800CA4E29 /* NSFNotificationUserInfo.m in Sources */,
 				A929A6FD1D110A7100F4E5E1 /* NSFStringsLineModel.m in Sources */,
@@ -512,6 +534,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Mac Developer: Yuan Cheng (XVRB2UKUK9)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -521,7 +544,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.egeio.lxy.NSFLocalizationSynchronizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8696740c-de83-4743-a3f7-6efbe670dab7";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "NSFSettingWindowController.h"
 #import "NSLocalizationStrategy.h"
+#import "NSFSourceCodeScanner.h"
 
 @interface AppDelegate ()<NSUserNotificationCenterDelegate>
 
@@ -33,6 +34,7 @@
     NSMenu *menu = [NSMenu new];
     [menu addItemWithTitle:@"设置" action:@selector(openSettingWC) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
+    [menu addItemWithTitle:@"扫描工程中未国际化的字符串" action:@selector(findNonLocalizedStringsInProject) keyEquivalent:@""];
     [menu addItemWithTitle:@"更新key到excel中" action:@selector(updateLanguageFile) keyEquivalent:@""];
     [menu addItemWithTitle:@"更新文案到工程中【严格】" action:@selector(updateStringFilesInProject_strict) keyEquivalent:@""];
     [menu addItemWithTitle:@"更新文案到工程中【兼容】" action:@selector(updateStringFilesInProject_normal) keyEquivalent:@""];
@@ -52,6 +54,29 @@
     [self.settingWC showWindow:nil];
     
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
+}
+
+- (void)findNonLocalizedStringsInProject
+{
+    NSUInteger nonLocalizedStringsCount = [NSLocalizationStrategy findNonLocalizedStringsInProject];
+    
+    NSUserNotification *userNotification = [NSUserNotification new];
+    userNotification.title = @"扫描完毕";
+    if (nonLocalizedStringsCount == 0)
+    {
+        userNotification.subtitle = @"所有的字符串都国际化了";
+    }
+    else
+    {
+        userNotification.subtitle = [NSString stringWithFormat:@"发现%@条未国际化的字符串，点击查看", @(nonLocalizedStringsCount)];
+        NSString *logPath = [NSHomeDirectory() stringByAppendingPathComponent:@"/Desktop/工程中未国际化的字符串.xml"];
+        userNotification.userInfo = @{@"paths": @[logPath]};
+        
+        userNotification.soundName = NSUserNotificationDefaultSoundName;
+        NSUserNotificationCenter *notificationCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+        notificationCenter.delegate = self;
+        [notificationCenter deliverNotification:userNotification];
+    }
 }
 
 - (void)updateLanguageFile
@@ -123,7 +148,7 @@
     [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:[NSFDidUpdateProjectNotificationUserInfo notificationName] object:nil] take:1] subscribeNext:^(NSNotification *notification) {
         //TODO:如何避免这个警告？
         NSFDidUpdateProjectNotificationUserInfo *userInfo = (NSFDidUpdateProjectNotificationUserInfo *)notification.userInfo;
-
+        
         NSUserNotification *userNotification = [NSUserNotification new];
         userNotification.title = [NSString stringWithFormat:@"更新了%@条文案", @(userInfo.updateCount)];
         

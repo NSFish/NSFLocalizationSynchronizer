@@ -39,10 +39,10 @@
 
 - (NSArray<NSFStringsIntermediaModel *> *)intermediaModels
 {
-    NSArray<NSURL *> *stringFileURLs = [self stringFilesUnderProjectRootDirectory];
-//        NSArray<NSURL *> *stringFileURLs = [[self stringFilesUnderProjectRootDirectory].rac_sequence filter:^BOOL(id value) {
-//            return [[value path] containsString:@"Localizable"];
-//        }].array;
+    //    NSArray<NSURL *> *stringFileURLs = [self stringFilesUnderProjectRootDirectory];
+    NSArray<NSURL *> *stringFileURLs = [[self stringFilesUnderProjectRootDirectory].rac_sequence filter:^BOOL(id value) {
+        return ![[value path] containsString:@"school"];
+    }].array;
     
     //先逐个解析.strings文件，生成初级的中间数据
     NSMutableArray *lineModels = [NSMutableArray array];
@@ -266,7 +266,8 @@
 {
     NSString *language = [self yfy_languageRepresentByFile:stringFileURL];
     
-    NSString *content = [NSString stringWithContentsOfURL:stringFileURL encoding:NSUTF8StringEncoding error:nil];
+    NSError *error = nil;
+    NSString *content = [NSString stringWithContentsOfURL:stringFileURL encoding:NSUTF8StringEncoding error:&error];
     NSArray *lines = [content componentsSeparatedByString:@"\n"];
     
     //逐行解析，拆分成空白行、注释行和文案行

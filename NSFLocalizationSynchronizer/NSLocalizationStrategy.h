@@ -18,4 +18,6 @@
 
 + (void)updateStringFilesInProject_normal;
 
++ (NSUInteger)findNonLocalizedStringsInProject;
+
 @end

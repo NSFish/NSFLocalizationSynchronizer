@@ -12,6 +12,7 @@
 #import "YFYLocalizedExcelFileHandler.h"
 #import "NSString+LineInStringsFile.h"
 #import <XMLDictionary.h>
+#import "NSFSourceCodeScanner.h"
 
 @implementation NSLocalizationStrategy
 
@@ -261,6 +262,24 @@
                                                                                                         multipleMatchXmlPath:multipleMatchXmlPath];
         [[NSNotificationCenter defaultCenter] postNotificationName:[NSFDidUpdateProjectNotificationUserInfo notificationName] object:nil userInfo:userInfo];
     });
+}
+
++ (NSUInteger)findNonLocalizedStringsInProject
+{
+    NSArray<NSFSourceCodeFragment *> *fragments = [NSFSourceCodeScanner findNonLocalizedStringsIn:[NSURL fileURLWithPath:[NSFSetting projectRootFolderPath]]];
+    
+    if (fragments.count > 0)
+    {
+        NSArray<NSDictionary *> *nonLocalizedStrings = [fragments.rac_sequence map:^id(NSFSourceCodeFragment *fragment) {
+            return [fragment toDictionary];
+        }].array;
+        
+        NSDictionary *xmlDict = @{@"count": @(fragments.count).stringValue, @"strings": nonLocalizedStrings};
+        NSString *logPath = [NSHomeDirectory() stringByAppendingPathComponent:@"/Desktop/工程中未国际化的字符串.xml"];
+        [self writeDictionary:xmlDict toPath:logPath];
+    }
+    
+    return fragments.count;
 }
 
 #pragma mark - Private
