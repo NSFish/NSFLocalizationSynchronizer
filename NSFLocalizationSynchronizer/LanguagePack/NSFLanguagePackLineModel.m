@@ -9,7 +9,7 @@
 #import "NSFLanguagePackLineModel.h"
 
 @implementation NSFLanguagePackLineModel
-@synthesize zh_Hans, zh_Hant, en;
+@synthesize zh_Hans = _zh_Hans, zh_Hant = _zh_Hant, en = _en;
 
 - (NSString *)description
 {
@@ -24,6 +24,24 @@
              @"zh-Hant": self.zh_Hant,
              @"en": self.en,
              @"file": @""};
+}
+
+@end
+
+
+@implementation NSString(LanguagePack)
+
+- (NSString *)removeStringArrows
+{
+    NSString *string = self;
+    
+    NSString *prefix = @"<string>";
+    NSString *suffix = @"</string>";
+    
+    string = [string stringByReplacingOccurrencesOfString:prefix withString:@""];
+    string = [string stringByReplacingOccurrencesOfString:suffix withString:@""];
+    
+    return string;
 }
 
 @end

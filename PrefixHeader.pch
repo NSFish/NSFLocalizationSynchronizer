@@ -10,6 +10,10 @@
 #define PrefixHeader_pch
 
 #import <ReactiveCocoa.h>
+#import "NSObject+NSFExt.h"
 
+#define ZH_HANS @"zh-Hans"
+#define ZH_HANT @"zh-Hant"
+#define EN      @"en"
 
 #endif /* PrefixHeader_pch */

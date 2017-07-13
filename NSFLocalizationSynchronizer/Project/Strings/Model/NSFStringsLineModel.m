@@ -1,15 +1,48 @@
 //
-//  NSString+LineInStringsFile.m
+//  BLIntermediaModel.m
 //  BidirectionLocalization
 //
-//  Created by 乐星宇 on 16/6/3.
+//  Created by 乐星宇 on 16/6/2.
 //  Copyright © 2016年 乐星宇. All rights reserved.
 //
 
-#import "NSString+LineInStringsFile.h"
-#import <ReactiveCocoa.h>
+#import "NSFStringsLineModel.h"
 
-@implementation NSString (LineInStringsFile)
+@implementation NSFStringsLineModel
+
++ (instancetype)modelAtFile:(NSURL *)file order:(NSUInteger)order content:(NSString *)content
+{
+    return [[self alloc] initWithFile:file order:order content:content];
+}
+
+- (instancetype)initWithFile:(NSURL *)file order:(NSUInteger)order content:(NSString *)content
+{
+    if (self = [super init])
+    {
+        self.file = file;
+        self.order = order;
+        self.content = content;
+    }
+    
+    return self;
+}
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@, %@", self.file, self.content];
+}
+
+- (NSDictionary *)toDictionary
+{
+    return @{@"file": self.file,
+             @"order": @(self.order),
+             @"content": self.content};
+}
+
+@end
+
+
+@implementation NSString(LineInStringsFile)
 
 - (NSString *)trim
 {
@@ -63,19 +96,6 @@
     return RACTuplePack(key, value);
 }
 
-- (NSString *)removeStringArrows
-{
-    NSString *string = self;
-    
-    NSString *prefix = @"<string>";
-    NSString *suffix = @"</string>";
-    
-    string = [string stringByReplacingOccurrencesOfString:prefix withString:@""];
-    string = [string stringByReplacingOccurrencesOfString:suffix withString:@""];
-    
-    return string;
-}
-
 - (NSString *)fixPlaceHolder
 {
     if ([self containsString:@"%"])
@@ -92,5 +112,5 @@
     return self;
 }
 
-
 @end
+

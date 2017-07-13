@@ -20,4 +20,9 @@
 
 + (NSUInteger)findNonLocalizedStringsInProject;
 
+/**
+ 检查工程中.strings文件的合法性并尝试修复，比如一行最末少了分号，转义字符没有加\等，内部是调用了plutil来做的检查
+ */
++ (void)fixLocalizedStringsError;
+
 @end

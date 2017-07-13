@@ -9,7 +9,7 @@
 #import "NSFStringsIntermediaModel.h"
 
 @interface NSFStringsIntermediaModel()
-@property (nonatomic, copy) NSArray<NSString *> *keys;
+@property (nonatomic, strong) NSMutableArray<NSString *> *keys;
 
 @end
 
@@ -17,11 +17,14 @@
 @implementation NSFStringsIntermediaModel
 @synthesize zh_Hans, zh_Hant, en;
 
-- (void)addKey:(NSString *)key
+- (instancetype)init
 {
-    NSMutableArray *keys = [NSMutableArray arrayWithArray:self.keys];
-    [keys addObject:key];
-    self.keys = [NSArray arrayWithArray:keys];
+    if (self = [super init])
+    {
+        self.keys = [NSMutableArray array];
+    }
+    
+    return self;
 }
 
 - (NSDictionary *)toDictionary

@@ -7,7 +7,6 @@
 //
 
 #import "YFYLocalizedExcelFileHandler.h"
-#import "NSString+LineInStringsFile.h"
 #import <XlsxReaderWriter/XlsxReaderWriter.h>
 #import "BRAWorksheet+YFYExt.h"
 #import "NSFSetting.h"
@@ -197,6 +196,5 @@
     
     return [NSArray arrayWithArray:models];
 }
-
 
 @end

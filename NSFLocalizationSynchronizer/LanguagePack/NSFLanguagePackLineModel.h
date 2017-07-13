@@ -8,10 +8,24 @@
 
 #import "NSFIntermediaModelProtocol.h"
 
-@interface NSFLanguagePackLineModel : NSObject<NSFIntermediaModel>
+NS_ASSUME_NONNULL_BEGIN
+
+@interface NSFLanguagePackLineModel: NSObject<NSFIntermediaModel>
 @property (nonatomic, copy)   NSURL     *file;
 @property (nonatomic, assign) NSInteger row;
-@property (nonatomic, copy)   NSString *key;
-@property (nonatomic, copy)   NSString *platform;
+@property (nonatomic, copy)   NSString  *key;
+@property (nonatomic, copy)   NSString  *platform;
 
 @end
+
+
+@interface NSString(LanguagePack)
+
+/**
+ 兼容Android写入的文案，移除文案前后的<string></string>
+ */
+- (NSString *)removeStringArrows;
+
+@end
+
+NS_ASSUME_NONNULL_END

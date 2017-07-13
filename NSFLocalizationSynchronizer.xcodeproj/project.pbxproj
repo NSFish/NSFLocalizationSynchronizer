@@ -7,28 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A929A6F91D11098000F4E5E1 /* NSFLanguagePackIntermediaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A929A6F81D11098000F4E5E1 /* NSFLanguagePackIntermediaModel.m */; };
-		A929A6FD1D110A7100F4E5E1 /* NSFStringsLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A929A6FC1D110A7100F4E5E1 /* NSFStringsLineModel.m */; };
 		A929A7001D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A929A6FF1D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m */; };
-		A929A7031D110B8F00F4E5E1 /* NSFStringsIntermediaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A929A7021D110B8F00F4E5E1 /* NSFStringsIntermediaModel.m */; };
-		A929A7061D112F7200F4E5E1 /* NSFStringsReduntantableIntermediaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A929A7051D112F7200F4E5E1 /* NSFStringsReduntantableIntermediaModel.m */; };
 		A92C98581D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98491D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m */; };
-		A92C98591D0FE85900CA4E29 /* NSString+LineInStringsFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C984B1D0FE85900CA4E29 /* NSString+LineInStringsFile.m */; };
 		A92C985A1D0FE85900CA4E29 /* NSFSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C984E1D0FE85900CA4E29 /* NSFSetting.m */; };
-		A92C985B1D0FE85900CA4E29 /* YFYBlankModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98511D0FE85900CA4E29 /* YFYBlankModel.m */; };
-		A92C985C1D0FE85900CA4E29 /* YFYCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98531D0FE85900CA4E29 /* YFYCommentModel.m */; };
-		A92C985D1D0FE85900CA4E29 /* YFYKeyValueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98551D0FE85900CA4E29 /* YFYKeyValueModel.m */; };
-		A92C985E1D0FE85900CA4E29 /* YFYLocalizedStrinsFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98571D0FE85900CA4E29 /* YFYLocalizedStrinsFileHandler.m */; };
 		A92C98631D0FE87E00CA4E29 /* NSFSettingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98611D0FE87E00CA4E29 /* NSFSettingWindowController.m */; };
 		A92C98641D0FE87E00CA4E29 /* NSFSettingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92C98621D0FE87E00CA4E29 /* NSFSettingWindowController.xib */; };
 		A92C98681D0FE8C500CA4E29 /* YFYLocalizedExcelFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98671D0FE8C500CA4E29 /* YFYLocalizedExcelFileHandler.m */; };
-		A92C986E1D0FF4C800CA4E29 /* NSFNotificationUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C986D1D0FF4C800CA4E29 /* NSFNotificationUserInfo.m */; };
 		A938E7141F136FF200E07C90 /* NSFSourceCodeScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = A938E7131F136FF200E07C90 /* NSFSourceCodeScanner.m */; };
-		A99A13C11D07EA8E0088ACFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A99A13C01D07EA8E0088ACFA /* AppDelegate.m */; };
+		A9440C481F15C235002E6C46 /* NSFStringsReduntantableIntermediaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9440C471F15C235002E6C46 /* NSFStringsReduntantableIntermediaModel.m */; };
+		A9440C4F1F16038C002E6C46 /* NSFStringsFileAndLineModelTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9440C4E1F16038C002E6C46 /* NSFStringsFileAndLineModelTransformer.m */; };
+		A9440C551F160636002E6C46 /* NSFLineModelAndLanguageModelTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9440C541F160636002E6C46 /* NSFLineModelAndLanguageModelTransformer.m */; };
+		A9440C581F1607B4002E6C46 /* NSFLanguageModelAndCompareModelTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9440C571F1607B4002E6C46 /* NSFLanguageModelAndCompareModelTransformer.m */; };
+		A9440C5B1F1616E0002E6C46 /* NSFStringsSideCompareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A9440C5A1F1616E0002E6C46 /* NSFStringsSideCompareModel.m */; };
+		A956B9EA1F14ADFB00AA81C7 /* NSObject+NSFExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A956B9E91F14ADFB00AA81C7 /* NSObject+NSFExt.m */; };
+		A956B9EE1F14AE3900AA81C7 /* NSLocalizationStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = A956B9EC1F14AE3900AA81C7 /* NSLocalizationStrategy.m */; };
+		A956B9F31F14B18800AA81C7 /* NSFNotificationUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = A956B9F11F14B18800AA81C7 /* NSFNotificationUserInfo.m */; };
+		A956BA0B1F14C43C00AA81C7 /* NSFKeyValueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A956BA071F14C43C00AA81C7 /* NSFKeyValueModel.m */; };
+		A956BA0C1F14C43C00AA81C7 /* NSFStringsLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A956BA091F14C43C00AA81C7 /* NSFStringsLineModel.m */; };
+		A956BA0F1F14C50200AA81C7 /* NSFLocalizedStrinsExpert.m in Sources */ = {isa = PBXBuildFile; fileRef = A956BA0E1F14C50200AA81C7 /* NSFLocalizedStrinsExpert.m */; };
+		A98926651F162244006EF4CE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A98926631F162244006EF4CE /* AppDelegate.m */; };
+		A98926681F162284006EF4CE /* NSFStringsIntermediaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A98926671F162284006EF4CE /* NSFStringsIntermediaModel.m */; };
 		A99A13C41D07EA8E0088ACFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A99A13C31D07EA8E0088ACFA /* main.m */; };
 		A99A13C61D07EA8E0088ACFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A99A13C51D07EA8E0088ACFA /* Assets.xcassets */; };
 		A99A13C91D07EA8E0088ACFA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A99A13C71D07EA8E0088ACFA /* MainMenu.xib */; };
-		A99A13DA1D07F2030088ACFA /* NSLocalizationStrategy.m in Sources */ = {isa = PBXBuildFile; fileRef = A99A13D91D07F2030088ACFA /* NSLocalizationStrategy.m */; };
 		A99A13F71D07F4F50088ACFA /* XlsxReaderWriter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99A13F61D07F4F50088ACFA /* XlsxReaderWriter.framework */; };
 		A99A13F91D07F5140088ACFA /* XlsxReaderWriter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99A13F61D07F4F50088ACFA /* XlsxReaderWriter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A9D3CD991D0E989D00300F30 /* template.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = A9D3CD981D0E989D00300F30 /* template.xlsx */; };
@@ -52,50 +53,53 @@
 /* Begin PBXFileReference section */
 		13E3C2A0287EB6CBE8444D34 /* Pods-NSFLocalizationSynchronizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSFLocalizationSynchronizer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NSFLocalizationSynchronizer/Pods-NSFLocalizationSynchronizer.debug.xcconfig"; sourceTree = "<group>"; };
 		44D5820086847BB4FEB82B29 /* libPods-NSFLocalizationSynchronizer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NSFLocalizationSynchronizer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A929A6F71D11098000F4E5E1 /* NSFLanguagePackIntermediaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFLanguagePackIntermediaModel.h; sourceTree = "<group>"; };
-		A929A6F81D11098000F4E5E1 /* NSFLanguagePackIntermediaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFLanguagePackIntermediaModel.m; sourceTree = "<group>"; };
-		A929A6FA1D1109E500F4E5E1 /* NSFIntermediaModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFIntermediaModelProtocol.h; sourceTree = "<group>"; };
-		A929A6FB1D110A7100F4E5E1 /* NSFStringsLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFStringsLineModel.h; sourceTree = "<group>"; };
-		A929A6FC1D110A7100F4E5E1 /* NSFStringsLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFStringsLineModel.m; sourceTree = "<group>"; };
 		A929A6FE1D110A7A00F4E5E1 /* NSFLanguagePackLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFLanguagePackLineModel.h; sourceTree = "<group>"; };
 		A929A6FF1D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFLanguagePackLineModel.m; sourceTree = "<group>"; };
-		A929A7011D110B8F00F4E5E1 /* NSFStringsIntermediaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFStringsIntermediaModel.h; sourceTree = "<group>"; };
-		A929A7021D110B8F00F4E5E1 /* NSFStringsIntermediaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFStringsIntermediaModel.m; sourceTree = "<group>"; };
-		A929A7041D112F7200F4E5E1 /* NSFStringsReduntantableIntermediaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFStringsReduntantableIntermediaModel.h; sourceTree = "<group>"; };
-		A929A7051D112F7200F4E5E1 /* NSFStringsReduntantableIntermediaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFStringsReduntantableIntermediaModel.m; sourceTree = "<group>"; };
 		A92C98481D0FE85900CA4E29 /* BRAWorksheet+YFYExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BRAWorksheet+YFYExt.h"; sourceTree = "<group>"; };
 		A92C98491D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BRAWorksheet+YFYExt.m"; sourceTree = "<group>"; };
-		A92C984A1D0FE85900CA4E29 /* NSString+LineInStringsFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LineInStringsFile.h"; sourceTree = "<group>"; };
-		A92C984B1D0FE85900CA4E29 /* NSString+LineInStringsFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LineInStringsFile.m"; sourceTree = "<group>"; };
 		A92C984D1D0FE85900CA4E29 /* NSFSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFSetting.h; sourceTree = "<group>"; };
 		A92C984E1D0FE85900CA4E29 /* NSFSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFSetting.m; sourceTree = "<group>"; };
-		A92C98501D0FE85900CA4E29 /* YFYBlankModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFYBlankModel.h; sourceTree = "<group>"; };
-		A92C98511D0FE85900CA4E29 /* YFYBlankModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFYBlankModel.m; sourceTree = "<group>"; };
-		A92C98521D0FE85900CA4E29 /* YFYCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFYCommentModel.h; sourceTree = "<group>"; };
-		A92C98531D0FE85900CA4E29 /* YFYCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFYCommentModel.m; sourceTree = "<group>"; };
-		A92C98541D0FE85900CA4E29 /* YFYKeyValueModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFYKeyValueModel.h; sourceTree = "<group>"; };
-		A92C98551D0FE85900CA4E29 /* YFYKeyValueModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFYKeyValueModel.m; sourceTree = "<group>"; };
-		A92C98561D0FE85900CA4E29 /* YFYLocalizedStrinsFileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFYLocalizedStrinsFileHandler.h; sourceTree = "<group>"; };
-		A92C98571D0FE85900CA4E29 /* YFYLocalizedStrinsFileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFYLocalizedStrinsFileHandler.m; sourceTree = "<group>"; };
 		A92C98601D0FE87E00CA4E29 /* NSFSettingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFSettingWindowController.h; sourceTree = "<group>"; };
 		A92C98611D0FE87E00CA4E29 /* NSFSettingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFSettingWindowController.m; sourceTree = "<group>"; };
 		A92C98621D0FE87E00CA4E29 /* NSFSettingWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NSFSettingWindowController.xib; sourceTree = "<group>"; };
 		A92C98661D0FE8C500CA4E29 /* YFYLocalizedExcelFileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YFYLocalizedExcelFileHandler.h; sourceTree = "<group>"; };
 		A92C98671D0FE8C500CA4E29 /* YFYLocalizedExcelFileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YFYLocalizedExcelFileHandler.m; sourceTree = "<group>"; };
-		A92C986C1D0FF4C800CA4E29 /* NSFNotificationUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFNotificationUserInfo.h; sourceTree = "<group>"; };
-		A92C986D1D0FF4C800CA4E29 /* NSFNotificationUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFNotificationUserInfo.m; sourceTree = "<group>"; };
-		A92C986F1D0FFB7400CA4E29 /* NSFNotificationUserInfoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFNotificationUserInfoProtocol.h; sourceTree = "<group>"; };
 		A938E7121F136FF200E07C90 /* NSFSourceCodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFSourceCodeScanner.h; sourceTree = "<group>"; };
 		A938E7131F136FF200E07C90 /* NSFSourceCodeScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFSourceCodeScanner.m; sourceTree = "<group>"; };
+		A9440C461F15C235002E6C46 /* NSFStringsReduntantableIntermediaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFStringsReduntantableIntermediaModel.h; sourceTree = "<group>"; };
+		A9440C471F15C235002E6C46 /* NSFStringsReduntantableIntermediaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFStringsReduntantableIntermediaModel.m; sourceTree = "<group>"; };
+		A9440C4D1F16038C002E6C46 /* NSFStringsFileAndLineModelTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFStringsFileAndLineModelTransformer.h; sourceTree = "<group>"; };
+		A9440C4E1F16038C002E6C46 /* NSFStringsFileAndLineModelTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFStringsFileAndLineModelTransformer.m; sourceTree = "<group>"; };
+		A9440C501F160573002E6C46 /* NSFTransformerUmbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFTransformerUmbrella.h; sourceTree = "<group>"; };
+		A9440C531F160636002E6C46 /* NSFLineModelAndLanguageModelTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFLineModelAndLanguageModelTransformer.h; sourceTree = "<group>"; };
+		A9440C541F160636002E6C46 /* NSFLineModelAndLanguageModelTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFLineModelAndLanguageModelTransformer.m; sourceTree = "<group>"; };
+		A9440C561F1607B4002E6C46 /* NSFLanguageModelAndCompareModelTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFLanguageModelAndCompareModelTransformer.h; sourceTree = "<group>"; };
+		A9440C571F1607B4002E6C46 /* NSFLanguageModelAndCompareModelTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFLanguageModelAndCompareModelTransformer.m; sourceTree = "<group>"; };
+		A9440C591F1616E0002E6C46 /* NSFStringsSideCompareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFStringsSideCompareModel.h; sourceTree = "<group>"; };
+		A9440C5A1F1616E0002E6C46 /* NSFStringsSideCompareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFStringsSideCompareModel.m; sourceTree = "<group>"; };
+		A956B9E81F14ADFB00AA81C7 /* NSObject+NSFExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSFExt.h"; sourceTree = "<group>"; };
+		A956B9E91F14ADFB00AA81C7 /* NSObject+NSFExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSFExt.m"; sourceTree = "<group>"; };
+		A956B9EC1F14AE3900AA81C7 /* NSLocalizationStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSLocalizationStrategy.m; sourceTree = "<group>"; };
+		A956B9ED1F14AE3900AA81C7 /* NSLocalizationStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSLocalizationStrategy.h; sourceTree = "<group>"; };
+		A956B9F01F14B18800AA81C7 /* NSFNotificationUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFNotificationUserInfo.h; sourceTree = "<group>"; };
+		A956B9F11F14B18800AA81C7 /* NSFNotificationUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFNotificationUserInfo.m; sourceTree = "<group>"; };
+		A956B9F21F14B18800AA81C7 /* NSFNotificationUserInfoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFNotificationUserInfoProtocol.h; sourceTree = "<group>"; };
+		A956BA061F14C43C00AA81C7 /* NSFKeyValueModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFKeyValueModel.h; sourceTree = "<group>"; };
+		A956BA071F14C43C00AA81C7 /* NSFKeyValueModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFKeyValueModel.m; sourceTree = "<group>"; };
+		A956BA081F14C43C00AA81C7 /* NSFStringsLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFStringsLineModel.h; sourceTree = "<group>"; };
+		A956BA091F14C43C00AA81C7 /* NSFStringsLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFStringsLineModel.m; sourceTree = "<group>"; };
+		A956BA0D1F14C50200AA81C7 /* NSFLocalizedStrinsExpert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFLocalizedStrinsExpert.h; sourceTree = "<group>"; };
+		A956BA0E1F14C50200AA81C7 /* NSFLocalizedStrinsExpert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFLocalizedStrinsExpert.m; sourceTree = "<group>"; };
+		A98926631F162244006EF4CE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A98926641F162244006EF4CE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A98926661F162284006EF4CE /* NSFStringsIntermediaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFStringsIntermediaModel.h; sourceTree = "<group>"; };
+		A98926671F162284006EF4CE /* NSFStringsIntermediaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFStringsIntermediaModel.m; sourceTree = "<group>"; };
+		A98926691F1622A3006EF4CE /* NSFIntermediaModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFIntermediaModelProtocol.h; sourceTree = "<group>"; };
 		A99A13BC1D07EA8E0088ACFA /* NSFLocalizationSynchronizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSFLocalizationSynchronizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A99A13BF1D07EA8E0088ACFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A99A13C01D07EA8E0088ACFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A99A13C31D07EA8E0088ACFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A99A13C51D07EA8E0088ACFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A99A13C81D07EA8E0088ACFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A99A13CA1D07EA8E0088ACFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A99A13D81D07F2030088ACFA /* NSLocalizationStrategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSLocalizationStrategy.h; sourceTree = "<group>"; };
-		A99A13D91D07F2030088ACFA /* NSLocalizationStrategy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSLocalizationStrategy.m; sourceTree = "<group>"; };
 		A99A13F51D07F46D0088ACFA /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
 		A99A13F61D07F4F50088ACFA /* XlsxReaderWriter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = XlsxReaderWriter.framework; sourceTree = "<group>"; };
 		A9D3CD981D0E989D00300F30 /* template.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = template.xlsx; sourceTree = "<group>"; };
@@ -118,10 +122,10 @@
 		A92C98471D0FE85900CA4E29 /* Addtions */ = {
 			isa = PBXGroup;
 			children = (
+				A956B9E81F14ADFB00AA81C7 /* NSObject+NSFExt.h */,
+				A956B9E91F14ADFB00AA81C7 /* NSObject+NSFExt.m */,
 				A92C98481D0FE85900CA4E29 /* BRAWorksheet+YFYExt.h */,
 				A92C98491D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m */,
-				A92C984A1D0FE85900CA4E29 /* NSString+LineInStringsFile.h */,
-				A92C984B1D0FE85900CA4E29 /* NSString+LineInStringsFile.m */,
 			);
 			path = Addtions;
 			sourceTree = "<group>";
@@ -135,28 +139,11 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
-		A92C984F1D0FE85900CA4E29 /* Strings */ = {
-			isa = PBXGroup;
-			children = (
-				A929A6FB1D110A7100F4E5E1 /* NSFStringsLineModel.h */,
-				A929A6FC1D110A7100F4E5E1 /* NSFStringsLineModel.m */,
-				A92C98501D0FE85900CA4E29 /* YFYBlankModel.h */,
-				A92C98511D0FE85900CA4E29 /* YFYBlankModel.m */,
-				A92C98521D0FE85900CA4E29 /* YFYCommentModel.h */,
-				A92C98531D0FE85900CA4E29 /* YFYCommentModel.m */,
-				A92C98541D0FE85900CA4E29 /* YFYKeyValueModel.h */,
-				A92C98551D0FE85900CA4E29 /* YFYKeyValueModel.m */,
-				A929A7041D112F7200F4E5E1 /* NSFStringsReduntantableIntermediaModel.h */,
-				A929A7051D112F7200F4E5E1 /* NSFStringsReduntantableIntermediaModel.m */,
-				A92C98561D0FE85900CA4E29 /* YFYLocalizedStrinsFileHandler.h */,
-				A92C98571D0FE85900CA4E29 /* YFYLocalizedStrinsFileHandler.m */,
-			);
-			path = Strings;
-			sourceTree = "<group>";
-		};
 		A92C985F1D0FE87E00CA4E29 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A98926641F162244006EF4CE /* AppDelegate.h */,
+				A98926631F162244006EF4CE /* AppDelegate.m */,
 				A92C98601D0FE87E00CA4E29 /* NSFSettingWindowController.h */,
 				A92C98611D0FE87E00CA4E29 /* NSFSettingWindowController.m */,
 				A92C98621D0FE87E00CA4E29 /* NSFSettingWindowController.xib */,
@@ -175,19 +162,10 @@
 			path = LanguagePack;
 			sourceTree = "<group>";
 		};
-		A92C986B1D0FF4AC00CA4E29 /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				A92C986F1D0FFB7400CA4E29 /* NSFNotificationUserInfoProtocol.h */,
-				A92C986C1D0FF4C800CA4E29 /* NSFNotificationUserInfo.h */,
-				A92C986D1D0FF4C800CA4E29 /* NSFNotificationUserInfo.m */,
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
 		A938E7101F136FCF00E07C90 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				A956BA041F14C43C00AA81C7 /* Strings */,
 				A938E7111F136FDE00E07C90 /* SourceCode */,
 			);
 			path = Project;
@@ -200,6 +178,69 @@
 				A938E7131F136FF200E07C90 /* NSFSourceCodeScanner.m */,
 			);
 			path = SourceCode;
+			sourceTree = "<group>";
+		};
+		A9440C4C1F160372002E6C46 /* Transformer */ = {
+			isa = PBXGroup;
+			children = (
+				A9440C501F160573002E6C46 /* NSFTransformerUmbrella.h */,
+				A9440C4D1F16038C002E6C46 /* NSFStringsFileAndLineModelTransformer.h */,
+				A9440C4E1F16038C002E6C46 /* NSFStringsFileAndLineModelTransformer.m */,
+				A9440C531F160636002E6C46 /* NSFLineModelAndLanguageModelTransformer.h */,
+				A9440C541F160636002E6C46 /* NSFLineModelAndLanguageModelTransformer.m */,
+				A9440C561F1607B4002E6C46 /* NSFLanguageModelAndCompareModelTransformer.h */,
+				A9440C571F1607B4002E6C46 /* NSFLanguageModelAndCompareModelTransformer.m */,
+			);
+			path = Transformer;
+			sourceTree = "<group>";
+		};
+		A956B9EB1F14AE2700AA81C7 /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				A956B9F01F14B18800AA81C7 /* NSFNotificationUserInfo.h */,
+				A956B9F11F14B18800AA81C7 /* NSFNotificationUserInfo.m */,
+				A956B9F21F14B18800AA81C7 /* NSFNotificationUserInfoProtocol.h */,
+				A98926691F1622A3006EF4CE /* NSFIntermediaModelProtocol.h */,
+				A956B9ED1F14AE3900AA81C7 /* NSLocalizationStrategy.h */,
+				A956B9EC1F14AE3900AA81C7 /* NSLocalizationStrategy.m */,
+			);
+			path = Proxy;
+			sourceTree = "<group>";
+		};
+		A956BA041F14C43C00AA81C7 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				A956BA051F14C43C00AA81C7 /* Model */,
+				A9440C4C1F160372002E6C46 /* Transformer */,
+				A956BA0A1F14C43C00AA81C7 /* Validation */,
+				A956BA0D1F14C50200AA81C7 /* NSFLocalizedStrinsExpert.h */,
+				A956BA0E1F14C50200AA81C7 /* NSFLocalizedStrinsExpert.m */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		A956BA051F14C43C00AA81C7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A98926661F162284006EF4CE /* NSFStringsIntermediaModel.h */,
+				A98926671F162284006EF4CE /* NSFStringsIntermediaModel.m */,
+				A9440C461F15C235002E6C46 /* NSFStringsReduntantableIntermediaModel.h */,
+				A9440C471F15C235002E6C46 /* NSFStringsReduntantableIntermediaModel.m */,
+				A956BA081F14C43C00AA81C7 /* NSFStringsLineModel.h */,
+				A956BA091F14C43C00AA81C7 /* NSFStringsLineModel.m */,
+				A956BA061F14C43C00AA81C7 /* NSFKeyValueModel.h */,
+				A956BA071F14C43C00AA81C7 /* NSFKeyValueModel.m */,
+				A9440C591F1616E0002E6C46 /* NSFStringsSideCompareModel.h */,
+				A9440C5A1F1616E0002E6C46 /* NSFStringsSideCompareModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A956BA0A1F14C43C00AA81C7 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Validation;
 			sourceTree = "<group>";
 		};
 		A99A13B31D07EA8E0088ACFA = {
@@ -223,18 +264,11 @@
 		A99A13BE1D07EA8E0088ACFA /* NSFLocalizationSynchronizer */ = {
 			isa = PBXGroup;
 			children = (
+				A956B9EB1F14AE2700AA81C7 /* Proxy */,
 				A938E7101F136FCF00E07C90 /* Project */,
-				A92C986B1D0FF4AC00CA4E29 /* Foundation */,
 				A92C98651D0FE8C500CA4E29 /* LanguagePack */,
 				A92C985F1D0FE87E00CA4E29 /* UI */,
-				A99A13DB1D07F2CA0088ACFA /* Model */,
-				A92C98471D0FE85900CA4E29 /* Addtions */,
 				A92C984C1D0FE85900CA4E29 /* Storage */,
-				A92C984F1D0FE85900CA4E29 /* Strings */,
-				A99A13BF1D07EA8E0088ACFA /* AppDelegate.h */,
-				A99A13C01D07EA8E0088ACFA /* AppDelegate.m */,
-				A99A13D81D07F2030088ACFA /* NSLocalizationStrategy.h */,
-				A99A13D91D07F2030088ACFA /* NSLocalizationStrategy.m */,
 				A99A13C21D07EA8E0088ACFA /* Supporting Files */,
 			);
 			path = NSFLocalizationSynchronizer;
@@ -243,6 +277,7 @@
 		A99A13C21D07EA8E0088ACFA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A92C98471D0FE85900CA4E29 /* Addtions */,
 				A99A13C51D07EA8E0088ACFA /* Assets.xcassets */,
 				A99A13C71D07EA8E0088ACFA /* MainMenu.xib */,
 				A99A13CA1D07EA8E0088ACFA /* Info.plist */,
@@ -251,18 +286,6 @@
 				A99A13C31D07EA8E0088ACFA /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A99A13DB1D07F2CA0088ACFA /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A929A6FA1D1109E500F4E5E1 /* NSFIntermediaModelProtocol.h */,
-				A929A6F71D11098000F4E5E1 /* NSFLanguagePackIntermediaModel.h */,
-				A929A6F81D11098000F4E5E1 /* NSFLanguagePackIntermediaModel.m */,
-				A929A7011D110B8F00F4E5E1 /* NSFStringsIntermediaModel.h */,
-				A929A7021D110B8F00F4E5E1 /* NSFStringsIntermediaModel.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C71923532E7EAC3305F69889 /* Pods */ = {
@@ -406,25 +429,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A92C985C1D0FE85900CA4E29 /* YFYCommentModel.m in Sources */,
-				A99A13DA1D07F2030088ACFA /* NSLocalizationStrategy.m in Sources */,
-				A929A7061D112F7200F4E5E1 /* NSFStringsReduntantableIntermediaModel.m in Sources */,
+				A956B9EE1F14AE3900AA81C7 /* NSLocalizationStrategy.m in Sources */,
+				A9440C481F15C235002E6C46 /* NSFStringsReduntantableIntermediaModel.m in Sources */,
 				A99A13C41D07EA8E0088ACFA /* main.m in Sources */,
-				A92C98591D0FE85900CA4E29 /* NSString+LineInStringsFile.m in Sources */,
 				A92C985A1D0FE85900CA4E29 /* NSFSetting.m in Sources */,
-				A92C985E1D0FE85900CA4E29 /* YFYLocalizedStrinsFileHandler.m in Sources */,
-				A929A7031D110B8F00F4E5E1 /* NSFStringsIntermediaModel.m in Sources */,
+				A9440C4F1F16038C002E6C46 /* NSFStringsFileAndLineModelTransformer.m in Sources */,
+				A9440C5B1F1616E0002E6C46 /* NSFStringsSideCompareModel.m in Sources */,
 				A938E7141F136FF200E07C90 /* NSFSourceCodeScanner.m in Sources */,
-				A99A13C11D07EA8E0088ACFA /* AppDelegate.m in Sources */,
-				A92C986E1D0FF4C800CA4E29 /* NSFNotificationUserInfo.m in Sources */,
-				A929A6FD1D110A7100F4E5E1 /* NSFStringsLineModel.m in Sources */,
+				A98926681F162284006EF4CE /* NSFStringsIntermediaModel.m in Sources */,
+				A956BA0F1F14C50200AA81C7 /* NSFLocalizedStrinsExpert.m in Sources */,
+				A956B9EA1F14ADFB00AA81C7 /* NSObject+NSFExt.m in Sources */,
 				A929A7001D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m in Sources */,
-				A929A6F91D11098000F4E5E1 /* NSFLanguagePackIntermediaModel.m in Sources */,
 				A92C98581D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m in Sources */,
-				A92C985D1D0FE85900CA4E29 /* YFYKeyValueModel.m in Sources */,
-				A92C985B1D0FE85900CA4E29 /* YFYBlankModel.m in Sources */,
+				A9440C581F1607B4002E6C46 /* NSFLanguageModelAndCompareModelTransformer.m in Sources */,
+				A956B9F31F14B18800AA81C7 /* NSFNotificationUserInfo.m in Sources */,
 				A92C98631D0FE87E00CA4E29 /* NSFSettingWindowController.m in Sources */,
 				A92C98681D0FE8C500CA4E29 /* YFYLocalizedExcelFileHandler.m in Sources */,
+				A956BA0C1F14C43C00AA81C7 /* NSFStringsLineModel.m in Sources */,
+				A956BA0B1F14C43C00AA81C7 /* NSFKeyValueModel.m in Sources */,
+				A9440C551F160636002E6C46 /* NSFLineModelAndLanguageModelTransformer.m in Sources */,
+				A98926651F162244006EF4CE /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

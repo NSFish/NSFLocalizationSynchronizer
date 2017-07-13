@@ -8,11 +8,11 @@
 
 #import "NSLocalizationStrategy.h"
 #import "NSFSetting.h"
-#import "YFYLocalizedStrinsFileHandler.h"
 #import "YFYLocalizedExcelFileHandler.h"
-#import "NSString+LineInStringsFile.h"
 #import <XMLDictionary.h>
 #import "NSFSourceCodeScanner.h"
+#import "NSFLocalizedStrinsExpert.h"
+#import "NSFStringsIntermediaModel.h"
 
 @implementation NSLocalizationStrategy
 
@@ -22,8 +22,8 @@
         NSURL *projectRootFolderURL = [NSURL fileURLWithPath:[NSFSetting projectRootFolderPath]];
         NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
         
-        YFYLocalizedStrinsFileHandler *stringsFileHandler = [[YFYLocalizedStrinsFileHandler alloc] initWithProjectRootDirectory:projectRootFolderURL];
-        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsFileHandler intermediaModels];
+        NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
+        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels];
         
         YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
         NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
@@ -89,8 +89,8 @@
         NSURL *projectRootFolderURL = [NSURL fileURLWithPath:[NSFSetting projectRootFolderPath]];
         NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
         
-        YFYLocalizedStrinsFileHandler *stringsFileHandler = [[YFYLocalizedStrinsFileHandler alloc] initWithProjectRootDirectory:projectRootFolderURL];
-        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsFileHandler intermediaModels];
+        NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
+        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels];
         
         YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
         NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
@@ -105,13 +105,6 @@
         
         for (NSFStringsIntermediaModel *stringModel in modelsFromStrings)
         {
-            if ([stringModel.keys.rac_sequence any:^BOOL(NSString *key) {
-                return [key containsString:@"_dropMenu"];
-            }])
-            {
-                continue;
-            }
-            
             //找到语言包中key相同的那一行翻译
             NSFLanguagePackLineModel *languagePackModel = [[modelsFromExcel.rac_sequence filter:^BOOL(NSFLanguagePackLineModel *model) {
                 return [stringModel.keys containsObject:model.key];
@@ -138,7 +131,7 @@
         }
         
         //将更新文案写回到工程中
-        [stringsFileHandler overrideStringFiles:modelsFromStrings];
+        [stringsExpert updateCompareModels:modelsFromStrings];
         
         NSString *xmlPath = nil;
         if (mismatchedStringModels.count > 0)
@@ -161,8 +154,8 @@
         NSURL *projectRootFolderURL = [NSURL fileURLWithPath:[NSFSetting projectRootFolderPath]];
         NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
         
-        YFYLocalizedStrinsFileHandler *stringsFileHandler = [[YFYLocalizedStrinsFileHandler alloc] initWithProjectRootDirectory:projectRootFolderURL];
-        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsFileHandler intermediaModels];
+        NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
+        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels];
         
         YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
         NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
@@ -180,13 +173,6 @@
         
         for (NSFStringsIntermediaModel *stringModel in modelsFromStrings)
         {
-            if ([stringModel.keys.rac_sequence any:^BOOL(NSString *key) {
-                return [key containsString:@"_dropMenu"];
-            }])
-            {
-                continue;
-            }
-            
             //找到语言包中key相同的那一行翻译
             NSFLanguagePackLineModel *languagePackModel = [[modelsFromExcel.rac_sequence filter:^BOOL(NSFLanguagePackLineModel *model) {
                 return [stringModel.keys containsObject:model.key];
@@ -239,7 +225,7 @@
         }
         
         //将更新文案写回到工程中
-        [stringsFileHandler overrideStringFiles:modelsFromStrings];
+        [stringsExpert updateCompareModels:modelsFromStrings];
         
         NSString *mismatchXmlPath = nil;
         if (mismatchedStringModels.count > 0)
@@ -280,6 +266,11 @@
     }
     
     return fragments.count;
+}
+
++ (void)fixLocalizedStringsError
+{
+    
 }
 
 #pragma mark - Private

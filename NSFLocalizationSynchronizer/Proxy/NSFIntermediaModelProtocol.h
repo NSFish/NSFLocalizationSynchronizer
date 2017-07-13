@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol NSFIntermediaModel <NSObject>
+NS_ASSUME_NONNULL_BEGIN
+
+@protocol NSFIntermediaModel<NSObject>
 @property (nonatomic, copy) NSString *zh_Hans;
 @property (nonatomic, copy) NSString *zh_Hant;
 @property (nonatomic, copy) NSString *en;
@@ -17,3 +19,5 @@
 - (NSDictionary *)toDictionary;
 
 @end
+
+NS_ASSUME_NONNULL_END
