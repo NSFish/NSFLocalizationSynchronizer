@@ -270,7 +270,14 @@
 
 + (void)fixLocalizedStringsError
 {
-    
+    //SourceCode: genstrings .m .mm .swift /Pods/
+    //Storyboard、Xib: ibtool
+    //Merge: unified strings
+    //strings <==> excel
+    //Copy: School unified strings
+    //Excel: Update school unified strings
+    //===
+    //strings ===> excel
 }
 
 #pragma mark - Private

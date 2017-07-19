@@ -45,8 +45,8 @@
             languageModel.en = compareModel.en;
             
             languageModel.fileURLs[ZH_HANS] = compareModel.fileURLs[[self fileURLKeyWith:key language:ZH_HANS]];
-            languageModel.fileURLs[ZH_HANS] = compareModel.fileURLs[[self fileURLKeyWith:key language:ZH_HANT]];
-            languageModel.fileURLs[ZH_HANS] = compareModel.fileURLs[[self fileURLKeyWith:key language:EN]];
+            languageModel.fileURLs[ZH_HANT] = compareModel.fileURLs[[self fileURLKeyWith:key language:ZH_HANT]];
+            languageModel.fileURLs[EN] = compareModel.fileURLs[[self fileURLKeyWith:key language:EN]];
             
             return languageModel;
         }];
