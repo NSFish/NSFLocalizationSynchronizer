@@ -71,12 +71,12 @@
         userNotification.subtitle = [NSString stringWithFormat:@"发现%@条未国际化的字符串，点击查看", @(nonLocalizedStringsCount)];
         NSString *logPath = [NSHomeDirectory() stringByAppendingPathComponent:@"/Desktop/工程中未国际化的字符串.xml"];
         userNotification.userInfo = @{@"paths": @[logPath]};
-        
-        userNotification.soundName = NSUserNotificationDefaultSoundName;
-        NSUserNotificationCenter *notificationCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
-        notificationCenter.delegate = self;
-        [notificationCenter deliverNotification:userNotification];
     }
+    
+    userNotification.soundName = NSUserNotificationDefaultSoundName;
+    NSUserNotificationCenter *notificationCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
+    notificationCenter.delegate = self;
+    [notificationCenter deliverNotification:userNotification];
 }
 
 - (void)updateLanguageFile
