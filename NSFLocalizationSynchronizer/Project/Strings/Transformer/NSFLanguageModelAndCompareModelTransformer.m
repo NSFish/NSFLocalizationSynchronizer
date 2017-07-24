@@ -16,7 +16,7 @@
 {
     NSArray<NSArray<NSFStringsReduntantableIntermediaModel *> *> *compoundLanguageModels = [self compoundLineModelsCompatibleWithStoryboardsAndXibs:languageModels];
     
-    return [compoundLanguageModels.rac_sequence map:^id(NSArray<NSFStringsReduntantableIntermediaModel *> *array) {
+    NSArray *result = [compoundLanguageModels.rac_sequence map:^id(NSArray<NSFStringsReduntantableIntermediaModel *> *array) {
         NSFStringsSideCompareModel *compareModel = [NSFStringsSideCompareModel new];
         [array enumerateObjectsUsingBlock:^(NSFStringsReduntantableIntermediaModel *languageModel, NSUInteger idx, BOOL *stop) {
             [compareModel.keys addObject:languageModel.key];
@@ -31,13 +31,15 @@
         
         return compareModel;
     }].array;
+    
+    return result;
 }
 
 + (NSArray<NSFStringsReduntantableIntermediaModel *> *)languageModelsFrom:(NSArray<NSFStringsIntermediaModel *> *)compareModels
 {
     NSArray<NSFStringsSideCompareModel *> *stringSideCompareModels = (NSArray<NSFStringsSideCompareModel *> *) compareModels;
     return [stringSideCompareModels.rac_sequence flattenMap:^RACStream *(NSFStringsSideCompareModel *compareModel) {
-        return [compareModel.keys.rac_sequence map:^id(NSString *key) {
+        NSArray *lanModels = [compareModel.keys.rac_sequence map:^id(NSString *key) {
             NSFStringsReduntantableIntermediaModel *languageModel = [NSFStringsReduntantableIntermediaModel new];
             languageModel.key = key;
             languageModel.zh_Hans = compareModel.zh_Hans;
@@ -48,8 +50,15 @@
             languageModel.fileURLs[ZH_HANT] = compareModel.fileURLs[[self fileURLKeyWith:key language:ZH_HANT]];
             languageModel.fileURLs[EN] = compareModel.fileURLs[[self fileURLKeyWith:key language:EN]];
             
+            if (languageModel.fileURLs.count != 3)
+            {
+                NSLog(@"language model = %@", languageModel);
+            }
+            
             return languageModel;
-        }];
+        }].array;
+        
+        return lanModels.rac_sequence;
     }].array;
 }
 

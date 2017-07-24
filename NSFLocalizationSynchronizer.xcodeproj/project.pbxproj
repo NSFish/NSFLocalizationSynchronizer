@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9152D121F209D7700DF77BB /* NSFStringFilesMixTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9152D111F209D7700DF77BB /* NSFStringFilesMixTransformer.m */; };
+		A9152D161F20A3DD00DF77BB /* NSFileManager+NSFExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A9152D151F20A3DD00DF77BB /* NSFileManager+NSFExt.m */; };
+		A9152D1F1F220B3C00DF77BB /* NSFProjectParseConfigration.m in Sources */ = {isa = PBXBuildFile; fileRef = A9152D1E1F220B3C00DF77BB /* NSFProjectParseConfigration.m */; };
+		A92431671F25D68F00985F0D /* NSURL+NSFExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A92431661F25D68F00985F0D /* NSURL+NSFExt.m */; };
 		A929A7001D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A929A6FF1D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m */; };
 		A92C98581D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98491D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m */; };
 		A92C985A1D0FE85900CA4E29 /* NSFSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C984E1D0FE85900CA4E29 /* NSFSetting.m */; };
@@ -53,6 +57,14 @@
 /* Begin PBXFileReference section */
 		13E3C2A0287EB6CBE8444D34 /* Pods-NSFLocalizationSynchronizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSFLocalizationSynchronizer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NSFLocalizationSynchronizer/Pods-NSFLocalizationSynchronizer.debug.xcconfig"; sourceTree = "<group>"; };
 		44D5820086847BB4FEB82B29 /* libPods-NSFLocalizationSynchronizer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NSFLocalizationSynchronizer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9152D101F209D7700DF77BB /* NSFStringFilesMixTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFStringFilesMixTransformer.h; sourceTree = "<group>"; };
+		A9152D111F209D7700DF77BB /* NSFStringFilesMixTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFStringFilesMixTransformer.m; sourceTree = "<group>"; };
+		A9152D141F20A3DD00DF77BB /* NSFileManager+NSFExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+NSFExt.h"; sourceTree = "<group>"; };
+		A9152D151F20A3DD00DF77BB /* NSFileManager+NSFExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+NSFExt.m"; sourceTree = "<group>"; };
+		A9152D1D1F220B3C00DF77BB /* NSFProjectParseConfigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFProjectParseConfigration.h; sourceTree = "<group>"; };
+		A9152D1E1F220B3C00DF77BB /* NSFProjectParseConfigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFProjectParseConfigration.m; sourceTree = "<group>"; };
+		A92431651F25D68F00985F0D /* NSURL+NSFExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+NSFExt.h"; sourceTree = "<group>"; };
+		A92431661F25D68F00985F0D /* NSURL+NSFExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+NSFExt.m"; sourceTree = "<group>"; };
 		A929A6FE1D110A7A00F4E5E1 /* NSFLanguagePackLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFLanguagePackLineModel.h; sourceTree = "<group>"; };
 		A929A6FF1D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFLanguagePackLineModel.m; sourceTree = "<group>"; };
 		A92C98481D0FE85900CA4E29 /* BRAWorksheet+YFYExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BRAWorksheet+YFYExt.h"; sourceTree = "<group>"; };
@@ -124,8 +136,12 @@
 			children = (
 				A956B9E81F14ADFB00AA81C7 /* NSObject+NSFExt.h */,
 				A956B9E91F14ADFB00AA81C7 /* NSObject+NSFExt.m */,
+				A92431651F25D68F00985F0D /* NSURL+NSFExt.h */,
+				A92431661F25D68F00985F0D /* NSURL+NSFExt.m */,
 				A92C98481D0FE85900CA4E29 /* BRAWorksheet+YFYExt.h */,
 				A92C98491D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m */,
+				A9152D141F20A3DD00DF77BB /* NSFileManager+NSFExt.h */,
+				A9152D151F20A3DD00DF77BB /* NSFileManager+NSFExt.m */,
 			);
 			path = Addtions;
 			sourceTree = "<group>";
@@ -184,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				A9440C501F160573002E6C46 /* NSFTransformerUmbrella.h */,
+				A9152D101F209D7700DF77BB /* NSFStringFilesMixTransformer.h */,
+				A9152D111F209D7700DF77BB /* NSFStringFilesMixTransformer.m */,
 				A9440C4D1F16038C002E6C46 /* NSFStringsFileAndLineModelTransformer.h */,
 				A9440C4E1F16038C002E6C46 /* NSFStringsFileAndLineModelTransformer.m */,
 				A9440C531F160636002E6C46 /* NSFLineModelAndLanguageModelTransformer.h */,
@@ -215,6 +233,8 @@
 				A956BA0A1F14C43C00AA81C7 /* Validation */,
 				A956BA0D1F14C50200AA81C7 /* NSFLocalizedStrinsExpert.h */,
 				A956BA0E1F14C50200AA81C7 /* NSFLocalizedStrinsExpert.m */,
+				A9152D1D1F220B3C00DF77BB /* NSFProjectParseConfigration.h */,
+				A9152D1E1F220B3C00DF77BB /* NSFProjectParseConfigration.m */,
 			);
 			path = Strings;
 			sourceTree = "<group>";
@@ -432,22 +452,26 @@
 				A956B9EE1F14AE3900AA81C7 /* NSLocalizationStrategy.m in Sources */,
 				A9440C481F15C235002E6C46 /* NSFStringsReduntantableIntermediaModel.m in Sources */,
 				A99A13C41D07EA8E0088ACFA /* main.m in Sources */,
+				A9152D1F1F220B3C00DF77BB /* NSFProjectParseConfigration.m in Sources */,
 				A92C985A1D0FE85900CA4E29 /* NSFSetting.m in Sources */,
 				A9440C4F1F16038C002E6C46 /* NSFStringsFileAndLineModelTransformer.m in Sources */,
 				A9440C5B1F1616E0002E6C46 /* NSFStringsSideCompareModel.m in Sources */,
 				A938E7141F136FF200E07C90 /* NSFSourceCodeScanner.m in Sources */,
 				A98926681F162284006EF4CE /* NSFStringsIntermediaModel.m in Sources */,
+				A9152D121F209D7700DF77BB /* NSFStringFilesMixTransformer.m in Sources */,
 				A956BA0F1F14C50200AA81C7 /* NSFLocalizedStrinsExpert.m in Sources */,
 				A956B9EA1F14ADFB00AA81C7 /* NSObject+NSFExt.m in Sources */,
 				A929A7001D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m in Sources */,
 				A92C98581D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m in Sources */,
 				A9440C581F1607B4002E6C46 /* NSFLanguageModelAndCompareModelTransformer.m in Sources */,
 				A956B9F31F14B18800AA81C7 /* NSFNotificationUserInfo.m in Sources */,
+				A92431671F25D68F00985F0D /* NSURL+NSFExt.m in Sources */,
 				A92C98631D0FE87E00CA4E29 /* NSFSettingWindowController.m in Sources */,
 				A92C98681D0FE8C500CA4E29 /* YFYLocalizedExcelFileHandler.m in Sources */,
 				A956BA0C1F14C43C00AA81C7 /* NSFStringsLineModel.m in Sources */,
 				A956BA0B1F14C43C00AA81C7 /* NSFKeyValueModel.m in Sources */,
 				A9440C551F160636002E6C46 /* NSFLineModelAndLanguageModelTransformer.m in Sources */,
+				A9152D161F20A3DD00DF77BB /* NSFileManager+NSFExt.m in Sources */,
 				A98926651F162244006EF4CE /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

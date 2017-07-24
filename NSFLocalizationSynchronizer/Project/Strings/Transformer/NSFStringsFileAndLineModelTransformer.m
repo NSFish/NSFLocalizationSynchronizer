@@ -13,56 +13,7 @@
 
 + (NSArray<__kindof NSFStringsLineModel *> *)lineModelsFrom:(NSURL *)stringsFileURL
 {
-    NSString *language = [self yfy_languageRepresentByFile:stringsFileURL];
-    
-    NSString *content = [NSString stringWithContentsOfURL:stringsFileURL encoding:NSUTF8StringEncoding error:nil];
-    NSArray<NSString *> *lines = [content componentsSeparatedByString:@"\n"];
-    
-    //逐行解析，拆分成空白行、注释行和文案行
-    NSMutableArray<__kindof NSFStringsLineModel *> *models = [NSMutableArray array];
-    __block BOOL inTheMiddleOfCStyleComment = NO;
-    
-    [lines enumerateObjectsUsingBlock:^(NSString *line, NSUInteger idx, BOOL *stop) {
-        if (line.length == 0)
-        {
-            NSFBlankLineModel *model = [NSFBlankLineModel modelAtFile:stringsFileURL
-                                                                order:idx
-                                                              content:line];
-            [models addObject:model];
-        }
-        else if ([line isComment] || inTheMiddleOfCStyleComment)
-        {
-            NSFCommentLineModel *model = [NSFCommentLineModel modelAtFile:stringsFileURL
-                                                                    order:idx
-                                                                  content:line];
-            [models addObject:model];
-            
-            if ([line isStartOfCStyleComment])
-            {
-                inTheMiddleOfCStyleComment = YES;
-            }
-            else if ([line isEndOfCStyleComment])
-            {
-                inTheMiddleOfCStyleComment = NO;
-            }
-        }
-        else
-        {
-            RACTuple *tuple = [line keyAndValue];
-            NSString *key = tuple[0];
-            NSString *value = tuple[1];
-            
-            NSFKeyValueModel *model = [NSFKeyValueModel modelAtFile:stringsFileURL
-                                                              order:idx
-                                                                key:key
-                                                              value:value
-                                                           language:language];
-            model.content = line;
-            [models addObject:model];
-        }
-    }];
-    
-    return [models copy];
+    return [self yfy_lineModelsFrom:stringsFileURL adjustIBGeneratedKey:NO];
 }
 
 + (NSString *)stringsFileContentFrom:(NSArray<__kindof NSFStringsLineModel *> *)lineModels
@@ -112,8 +63,18 @@
             [content appendFormat:@"%@\n", model.content];
         }
     }
-
+    
     return [content copy];
+}
+
++ (NSString *)adjustedStringFileContentFromIBFile:(NSURL *)fileURL
+{
+    NSArray<NSFStringsLineModel *> *lineModels = [NSFStringsFileAndLineModelTransformer yfy_lineModelsFrom:fileURL
+                                                                                      adjustIBGeneratedKey:YES];
+    NSString *content = [self stringsFileContentFrom:lineModels];
+    [content writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+    return content;
 }
 
 #pragma mark - Private
@@ -130,6 +91,71 @@
     }
     
     return EN;
+}
+
++ (NSArray<__kindof NSFStringsLineModel *> *)yfy_lineModelsFrom:(NSURL *)stringsFileURL
+                                           adjustIBGeneratedKey:(BOOL)adjustIBGeneratedKey
+{
+    NSString *language = [self yfy_languageRepresentByFile:stringsFileURL];
+    
+    NSString *content = [NSString stringWithContentsOfURL:stringsFileURL encoding:NSUTF8StringEncoding error:nil];
+    NSArray<NSString *> *lines = [content componentsSeparatedByString:@"\n"];
+    
+    //逐行解析，拆分成空白行、注释行和文案行
+    NSMutableArray<__kindof NSFStringsLineModel *> *models = [NSMutableArray array];
+    __block BOOL inTheMiddleOfCStyleComment = NO;
+    
+    [lines enumerateObjectsUsingBlock:^(NSString *line, NSUInteger idx, BOOL *stop) {
+        if (line.length == 0)
+        {
+            NSFBlankLineModel *model = [NSFBlankLineModel modelAtFile:stringsFileURL
+                                                                order:idx
+                                                              content:line];
+            [models addObject:model];
+        }
+        else if ([line isComment] || inTheMiddleOfCStyleComment)
+        {
+            NSFCommentLineModel *model = [NSFCommentLineModel modelAtFile:stringsFileURL
+                                                                    order:idx
+                                                                  content:line];
+            [models addObject:model];
+            
+            if ([line isStartOfCStyleComment])
+            {
+                inTheMiddleOfCStyleComment = YES;
+            }
+            else if ([line isEndOfCStyleComment])
+            {
+                inTheMiddleOfCStyleComment = NO;
+            }
+        }
+        else
+        {
+            RACTuple *tuple = [line keyAndValue];
+            NSString *key = tuple[0];
+            NSString *value = tuple[1];
+            
+            if (adjustIBGeneratedKey
+                && idx > 0)
+            {
+                NSString *previousLine = lines[idx - 1];
+                if ([previousLine isUsefulComment])
+                {
+                    key = [previousLine possibleKey];
+                }
+            }
+            
+            NSFKeyValueModel *model = [NSFKeyValueModel modelAtFile:stringsFileURL
+                                                              order:idx
+                                                                key:key
+                                                              value:value
+                                                           language:language];
+            model.content = line;
+            [models addObject:model];
+        }
+    }];
+    
+    return [models copy];
 }
 
 @end

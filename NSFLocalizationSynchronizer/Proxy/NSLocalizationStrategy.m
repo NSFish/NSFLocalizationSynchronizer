@@ -23,7 +23,7 @@
         NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
         
         NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
-        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels];
+        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels:NO];
         
         YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
         NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
@@ -90,7 +90,7 @@
         NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
         
         NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
-        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels];
+        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels:NO];
         
         YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
         NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
@@ -155,7 +155,7 @@
         NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
         
         NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
-        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels];
+        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels:NO];
         
         YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
         NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
@@ -266,6 +266,105 @@
     }
     
     return fragments.count;
+}
+
++ (void)updateUnifiedStringFilesInProject
+{
+    NSURL *projectRootFolderURL = [NSURL fileURLWithPath:[NSFSetting projectRootFolderPath]];
+    NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
+    NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels:YES];
+        
+    NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
+    YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
+    NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
+    
+    //记录更新了的文案条数
+    NSUInteger updatedTranslationsCount = 0;
+    
+    //兼容模式下才匹配到的文案【key匹配不到，通过简体中文翻译匹配到了超过一个的翻译】
+    NSMutableArray<NSDictionary *> *multipleMatchedStringModels = [NSMutableArray array];
+    
+    //遍历.strings文件生成的中间数据
+    //更新在语言包中匹配得到的文案
+    //输出匹配不到的文案的xml
+    NSMutableArray<NSDictionary *> *mismatchedStringModels = [NSMutableArray array];
+    
+    for (NSFStringsIntermediaModel *stringModel in modelsFromStrings)
+    {
+        //找到语言包中key相同的那一行翻译
+        NSFLanguagePackLineModel *languagePackModel = [[modelsFromExcel.rac_sequence filter:^BOOL(NSFLanguagePackLineModel *model) {
+            return [stringModel.keys containsObject:model.key];
+        }].array firstObject];
+        
+        if (languagePackModel)
+        {
+            if (![stringModel.zh_Hans isEqualToString:languagePackModel.zh_Hans]
+                || ![stringModel.zh_Hant isEqualToString:languagePackModel.zh_Hant]
+                || ![stringModel.en isEqualToString:languagePackModel.en])
+            {
+                stringModel.zh_Hans = languagePackModel.zh_Hans;
+                stringModel.zh_Hant = languagePackModel.zh_Hant;
+                stringModel.en = languagePackModel.en;
+                
+                updatedTranslationsCount++;
+            }
+        }
+        else
+        {
+            //找不到的话，可能是因为该行翻译还没有key，或者这个文案在语言包里没有，记录下来
+            //在兼容模式下直接用简体中文来查找excel中的对应model，以查找到的第一个为准
+            NSArray<NSFLanguagePackLineModel *> *languageModels = [modelsFromExcel.rac_sequence filter:^BOOL(NSFLanguagePackLineModel *model) {
+                return [stringModel.zh_Hans isEqualToString:model.zh_Hans];
+            }].array;
+            
+            if (languageModels.count == 1)//只找到一行匹配到的翻译，就是它了
+            {
+                NSFLanguagePackLineModel *languagePackModel = [languageModels firstObject];
+                if (![stringModel.zh_Hans isEqualToString:languagePackModel.zh_Hans]
+                    || ![stringModel.zh_Hant isEqualToString:languagePackModel.zh_Hant]
+                    || ![stringModel.en isEqualToString:languagePackModel.en])
+                {
+                    stringModel.zh_Hans = languagePackModel.zh_Hans;
+                    stringModel.zh_Hant = languagePackModel.zh_Hant;
+                    stringModel.en = languagePackModel.en;
+                    
+                    updatedTranslationsCount++;
+                }
+            }
+            else if (languageModels.count > 1)
+            {
+                [multipleMatchedStringModels addObject:[stringModel toDictionary]];
+            }
+            else//仍然找不到，记录为冗余文案
+            {
+                [mismatchedStringModels addObject:[stringModel toDictionary]];
+            }
+        }
+    }
+    
+    //将更新文案写回到工程中
+    [stringsExpert updateCompareModels:modelsFromStrings];
+    
+    NSString *mismatchXmlPath = nil;
+    if (mismatchedStringModels.count > 0)
+    {
+        NSDictionary *xmlDict = @{@"count": @(mismatchedStringModels.count).stringValue, @"model": mismatchedStringModels};
+        mismatchXmlPath = [NSHomeDirectory() stringByAppendingPathComponent:@"/Desktop/【兼容】工程文件中的冗余文案.xml"];
+        [self writeDictionary:xmlDict toPath:mismatchXmlPath];
+    }
+    
+    NSString *multipleMatchXmlPath = nil;
+    if (multipleMatchXmlPath)
+    {
+        NSDictionary *xmlDict = @{@"count": @(multipleMatchedStringModels.count).stringValue, @"model": multipleMatchedStringModels};
+        multipleMatchXmlPath = [NSHomeDirectory() stringByAppendingPathComponent:@"/Desktop/【兼容】在Excel中不止一条匹配翻译的文案.xml"];
+        [self writeDictionary:xmlDict toPath:multipleMatchXmlPath];
+    }
+    
+    NSFDidUpdateProjectNotificationUserInfo *userInfo = [NSFDidUpdateProjectNotificationUserInfo userInfoWithUpdateCount:updatedTranslationsCount
+                                                                                                      uselessLogFilePath:mismatchXmlPath
+                                                                                                    multipleMatchXmlPath:multipleMatchXmlPath];
+    [[NSNotificationCenter defaultCenter] postNotificationName:[NSFDidUpdateProjectNotificationUserInfo notificationName] object:nil userInfo:userInfo];
 }
 
 + (void)fixLocalizedStringsError

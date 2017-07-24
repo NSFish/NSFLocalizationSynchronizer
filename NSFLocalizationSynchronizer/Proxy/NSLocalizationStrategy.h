@@ -25,4 +25,6 @@
  */
 + (void)fixLocalizedStringsError;
 
++ (void)updateUnifiedStringFilesInProject;
+
 @end

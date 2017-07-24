@@ -62,46 +62,15 @@
 #pragma mark - Private
 + (NSArray<NSURL *> *)allSourceFilesIn:(NSURL *)directoryURL
 {
-    NSMutableArray<NSURL *> *files = [NSMutableArray array];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
-    
-    NSDirectoryEnumerator *enumerator = [fileManager
-                                         enumeratorAtURL:directoryURL
-                                         includingPropertiesForKeys:keys
-                                         options:0
-                                         errorHandler:^(NSURL *url, NSError *error) {
-                                             return YES;
-                                         }];
-    
-    for (NSURL *url in enumerator)
-    {
-        NSError *error;
-        NSNumber *isDirectory = nil;
-        if (![url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error])
-        {
-            // handle error
-        }
-        else if (![isDirectory boolValue])
-        {
-            if ([[url absoluteString] containsString:@"Carthage"]
-                || [[url absoluteString] containsString:@"Pods"]
-                || [[url absoluteString] containsString:@"CoolOffice_UnitTests"]
-                || [[url absoluteString] containsString:@"IDVerify"])
-            {
-                continue;
-            }
-            
-            if ([[url lastPathComponent] hasSuffix:@".m"]
-                || [[url lastPathComponent] hasSuffix:@".swift"])
-            {
-                [files addObject:url];
-            }
-        }
-    }
-    
-    return files;
+    return [NSFileManager nsf_filesThatMatch:^BOOL(NSURL *URL) {
+        return [[URL lastPathComponent] hasSuffix:@".m"]
+        || [[URL lastPathComponent] hasSuffix:@".swift"];
+    } inFolder:directoryURL ignoreSubFolderThatMatch:^BOOL(NSURL *URL) {
+        return [[URL absoluteString] containsString:@"Carthage"]
+        || [[URL path] containsString:@"Pods"]
+        || [[URL path] containsString:@"CoolOffice_UnitTests"]
+        || [[URL path] containsString:@"IDVerify"];
+    }];
 }
 
 + (NSArray<NSFSourceCodeFragment *> *)nonLocalizedStringsIn:(NSURL *)fileURL
@@ -151,7 +120,7 @@
                                  {
                                      return;
                                  }
-
+                                 
                                  
                                  NSString *stringContent = string;
                                  if ([stringContent hasPrefix:@"@"])

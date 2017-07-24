@@ -70,6 +70,7 @@
     range = [self rangeOfString:@"ObjectID"];
     NSInteger toIndex = range.location - 3;
     NSString *string = [self substringWithRange:NSMakeRange(fromIndex, toIndex - fromIndex)];
+    
     return string;
 }
 
@@ -77,7 +78,6 @@
 {
     return [self hasPrefix:@"/*"] && ![self hasSuffix:@"*/"];
 }
-
 
 - (BOOL)isEndOfCStyleComment
 {

@@ -24,6 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)stringsFileContentFrom:(NSArray<__kindof NSFStringsLineModel *> *)lineModels;
 
+/**
+ 用Comment替换ibtool生成的strings文件里的key
+ */
++ (NSString *)adjustedStringFileContentFromIBFile:(NSURL *)fileURL;
+
 @end
 
 NS_ASSUME_NONNULL_END

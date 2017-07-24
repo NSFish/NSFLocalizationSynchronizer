@@ -34,11 +34,18 @@
     NSMenu *menu = [NSMenu new];
     [menu addItemWithTitle:@"设置" action:@selector(openSettingWC) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
+
     [menu addItemWithTitle:@"扫描工程中未国际化的字符串" action:@selector(findNonLocalizedStringsInProject) keyEquivalent:@""];
-    [menu addItemWithTitle:@"更新key到excel中" action:@selector(updateLanguageFile) keyEquivalent:@""];
+    [menu addItem:[NSMenuItem separatorItem]];
+
+    [menu addItemWithTitle:@"【大一统】更新文案到工程中【严格】" action:@selector(updateUnifiedStringFilesInProject) keyEquivalent:@""];
+    [menu addItemWithTitle:@"【大一统】更新文案到工程中【兼容】" action:@selector(updateUnifiedStringFilesInProject) keyEquivalent:@""];
+    [menu addItem:[NSMenuItem separatorItem]];
+    
     [menu addItemWithTitle:@"更新文案到工程中【严格】" action:@selector(updateStringFilesInProject_strict) keyEquivalent:@""];
     [menu addItemWithTitle:@"更新文案到工程中【兼容】" action:@selector(updateStringFilesInProject_normal) keyEquivalent:@""];
     [menu addItem:[NSMenuItem separatorItem]];
+    
     [menu addItemWithTitle:@"退出" action:@selector(terminate:) keyEquivalent:@""];
     
     self.statusItem.menu = menu;
@@ -77,6 +84,11 @@
     NSUserNotificationCenter *notificationCenter = [NSUserNotificationCenter defaultUserNotificationCenter];
     notificationCenter.delegate = self;
     [notificationCenter deliverNotification:userNotification];
+}
+
+- (void)updateUnifiedStringFilesInProject
+{
+    [NSLocalizationStrategy updateUnifiedStringFilesInProject];
 }
 
 - (void)updateLanguageFile

@@ -18,6 +18,16 @@
 @implementation NSFStringsReduntantableIntermediaModel
 @synthesize zh_Hans = _zh_Hans, zh_Hant = _zh_Hant, en = _en;
 
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        self.fileURLs = [NSMutableDictionary new];
+    }
+    
+    return self;
+}
+
 - (NSString *)UUID
 {
     return [NSString stringWithFormat:@"%@_%@_%@", self.zh_Hans, self.zh_Hant, self.en];
@@ -25,11 +35,6 @@
 
 - (void)integrate:(NSFKeyValueModel *)keyValueModel
 {
-    if (!self.fileURLs)
-    {
-        self.fileURLs = [NSMutableDictionary new];
-    }
-    
     if ([keyValueModel.language isEqualToString:ZH_HANS])
     {
         self.zh_Hans = keyValueModel.value;
