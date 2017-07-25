@@ -6,15 +6,15 @@
 //  Copyright © 2016年 乐星宇. All rights reserved.
 //
 
-#import "NSLocalizationStrategy.h"
+#import "NSFLocalizationProxy.h"
 #import "NSFSetting.h"
-#import "YFYLocalizedExcelFileHandler.h"
+#import "NSFLanguagePackageExpert.h"
 #import <XMLDictionary.h>
 #import "NSFSourceCodeScanner.h"
-#import "NSFLocalizedStrinsExpert.h"
+#import "NSFProjectExpert.h"
 #import "NSFStringsCompareModel.h"
 
-@implementation NSLocalizationStrategy
+@implementation NSFLocalizationProxy
 
 + (void)updateKeysInLanguagePack
 {
@@ -22,11 +22,11 @@
         NSURL *projectRootFolderURL = [NSURL fileURLWithPath:[NSFSetting projectRootFolderPath]];
         NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
         
-        NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
+        NSFProjectExpert *stringsExpert = [[NSFProjectExpert alloc] initWithProjectRoot:projectRootFolderURL];
         NSArray<NSFStringsCompareModel *> *modelsFromStrings = [stringsExpert compareModels:NO];
         
-        YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
-        NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
+        NSFLanguagePackageExpert *excelFileHandler = [NSFLanguagePackageExpert load:languageFileURL];
+        NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler compareModels];
         
         //遍历语言包生成的中间数据，更新Key
         //记录找不到对应key的文案
@@ -38,7 +38,7 @@
         {
             //暴力对比所有的文案，三种语言的文案全部一致的，即为工程中对应的key
             NSFStringsCompareModel *stringModel = [[modelsFromStrings.rac_sequence filter:^BOOL(NSFStringsCompareModel *model) {
-                return [[model.zh_Hans precomposedStringWithCanonicalMapping] isEqualToString:languagePackModel.zh_Hans]
+                return [model.zh_Hans isEqualToString:languagePackModel.zh_Hans]
                 && [model.zh_Hant isEqualToString:languagePackModel.zh_Hant]
                 && [model.en isEqualToString:languagePackModel.en];
             }].array firstObject];
@@ -75,8 +75,8 @@
         
         //重新生成excel
         NSURL *newLanguageFileURL = [NSURL fileURLWithPath:@"/Users/lexingyu/Desktop/App语言包.xlsx"];
-        YFYLocalizedExcelFileHandler *newLaunguageFileHandler = [YFYLocalizedExcelFileHandler create:newLanguageFileURL];
-        [newLaunguageFileHandler writeToFile:modelsFromExcel];
+        NSFLanguagePackageExpert *newLaunguageFileHandler = [NSFLanguagePackageExpert create:newLanguageFileURL];
+        [newLaunguageFileHandler updateCompareModels:modelsFromExcel];
         
         NSFDidUpdateLanguageFileNotificationUserInfo *userInfo = [NSFDidUpdateLanguageFileNotificationUserInfo userInfoWithUpdateCount:updatedCount uselessLogFilePath:uselessLogFilePath duplicatedLogFilePath:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:[NSFDidUpdateLanguageFileNotificationUserInfo notificationName] object:nil userInfo:userInfo];
@@ -89,11 +89,11 @@
         NSURL *projectRootFolderURL = [NSURL fileURLWithPath:[NSFSetting projectRootFolderPath]];
         NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
         
-        NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
+        NSFProjectExpert *stringsExpert = [[NSFProjectExpert alloc] initWithProjectRoot:projectRootFolderURL];
         NSArray<NSFStringsCompareModel *> *modelsFromStrings = [stringsExpert compareModels:NO];
         
-        YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
-        NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
+        NSFLanguagePackageExpert *excelFileHandler = [NSFLanguagePackageExpert load:languageFileURL];
+        NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler compareModels];
         
         //记录更新了的文案条数
         NSUInteger updatedTranslationsCount = 0;
@@ -154,11 +154,11 @@
         NSURL *projectRootFolderURL = [NSURL fileURLWithPath:[NSFSetting projectRootFolderPath]];
         NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
         
-        NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
+        NSFProjectExpert *stringsExpert = [[NSFProjectExpert alloc] initWithProjectRoot:projectRootFolderURL];
         NSArray<NSFStringsCompareModel *> *modelsFromStrings = [stringsExpert compareModels:NO];
         
-        YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
-        NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
+        NSFLanguagePackageExpert *excelFileHandler = [NSFLanguagePackageExpert load:languageFileURL];
+        NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler compareModels];
         
         //记录更新了的文案条数
         NSUInteger updatedTranslationsCount = 0;
@@ -252,7 +252,9 @@
 
 + (NSUInteger)findNonLocalizedStringsInProject
 {
-    NSArray<NSFSourceCodeFragment *> *fragments = [NSFSourceCodeScanner findNonLocalizedStringsIn:[NSURL fileURLWithPath:[NSFSetting projectRootFolderPath]]];
+    NSURL *projectRoot = [NSURL fileURLWithPath:[NSFSetting projectRootFolderPath]];
+    NSFProjectExpert *expert = [[NSFProjectExpert alloc] initWithProjectRoot:projectRoot];
+    NSArray<NSFSourceCodeFragment *> *fragments = [expert scanUnlocalizedStringInSourceCode];
     
     if (fragments.count > 0)
     {
@@ -271,12 +273,12 @@
 + (void)updateUnifiedStringFilesInProject
 {
     NSURL *projectRootFolderURL = [NSURL fileURLWithPath:[NSFSetting projectRootFolderPath]];
-    NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
+    NSFProjectExpert *stringsExpert = [[NSFProjectExpert alloc] initWithProjectRoot:projectRootFolderURL];
     NSArray<NSFStringsCompareModel *> *modelsFromStrings = [stringsExpert compareModels:YES];
         
     NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
-    YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
-    NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
+    NSFLanguagePackageExpert *excelFileHandler = [NSFLanguagePackageExpert load:languageFileURL];
+    NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler compareModels];
     
     //记录更新了的文案条数
     NSUInteger updatedTranslationsCount = 0;
@@ -367,18 +369,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:[NSFDidUpdateProjectNotificationUserInfo notificationName] object:nil userInfo:userInfo];
 }
 
-+ (void)fixLocalizedStringsError
-{
-    //SourceCode: genstrings .m .mm .swift /Pods/
-    //Storyboard、Xib: ibtool
-    //Merge: unified strings
-    //strings <==> excel
-    //Copy: School unified strings
-    //Excel: Update school unified strings
-    //===
-    //strings ===> excel
-}
-
 #pragma mark - Private
 + (void)writeDictionary:(NSDictionary *)dictionary toPath:(NSString *)path
 {
@@ -392,6 +382,5 @@
     NSData *xmlData = [document XMLDataWithOptions:NSXMLNodePrettyPrint];
     [xmlData writeToFile:path atomically:YES];
 }
-
 
 @end

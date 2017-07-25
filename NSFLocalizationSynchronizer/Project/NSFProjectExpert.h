@@ -10,20 +10,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class NSFStringsCompareModel;
+@class NSFStringsCompareModel, NSFSourceCodeFragment;
 
-@interface NSFLocalizedStrinsExpert: NSObject
+/**
+ 所有工程端功能的入口
+ */
+@interface NSFProjectExpert: NSObject
 
 - (instancetype)initWithProjectRoot:(NSURL *)projectRoot NS_DESIGNATED_INITIALIZER;
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
-- (NSArray<NSURL *> *)stringFiles;
+- (NSArray<NSFSourceCodeFragment *> *)scanUnlocalizedStringInSourceCode;
 
-- (NSArray<NSURL *> *)unifiedStringFiles;
-
-
+#pragma mark - 比对
 /**
  获取用于和语言包比较的中间models
 

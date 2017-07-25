@@ -7,7 +7,12 @@
 //
 
 #import "NSFKeyValueModel.h"
-#import <ReactiveCocoa.h>
+
+@interface NSFKeyValueModel()
+@property (nonatomic, strong) NSString *UUID;
+
+@end
+
 
 @implementation NSFKeyValueModel
 
@@ -40,6 +45,16 @@
     }
     
     return self;
+}
+
+- (NSString *)UUID
+{
+    if (!_UUID)
+    {
+        _UUID = [NSString stringWithFormat:@"%@_%@_%@", _key, _value, _language];
+    }
+    
+    return _UUID;
 }
 
 - (NSString *)description

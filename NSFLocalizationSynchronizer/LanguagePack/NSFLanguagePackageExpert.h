@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "NSFLanguagePackLineModel.h"
 
-@interface YFYLocalizedExcelFileHandler : NSObject
+NS_ASSUME_NONNULL_BEGIN
+
+@interface NSFLanguagePackageExpert : NSObject
 
 + (instancetype)create:(NSURL *)URL;
 + (instancetype)load:(NSURL *)URL;
 
-- (NSArray<NSFLanguagePackLineModel *> *)intermediaModels;
-- (void)writeToFile:(NSArray<NSFLanguagePackLineModel *> *)intermediaModels;
+- (NSArray<NSFLanguagePackLineModel *> *)compareModels;
+- (void)updateCompareModels:(NSArray<NSFLanguagePackLineModel *> *)compareModels;
 
 @end
+
+NS_ASSUME_NONNULL_END

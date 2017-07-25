@@ -6,14 +6,14 @@
 //  Copyright © 2016年 乐星宇. All rights reserved.
 //
 
-#import "YFYLocalizedExcelFileHandler.h"
+#import "NSFLanguagePackageExpert.h"
 #import <XlsxReaderWriter/XlsxReaderWriter.h>
 #import "BRAWorksheet+YFYExt.h"
 #import "NSFSetting.h"
 
 #define _(X) (uint32_t)(X)
 
-@interface YFYLocalizedExcelFileHandler()
+@interface NSFLanguagePackageExpert()
 @property (nonatomic, copy)   NSURL *URL;
 @property (nonatomic, strong) NSArray *lineModels;
 @property (nonatomic, strong) BRAOfficeDocumentPackage *xlsxFile;
@@ -21,7 +21,7 @@
 @end
 
 
-@implementation YFYLocalizedExcelFileHandler
+@implementation NSFLanguagePackageExpert
 
 + (instancetype)create:(NSURL *)URL
 {
@@ -39,20 +39,20 @@
 
 + (instancetype)load:(NSURL *)URL
 {
-    YFYLocalizedExcelFileHandler *handler = [YFYLocalizedExcelFileHandler new];
+    NSFLanguagePackageExpert *handler = [NSFLanguagePackageExpert new];
     handler.xlsxFile = [BRAOfficeDocumentPackage open:[URL path]];
     handler.URL = URL;
     
     return handler;
 }
 
-- (NSArray<NSFLanguagePackLineModel *> *)intermediaModels
+- (NSArray<NSFLanguagePackLineModel *> *)compareModels
 {
     self.lineModels = [self lineModelsFromExcel:self.URL];
     return [self.lineModels copy];
 }
 
-- (void)writeToFile:(NSArray<NSFLanguagePackLineModel *> *)intermediaModels
+- (void)updateCompareModels:(NSArray<NSFLanguagePackLineModel *> *)compareModels
 {
     //读取原语言包的样式
     NSString *syncXlsxFilePath = [NSFSetting languageFilePath];
@@ -101,7 +101,7 @@
             [sheet addRowsAt:sheet.rows.count count:lackRows];
         }
         
-        [intermediaModels enumerateObjectsUsingBlock:^(NSFLanguagePackLineModel * _Nonnull model, NSUInteger idx, BOOL * _Nonnull stop) {
+        [compareModels enumerateObjectsUsingBlock:^(NSFLanguagePackLineModel *model, NSUInteger idx, BOOL *stop) {
             [sheet cellAtRow:model.row col:keyIndex].stringValue = model.key;
             [sheet cellAtRow:model.row col:zh_HansIndex].stringValue = model.zh_Hans;
             [sheet cellAtRow:model.row col:zh_HantIndex].stringValue = model.zh_Hant;
@@ -159,36 +159,33 @@
         model.file = URL;
         model.row = row;
         
-        for (NSUInteger col = 1; col <= cols; ++col)
+        if (keyIndex != NSNotFound)
         {
-            if (keyIndex != NSNotFound)
+            model.key = [sheet cellAtRow:row col:keyIndex].stringValue;
+        }
+        
+        if (zh_HansIndex != NSNotFound)
+        {
+            model.zh_Hans = [sheet cellAtRow:row col:zh_HansIndex].stringValue;
+            if (!model.key)//没有key的新文案，生成一个临时key占位
             {
-                model.key = [sheet cellAtRow:row col:keyIndex].stringValue;
+                model.key = [[NSUUID UUID] UUIDString];
             }
-            
-            if (zh_HansIndex != NSNotFound)
-            {
-                model.zh_Hans = [[sheet cellAtRow:row col:zh_HansIndex].stringValue removeStringArrows];
-                if (!model.key)//没有key的新文案，生成一个临时key占位
-                {
-                    model.key = [[NSUUID UUID] UUIDString];
-                }
-            }
-            
-            if (zh_HantIndex != NSNotFound)
-            {
-                model.zh_Hant = [[sheet cellAtRow:row col:zh_HantIndex].stringValue removeStringArrows];
-            }
-            
-            if (enIndex != NSNotFound)
-            {
-                model.en = [[sheet cellAtRow:row col:enIndex].stringValue removeStringArrows];
-            }
-            
-            if (platformIndex != NSNotFound)
-            {
-                model.platform = [sheet cellAtRow:row col:platformIndex].stringValue;
-            }
+        }
+        
+        if (zh_HantIndex != NSNotFound)
+        {
+            model.zh_Hant = [sheet cellAtRow:row col:zh_HantIndex].stringValue;
+        }
+        
+        if (enIndex != NSNotFound)
+        {
+            model.en = [sheet cellAtRow:row col:enIndex].stringValue;
+        }
+        
+        if (platformIndex != NSNotFound)
+        {
+            model.platform = [sheet cellAtRow:row col:platformIndex].stringValue;
         }
         
         [models addObject:model];

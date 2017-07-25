@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *value;
 @property (nonatomic, copy) NSString *language;
 
+@property (readonly) NSString *UUID;
+
 + (instancetype)modelAtFile:(NSURL *)file
                       order:(NSUInteger)order
                         key:(NSString *)key

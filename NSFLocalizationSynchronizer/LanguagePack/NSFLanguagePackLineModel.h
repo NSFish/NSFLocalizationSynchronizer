@@ -18,14 +18,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
-@interface NSString(LanguagePack)
-
-/**
- 兼容Android写入的文案，移除文案前后的<string></string>
- */
-- (NSString *)removeStringArrows;
-
-@end
-
 NS_ASSUME_NONNULL_END

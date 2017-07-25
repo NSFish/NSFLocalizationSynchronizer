@@ -9,4 +9,5 @@
 #import "NSFStringsFileAndLineModelTransformer.h"
 #import "NSFLineModelAndLanguageModelTransformer.h"
 #import "NSFLanguageModelAndCompareModelTransformer.h"
+#import "NSFStringFilesMixTransformer.h"
 

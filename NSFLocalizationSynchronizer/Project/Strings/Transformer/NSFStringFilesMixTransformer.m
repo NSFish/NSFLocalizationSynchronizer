@@ -211,8 +211,6 @@
 + (NSArray<NSURL *> *)nsf_IBFilesIn:(NSURL *)projectRoot
 {
     return [NSFileManager nsf_filesThatMatch:^BOOL(NSURL *URL) {
-        //        return ([[[URL path] pathExtension] isEqualToString:@"xib"]
-        //                || [[[URL path] pathExtension] isEqualToString:@"storyboard"])
         return [[[URL path] pathExtension] isEqualToString:@"storyboard"]
         && ![[URL path] containsString:@"LivenessDetection"]
         && ![[URL path] containsString:@"IDVerify"]

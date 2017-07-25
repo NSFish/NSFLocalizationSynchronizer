@@ -8,16 +8,15 @@
 
 #import "AppDelegate.h"
 #import "NSFSettingWindowController.h"
-#import "NSLocalizationStrategy.h"
-#import "NSFSourceCodeScanner.h"
+#import "NSFLocalizationProxy.h"
 
-@interface AppDelegate ()<NSUserNotificationCenterDelegate>
-
+@interface AppDelegate()<NSUserNotificationCenterDelegate>
 @property (weak) IBOutlet NSWindow *window;
 @property (nonatomic, strong) NSStatusItem *statusItem;
 @property (nonatomic, strong) NSFSettingWindowController *settingWC;
 
 @end
+
 
 @implementation AppDelegate
 
@@ -65,7 +64,7 @@
 
 - (void)findNonLocalizedStringsInProject
 {
-    NSUInteger nonLocalizedStringsCount = [NSLocalizationStrategy findNonLocalizedStringsInProject];
+    NSUInteger nonLocalizedStringsCount = [NSFLocalizationProxy findNonLocalizedStringsInProject];
     
     NSUserNotification *userNotification = [NSUserNotification new];
     userNotification.title = @"扫描完毕";
@@ -88,7 +87,7 @@
 
 - (void)updateUnifiedStringFilesInProject
 {
-    [NSLocalizationStrategy updateUnifiedStringFilesInProject];
+    [NSFLocalizationProxy updateUnifiedStringFilesInProject];
 }
 
 - (void)updateLanguageFile
@@ -123,7 +122,7 @@
         [notificationCenter deliverNotification:userNotification];
     }];
     
-    [NSLocalizationStrategy updateKeysInLanguagePack];
+    [NSFLocalizationProxy updateKeysInLanguagePack];
 }
 
 - (void)updateStringFilesInProject_strict
@@ -152,7 +151,7 @@
         [notificationCenter deliverNotification:userNotification];
     }];
     
-    [NSLocalizationStrategy updateStringFilesInProject_strict];
+    [NSFLocalizationProxy updateStringFilesInProject_strict];
 }
 
 - (void)updateStringFilesInProject_normal
@@ -176,7 +175,7 @@
         [notificationCenter deliverNotification:userNotification];
     }];
     
-    [NSLocalizationStrategy updateStringFilesInProject_normal];
+    [NSFLocalizationProxy updateStringFilesInProject_normal];
 }
 
 #pragma mark - NSUserNotificationCenterDelegate

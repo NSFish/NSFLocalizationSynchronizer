@@ -27,21 +27,3 @@
 }
 
 @end
-
-
-@implementation NSString(LanguagePack)
-
-- (NSString *)removeStringArrows
-{
-    NSString *string = self;
-    
-    NSString *prefix = @"<string>";
-    NSString *suffix = @"</string>";
-    
-    string = [string stringByReplacingOccurrencesOfString:prefix withString:@""];
-    string = [string stringByReplacingOccurrencesOfString:suffix withString:@""];
-    
-    return string;
-}
-
-@end
