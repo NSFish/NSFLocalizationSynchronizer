@@ -1,5 +1,5 @@
 //
-//  NSFStringsReduntantableIntermediaModel.h
+//  NSFStringsLanguageModel.h
 //  NSFLocalizationSynchronizer
 //
 //  Created by 乐星宇 on 16/6/15.
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
  将同名的、不同语言的.strings文件的lineModels整合起来
  同名但实际上不属于同一个多语言bundle的会被区分开，比如Main App和Extension的info.plist对应的.strings文件是分开整合的
  */
-@interface NSFStringsReduntantableIntermediaModel: NSObject<NSFIntermediaModel>
+@interface NSFStringsLanguageModel: NSObject<NSFIntermediaModel>
 @property (nonatomic, copy) NSString *key;
 
 /**

@@ -11,12 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class NSFKeyValueModel;
-@class NSFStringsReduntantableIntermediaModel;
+@class NSFStringsLanguageModel;
 
 @interface NSFLineModelAndLanguageModelTransformer: NSObject
 
-+ (NSArray<NSFStringsReduntantableIntermediaModel *> *)languageModelsFrom:(NSArray<NSFKeyValueModel *> *)lineModels;
-+ (NSArray<NSFKeyValueModel *> *)lineModelsFrom:(NSArray<NSFStringsReduntantableIntermediaModel *> *)languageModels;
++ (NSArray<NSFStringsLanguageModel *> *)languageModelsFrom:(NSArray<NSFKeyValueModel *> *)lineModels;
++ (NSArray<NSFKeyValueModel *> *)lineModelsFrom:(NSArray<NSFStringsLanguageModel *> *)languageModels;
 
 @end
 

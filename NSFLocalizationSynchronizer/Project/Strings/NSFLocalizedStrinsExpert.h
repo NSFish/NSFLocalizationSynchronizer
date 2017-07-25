@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class NSFStringsIntermediaModel;
+@class NSFStringsCompareModel;
 
 @interface NSFLocalizedStrinsExpert: NSObject
 
@@ -29,12 +29,12 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param unified 是否使用统一的.strings文件来生成中间models
  */
-- (NSArray<NSFStringsIntermediaModel *> *)compareModels:(BOOL)unified;
+- (NSArray<NSFStringsCompareModel *> *)compareModels:(BOOL)unified;
 
 /**
  用与语言包比较过的中间models更新strings文件
  */
-- (void)updateCompareModels:(NSArray<NSFStringsIntermediaModel *> *)compareModels;
+- (void)updateCompareModels:(NSArray<NSFStringsCompareModel *> *)compareModels;
 
 @end
 

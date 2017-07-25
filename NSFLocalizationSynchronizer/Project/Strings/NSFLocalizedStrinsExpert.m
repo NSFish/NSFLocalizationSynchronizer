@@ -8,8 +8,8 @@
 
 #import "NSFLocalizedStrinsExpert.h"
 #import "NSFKeyValueModel.h"
-#import "NSFStringsReduntantableIntermediaModel.h"
-#import "NSFStringsIntermediaModel.h"
+#import "NSFStringsLanguageModel.h"
+#import "NSFStringsCompareModel.h"
 #import "NSFTransformerUmbrella.h"
 #import "NSFStringFilesMixTransformer.h"
 #import "NSFProjectParseConfigration.h"
@@ -63,7 +63,7 @@
 }
 
 #pragma mark - Compare
-- (NSArray<NSFStringsIntermediaModel *> *)compareModels:(BOOL)unified
+- (NSArray<NSFStringsCompareModel *> *)compareModels:(BOOL)unified
 {
     NSArray<NSURL *> *stringFiles = unified ? [self unifiedStringFiles] : [self stringFiles];
     
@@ -80,7 +80,7 @@
             [NSFLineModelAndLanguageModelTransformer languageModelsFrom:keyValueModels]];
 }
 
-- (void)updateCompareModels:(NSArray<NSFStringsIntermediaModel *> *)compareModels
+- (void)updateCompareModels:(NSArray<NSFStringsCompareModel *> *)compareModels
 {
     NSArray<NSFKeyValueModel *> *comparedLineModels = [NSFLineModelAndLanguageModelTransformer lineModelsFrom:[NSFLanguageModelAndCompareModelTransformer languageModelsFrom:compareModels]];
     

@@ -10,13 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class NSFStringsReduntantableIntermediaModel;
-@class NSFStringsIntermediaModel;
+@class NSFStringsLanguageModel;
+@class NSFStringsCompareModel;
 
 @interface NSFLanguageModelAndCompareModelTransformer: NSObject
 
-+ (NSArray<NSFStringsIntermediaModel *> *)compareModelsFrom:(NSArray<NSFStringsReduntantableIntermediaModel *> *)languageModels;
-+ (NSArray<NSFStringsReduntantableIntermediaModel *> *)languageModelsFrom:(NSArray<NSFStringsIntermediaModel *> *)compareModels;
++ (NSArray<NSFStringsCompareModel *> *)compareModelsFrom:(NSArray<NSFStringsLanguageModel *> *)languageModels;
++ (NSArray<NSFStringsLanguageModel *> *)languageModelsFrom:(NSArray<NSFStringsCompareModel *> *)compareModels;
 
 @end
 

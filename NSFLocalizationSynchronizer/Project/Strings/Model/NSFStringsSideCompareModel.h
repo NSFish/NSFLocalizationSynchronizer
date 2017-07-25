@@ -6,13 +6,13 @@
 //  Copyright © 2017年 乐星宇. All rights reserved.
 //
 
-#import "NSFStringsIntermediaModel.h"
+#import "NSFStringsCompareModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class NSFStringsReduntantableIntermediaModel;
+@class NSFStringsLanguageModel;
 
-@interface NSFStringsSideCompareModel: NSFStringsIntermediaModel
+@interface NSFStringsSideCompareModel: NSFStringsCompareModel
 @property (readonly) NSMutableDictionary<NSString *, NSURL *> *fileURLs;
 
 @end

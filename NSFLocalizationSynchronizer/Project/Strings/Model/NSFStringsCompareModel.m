@@ -6,15 +6,15 @@
 //  Copyright © 2016年 乐星宇. All rights reserved.
 //
 
-#import "NSFStringsIntermediaModel.h"
+#import "NSFStringsCompareModel.h"
 
-@interface NSFStringsIntermediaModel()
+@interface NSFStringsCompareModel()
 @property (nonatomic, strong) NSMutableArray<NSString *> *keys;
 
 @end
 
 
-@implementation NSFStringsIntermediaModel
+@implementation NSFStringsCompareModel
 @synthesize zh_Hans, zh_Hant, en;
 
 - (instancetype)init

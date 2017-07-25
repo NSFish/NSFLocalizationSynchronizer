@@ -12,7 +12,7 @@
 #import <XMLDictionary.h>
 #import "NSFSourceCodeScanner.h"
 #import "NSFLocalizedStrinsExpert.h"
-#import "NSFStringsIntermediaModel.h"
+#import "NSFStringsCompareModel.h"
 
 @implementation NSLocalizationStrategy
 
@@ -23,7 +23,7 @@
         NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
         
         NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
-        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels:NO];
+        NSArray<NSFStringsCompareModel *> *modelsFromStrings = [stringsExpert compareModels:NO];
         
         YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
         NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
@@ -37,7 +37,7 @@
         for (NSFLanguagePackLineModel *languagePackModel in modelsFromExcel)
         {
             //暴力对比所有的文案，三种语言的文案全部一致的，即为工程中对应的key
-            NSFStringsIntermediaModel *stringModel = [[modelsFromStrings.rac_sequence filter:^BOOL(NSFStringsIntermediaModel *model) {
+            NSFStringsCompareModel *stringModel = [[modelsFromStrings.rac_sequence filter:^BOOL(NSFStringsCompareModel *model) {
                 return [[model.zh_Hans precomposedStringWithCanonicalMapping] isEqualToString:languagePackModel.zh_Hans]
                 && [model.zh_Hant isEqualToString:languagePackModel.zh_Hant]
                 && [model.en isEqualToString:languagePackModel.en];
@@ -90,7 +90,7 @@
         NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
         
         NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
-        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels:NO];
+        NSArray<NSFStringsCompareModel *> *modelsFromStrings = [stringsExpert compareModels:NO];
         
         YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
         NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
@@ -103,7 +103,7 @@
         //输出匹配不到的文案的xml
         NSMutableArray *mismatchedStringModels = [NSMutableArray array];
         
-        for (NSFStringsIntermediaModel *stringModel in modelsFromStrings)
+        for (NSFStringsCompareModel *stringModel in modelsFromStrings)
         {
             //找到语言包中key相同的那一行翻译
             NSFLanguagePackLineModel *languagePackModel = [[modelsFromExcel.rac_sequence filter:^BOOL(NSFLanguagePackLineModel *model) {
@@ -155,7 +155,7 @@
         NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
         
         NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
-        NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels:NO];
+        NSArray<NSFStringsCompareModel *> *modelsFromStrings = [stringsExpert compareModels:NO];
         
         YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
         NSArray<NSFLanguagePackLineModel *> *modelsFromExcel = [excelFileHandler intermediaModels];
@@ -171,7 +171,7 @@
         //输出匹配不到的文案的xml
         NSMutableArray<NSDictionary *> *mismatchedStringModels = [NSMutableArray array];
         
-        for (NSFStringsIntermediaModel *stringModel in modelsFromStrings)
+        for (NSFStringsCompareModel *stringModel in modelsFromStrings)
         {
             //找到语言包中key相同的那一行翻译
             NSFLanguagePackLineModel *languagePackModel = [[modelsFromExcel.rac_sequence filter:^BOOL(NSFLanguagePackLineModel *model) {
@@ -272,7 +272,7 @@
 {
     NSURL *projectRootFolderURL = [NSURL fileURLWithPath:[NSFSetting projectRootFolderPath]];
     NSFLocalizedStrinsExpert *stringsExpert = [[NSFLocalizedStrinsExpert alloc] initWithProjectRoot:projectRootFolderURL];
-    NSArray<NSFStringsIntermediaModel *> *modelsFromStrings = [stringsExpert compareModels:YES];
+    NSArray<NSFStringsCompareModel *> *modelsFromStrings = [stringsExpert compareModels:YES];
         
     NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
     YFYLocalizedExcelFileHandler *excelFileHandler = [YFYLocalizedExcelFileHandler load:languageFileURL];
@@ -289,7 +289,7 @@
     //输出匹配不到的文案的xml
     NSMutableArray<NSDictionary *> *mismatchedStringModels = [NSMutableArray array];
     
-    for (NSFStringsIntermediaModel *stringModel in modelsFromStrings)
+    for (NSFStringsCompareModel *stringModel in modelsFromStrings)
     {
         //找到语言包中key相同的那一行翻译
         NSFLanguagePackLineModel *languagePackModel = [[modelsFromExcel.rac_sequence filter:^BOOL(NSFLanguagePackLineModel *model) {

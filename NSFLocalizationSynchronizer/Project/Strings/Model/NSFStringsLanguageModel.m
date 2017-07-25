@@ -1,21 +1,21 @@
 //
-//  NSFStringsReduntantableIntermediaModel.m
+//  NSFStringsLanguageModel.m
 //  NSFLocalizationSynchronizer
 //
 //  Created by 乐星宇 on 16/6/15.
 //  Copyright © 2016年 乐星宇. All rights reserved.
 //
 
-#import "NSFStringsReduntantableIntermediaModel.h"
+#import "NSFStringsLanguageModel.h"
 #import "NSFKeyValueModel.h"
 
-@interface NSFStringsReduntantableIntermediaModel()
+@interface NSFStringsLanguageModel()
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSURL *> *fileURLs;
 
 @end
 
 
-@implementation NSFStringsReduntantableIntermediaModel
+@implementation NSFStringsLanguageModel
 @synthesize zh_Hans = _zh_Hans, zh_Hant = _zh_Hant, en = _en;
 
 - (instancetype)init

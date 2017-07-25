@@ -8,14 +8,14 @@
 
 #import "NSFLineModelAndLanguageModelTransformer.h"
 #import "NSFKeyValueModel.h"
-#import "NSFStringsReduntantableIntermediaModel.h"
+#import "NSFStringsLanguageModel.h"
 
 @implementation NSFLineModelAndLanguageModelTransformer
 
-+ (NSArray<NSFStringsReduntantableIntermediaModel *> *)languageModelsFrom:(NSArray<NSFKeyValueModel *> *)lineModels
++ (NSArray<NSFStringsLanguageModel *> *)languageModelsFrom:(NSArray<NSFKeyValueModel *> *)lineModels
 {
     //先将所有行数据整合成key -> zh-Hans、zh-Hant、en的格式
-    NSMutableDictionary<NSString *, NSFStringsReduntantableIntermediaModel *> *dict = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, NSFStringsLanguageModel *> *dict = [NSMutableDictionary dictionary];
     for (NSFKeyValueModel *lineModel in lineModels)
     {
         //不同的.strings文件中可能存在key相同，但表征不同意义的键值对
@@ -23,10 +23,10 @@
         //因此这里将文件路径【去掉/language.proj/.strings部分要相同】也作为uniquekey的一部分
         NSString *prefixPath = [[[lineModel.file absoluteString] stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
         NSString *uniqueKey = [NSString stringWithFormat:@"%@_%@", lineModel.key, prefixPath];
-        NSFStringsReduntantableIntermediaModel *model = dict[uniqueKey];
+        NSFStringsLanguageModel *model = dict[uniqueKey];
         if (!model)
         {
-            model = [NSFStringsReduntantableIntermediaModel new];
+            model = [NSFStringsLanguageModel new];
             model.key = lineModel.key;
             dict[uniqueKey] = model;
         }
@@ -37,9 +37,9 @@
     return dict.allValues;
 }
 
-+ (NSArray<NSFKeyValueModel *> *)lineModelsFrom:(NSArray<NSFStringsReduntantableIntermediaModel *> *)languageModels
++ (NSArray<NSFKeyValueModel *> *)lineModelsFrom:(NSArray<NSFStringsLanguageModel *> *)languageModels
 {
-    return [languageModels.rac_sequence flattenMap:^RACStream *(NSFStringsReduntantableIntermediaModel *languageModel) {
+    return [languageModels.rac_sequence flattenMap:^RACStream *(NSFStringsLanguageModel *languageModel) {
         NSFKeyValueModel *zhHans = [NSFKeyValueModel modelAtFile:languageModel.fileURLs[ZH_HANS]
                                                            order:NSNotFound
                                                              key:languageModel.key

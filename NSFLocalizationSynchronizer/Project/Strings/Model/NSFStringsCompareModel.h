@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSFStringsIntermediaModel: NSObject<NSFIntermediaModel>
+@interface NSFStringsCompareModel: NSObject<NSFIntermediaModel>
 @property (readonly) NSMutableArray<NSString *> *keys;
 
 @end
