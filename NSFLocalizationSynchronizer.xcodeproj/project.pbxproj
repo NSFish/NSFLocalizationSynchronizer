@@ -12,6 +12,7 @@
 		A92431671F25D68F00985F0D /* NSURL+NSFExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A92431661F25D68F00985F0D /* NSURL+NSFExt.m */; };
 		A924316E1F26E26E00985F0D /* NSFProjectExpert.m in Sources */ = {isa = PBXBuildFile; fileRef = A924316A1F26E26E00985F0D /* NSFProjectExpert.m */; };
 		A924316F1F26E26E00985F0D /* NSFProjectParseConfigration.m in Sources */ = {isa = PBXBuildFile; fileRef = A924316B1F26E26E00985F0D /* NSFProjectParseConfigration.m */; };
+		A92431751F27493300985F0D /* NSDictionary+NSFExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A92431741F27493300985F0D /* NSDictionary+NSFExt.m */; };
 		A929A7001D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A929A6FF1D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m */; };
 		A92C98581D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98491D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m */; };
 		A92C985A1D0FE85900CA4E29 /* NSFSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C984E1D0FE85900CA4E29 /* NSFSetting.m */; };
@@ -67,6 +68,8 @@
 		A924316B1F26E26E00985F0D /* NSFProjectParseConfigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFProjectParseConfigration.m; sourceTree = "<group>"; };
 		A924316C1F26E26E00985F0D /* NSFProjectExpert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFProjectExpert.h; sourceTree = "<group>"; };
 		A924316D1F26E26E00985F0D /* NSFProjectParseConfigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFProjectParseConfigration.h; sourceTree = "<group>"; };
+		A92431731F27493300985F0D /* NSDictionary+NSFExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+NSFExt.h"; sourceTree = "<group>"; };
+		A92431741F27493300985F0D /* NSDictionary+NSFExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NSFExt.m"; sourceTree = "<group>"; };
 		A929A6FE1D110A7A00F4E5E1 /* NSFLanguagePackLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFLanguagePackLineModel.h; sourceTree = "<group>"; };
 		A929A6FF1D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFLanguagePackLineModel.m; sourceTree = "<group>"; };
 		A92C98481D0FE85900CA4E29 /* BRAWorksheet+YFYExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BRAWorksheet+YFYExt.h"; sourceTree = "<group>"; };
@@ -134,6 +137,8 @@
 		A92C98471D0FE85900CA4E29 /* Addtions */ = {
 			isa = PBXGroup;
 			children = (
+				A92431731F27493300985F0D /* NSDictionary+NSFExt.h */,
+				A92431741F27493300985F0D /* NSDictionary+NSFExt.m */,
 				A956B9E81F14ADFB00AA81C7 /* NSObject+NSFExt.h */,
 				A956B9E91F14ADFB00AA81C7 /* NSObject+NSFExt.m */,
 				A92431651F25D68F00985F0D /* NSURL+NSFExt.h */,
@@ -444,6 +449,7 @@
 			files = (
 				A956B9EE1F14AE3900AA81C7 /* NSFLocalizationProxy.m in Sources */,
 				A9440C481F15C235002E6C46 /* NSFStringsLanguageModel.m in Sources */,
+				A92431751F27493300985F0D /* NSDictionary+NSFExt.m in Sources */,
 				A99A13C41D07EA8E0088ACFA /* main.m in Sources */,
 				A92C985A1D0FE85900CA4E29 /* NSFSetting.m in Sources */,
 				A924316F1F26E26E00985F0D /* NSFProjectParseConfigration.m in Sources */,

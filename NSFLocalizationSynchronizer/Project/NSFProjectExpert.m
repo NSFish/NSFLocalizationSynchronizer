@@ -65,30 +65,6 @@
     NSArray<NSFKeyValueModel *> *comparedLineModels = [NSFLineModelAndLanguageModelTransformer lineModelsFrom:[NSFLanguageModelAndCompareModelTransformer languageModelsFrom:compareModels]];
     
     [self calculateLineModelOrders:comparedLineModels];
-    //    __block NSUInteger newLine = self.lineModels.count;
-    //    [comparedLineModels enumerateObjectsUsingBlock:^(NSFKeyValueModel *comparedLineModel, NSUInteger idx, BOOL *stop) {
-    //        NSFKeyValueModel *matchedLineModel = [[self.lineModels.rac_sequence filter:^BOOL(NSFStringsLineModel *lineModel) {
-    //            NSFKeyValueModel *keyValueLineModel = [NSFKeyValueModel safelyCast:lineModel];
-    //            if (keyValueLineModel)
-    //            {
-    //                return [keyValueLineModel.file isEqual:comparedLineModel.file]
-    //                && [keyValueLineModel.language isEqualToString:comparedLineModel.language]
-    //                && [keyValueLineModel.key isEqualToString:comparedLineModel.key];
-    //            }
-    //
-    //            return NO;
-    //        }].array firstObject];
-    //
-    //        if (matchedLineModel)//如果lineModel已经存在，获取其在string文件中原本的位置
-    //        {
-    //            comparedLineModel.order = matchedLineModel.order;
-    //        }
-    //        else//不存在说明是新增的文案(比如原来只有简体中文，新增了繁体或者英文翻译)
-    //        {
-    //            comparedLineModel.order = newLine;
-    //            newLine++;
-    //        }
-    //    }];
     
     //把空白行和注释行加回来
     NSMutableArray<__kindof NSFStringsLineModel *> *lineModels = [NSMutableArray arrayWithArray:comparedLineModels];
@@ -136,17 +112,16 @@
         }
     }];
     
-    __block NSUInteger newLine = self.lineModels.count;
     [comparedLineModels enumerateObjectsUsingBlock:^(NSFKeyValueModel *comparedLineModel, NSUInteger idx, BOOL *stop) {
         NSFKeyValueModel *matchedLineModel = dict[comparedLineModel.UUID];
         if (matchedLineModel)//如果lineModel已经存在，获取其在string文件中原本的位置
         {
             comparedLineModel.order = matchedLineModel.order;
         }
-        else//不存在说明是新增的文案(比如原来只有简体中文，新增了繁体或者英文翻译)
+        else
         {
-            comparedLineModel.order = newLine;
-            newLine++;
+            //由于strings文件本身是由本App生成的，各种翻译都应该是齐全的，因此不可能出现
+            //新增lineModel的情况
         }
     }];
 }

@@ -51,7 +51,7 @@
 {
     if (!_UUID)
     {
-        _UUID = [NSString stringWithFormat:@"%@_%@_%@", _key, _value, _language];
+        _UUID = [NSString stringWithFormat:@"%@_%@_%@", self.file, self.key, self.language];
     }
     
     return _UUID;

@@ -150,46 +150,61 @@
             platformIndex = col;
         }
     }
-    
+        
     currentRow++;
-    NSMutableArray *models = [NSMutableArray array];
-    for (NSUInteger row = currentRow; row <= rows; ++row)
+    NSUInteger totalRows = rows - currentRow + 1;
+    NSUInteger batchs = 4;
+    NSUInteger batchNum = totalRows / batchs;
+    NSMutableArray<RACTuple *> *iterations = [NSMutableArray array];
+    for (NSUInteger row = currentRow; row <= rows; row+= batchNum)
     {
-        NSFLanguagePackLineModel *model = [NSFLanguagePackLineModel new];
-        model.file = URL;
-        model.row = row;
+        [iterations addObject:RACTuplePack(@(row), @(MIN(row + batchNum - 1, rows)))];
+    }
+    
+    NSMutableArray *models = [NSMutableArray array];
+    dispatch_apply([iterations count], dispatch_get_global_queue(0, 0), ^(size_t index) {
+        RACTuple *iteration = iterations[index];
         
-        if (keyIndex != NSNotFound)
+        for (NSUInteger row = [[iteration first] integerValue]; row <= [[iteration second] integerValue]; ++row)
         {
-            model.key = [sheet cellAtRow:row col:keyIndex].stringValue;
-        }
-        
-        if (zh_HansIndex != NSNotFound)
-        {
-            model.zh_Hans = [sheet cellAtRow:row col:zh_HansIndex].stringValue;
-            if (!model.key)//没有key的新文案，生成一个临时key占位
+            NSFLanguagePackLineModel *model = [NSFLanguagePackLineModel new];
+            model.file = URL;
+            model.row = row;
+            
+            if (keyIndex != NSNotFound)
             {
-                model.key = [[NSUUID UUID] UUIDString];
+                model.key = [sheet cellAtRow:row col:keyIndex].stringValue;
+                if (model.key.length == 0)//没有key的新文案，生成一个临时key占位
+                {
+                    model.key = [[NSUUID UUID] UUIDString];
+                }
+            }
+            
+            if (zh_HansIndex != NSNotFound)
+            {
+                model.zh_Hans = [sheet cellAtRow:row col:zh_HansIndex].stringValue;
+            }
+            
+            if (zh_HantIndex != NSNotFound)
+            {
+                model.zh_Hant = [sheet cellAtRow:row col:zh_HantIndex].stringValue;
+            }
+            
+            if (enIndex != NSNotFound)
+            {
+                model.en = [sheet cellAtRow:row col:enIndex].stringValue;
+            }
+            
+            if (platformIndex != NSNotFound)
+            {
+                model.platform = [sheet cellAtRow:row col:platformIndex].stringValue;
+            }
+            
+            @synchronized (models) {
+                [models addObject:model];
             }
         }
-        
-        if (zh_HantIndex != NSNotFound)
-        {
-            model.zh_Hant = [sheet cellAtRow:row col:zh_HantIndex].stringValue;
-        }
-        
-        if (enIndex != NSNotFound)
-        {
-            model.en = [sheet cellAtRow:row col:enIndex].stringValue;
-        }
-        
-        if (platformIndex != NSNotFound)
-        {
-            model.platform = [sheet cellAtRow:row col:platformIndex].stringValue;
-        }
-        
-        [models addObject:model];
-    }
+    });
     
     return [NSArray arrayWithArray:models];
 }

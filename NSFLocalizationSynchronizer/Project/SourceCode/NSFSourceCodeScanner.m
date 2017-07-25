@@ -32,14 +32,14 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@,\n 行数：%@,\n 文件：%@", self.content, @(self.lineNumber), self.fileURL];
+    return [NSString stringWithFormat:@"%@,\n 行数：%@,\n 文件：%@", self.content, @(self.lineNumber), [self.fileURL path]];
 }
 
 - (NSDictionary *)toDictionary
 {
     return @{@"内容": self.content,
              @"行数": @(self.lineNumber),
-             @"文件": self.fileURL};
+             @"文件": [self.fileURL path]};
 }
 
 @end
