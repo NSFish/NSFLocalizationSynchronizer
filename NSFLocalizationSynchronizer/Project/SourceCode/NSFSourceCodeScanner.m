@@ -63,7 +63,8 @@
 + (NSArray<NSURL *> *)allSourceFilesIn:(NSURL *)directoryURL
 {
     return [NSFileManager nsf_filesThatMatch:^BOOL(NSURL *URL) {
-        return [[URL lastPathComponent] hasSuffix:@".m"]
+        return [[URL lastPathComponent] hasSuffix:@".h"]
+        || [[URL lastPathComponent] hasSuffix:@".m"]
         || [[URL lastPathComponent] hasSuffix:@".swift"];
     } inFolder:directoryURL ignoreSubFolderThatMatch:^BOOL(NSURL *URL) {
         return [[URL absoluteString] containsString:@"Carthage"]

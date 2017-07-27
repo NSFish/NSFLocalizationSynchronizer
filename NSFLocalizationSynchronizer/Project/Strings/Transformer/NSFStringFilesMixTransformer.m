@@ -142,7 +142,7 @@
     NSURL *folderURL = [NSFProjectParseConfigration tempZh_HansLprojURL];
     [[NSFileManager defaultManager] createDirectoryAtPath:[folderURL path] withIntermediateDirectories:YES attributes:nil error:nil];
     
-    NSString *command = [NSString stringWithFormat:@"find . -type f \\( -iname \\*.m -o -iname \\*.swift \\) -not -path '*/Pods/*' | xargs genstrings -o %@ -s NLS", [folderURL path]];
+    NSString *command = [NSString stringWithFormat:@"find . -type f \\( -iname \\*.h -o -iname \\*.m -o -iname \\*.swift \\) -not -path '*/Pods/*' | xargs genstrings -o %@ -s NLS", [folderURL path]];
     task.arguments = @[@"-c", command];
     
     [task launch];
