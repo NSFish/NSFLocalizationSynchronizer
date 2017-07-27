@@ -10,11 +10,6 @@
 
 @implementation NSFileManager(NSFExt)
 
-+ (NSURL *)nsf_desktopURL
-{
-    return [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"]];
-}
-
 + (NSArray<NSURL *> *)nsf_contentsOfDirectoryAtURL:(NSURL *)folderURL
                                          thatMatch:(nullable BOOL(^)(NSURL *URL))match
 {

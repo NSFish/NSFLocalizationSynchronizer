@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSFileManager(NSFExt)
 
-+ (NSURL *)nsf_desktopURL;
-
 + (NSArray<NSURL *> *)nsf_contentsOfDirectoryAtURL:(NSURL *)folderURL
                                          thatMatch:(nullable BOOL(^)(NSURL *URL))match;
 

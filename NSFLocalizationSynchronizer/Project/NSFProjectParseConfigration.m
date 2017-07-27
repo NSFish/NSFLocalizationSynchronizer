@@ -65,7 +65,8 @@ NSString * const NSFMainStringFileName = @"Localizable.strings";
 
 + (NSURL *)tempFolder
 {
-    return [[NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"]] URLByAppendingPathComponent:@"Localize_temp"];
+    NSString *mainFolder = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+    return [[NSURL fileURLWithPath:NSTemporaryDirectory()] URLByAppendingPathComponent:mainFolder];
 }
 
 @end
