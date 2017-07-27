@@ -50,10 +50,7 @@
             languageModel.fileURLs[ZH_HANT] = compareModel.fileURLs[[self fileURLKeyWith:key language:ZH_HANT]];
             languageModel.fileURLs[EN] = compareModel.fileURLs[[self fileURLKeyWith:key language:EN]];
             
-            if (languageModel.fileURLs.count != 3)
-            {
-                NSLog(@"language model = %@", languageModel);
-            }
+            NSAssert(languageModel.fileURLs.count == 3, @"从strings文件中解析出的每个Key，对应的语言必须是3种");
             
             return languageModel;
         }].array;

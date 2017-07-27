@@ -19,6 +19,14 @@
 {
     [[NSFileManager defaultManager] removeItemAtURL:[NSFProjectParseConfigration tempFolder] error:nil];
     
+    NSArray<NSURL *> *infoPlistStrings = [NSFileManager nsf_filesThatMatch:^BOOL(NSURL *URL) {
+        return [[URL lastPathComponent] hasSuffix:@"InfoPlist.strings"];
+    } inFolder:projectRoot ignoreSubFolderThatMatch:^BOOL(NSURL *URL) {
+        return [[URL absoluteString] containsString:@"Carthage"]
+        || [[URL path] containsString:@"Pods"]
+        || [[URL path] containsString:@"CoolOffice_UnitTests"];
+    }];
+    
     NSArray<NSURL *> *sourceCodeStringFiles = [self stringFilesFromSourceCodeIn:projectRoot];
     sourceCodeStringFiles = [sourceCodeStringFiles.rac_sequence flattenMap:^RACStream *(NSURL *fileURL) {
         NSURL *zh_hans = [[NSFProjectParseConfigration projectZh_HansLprojURLIn:projectRoot]
@@ -57,7 +65,9 @@
     
     [[NSFileManager defaultManager] removeItemAtURL:[NSFProjectParseConfigration tempFolder] error:nil];
     
-    return [sourceCodeStringFiles.rac_sequence concat:IBStringFiles.rac_sequence].array;
+    return [infoPlistStrings.rac_sequence
+            concat:[sourceCodeStringFiles.rac_sequence
+                    concat:IBStringFiles.rac_sequence]].array;
 }
 
 + (NSString *)mixedStringFileContentFrom:(NSURL *)projectRoot
