@@ -28,7 +28,7 @@
     }];
     
     NSArray<NSURL *> *sourceCodeStringFiles = [self stringFilesFromSourceCodeIn:projectRoot];
-    sourceCodeStringFiles = [sourceCodeStringFiles.rac_sequence flattenMap:^RACStream *(NSURL *fileURL) {
+    sourceCodeStringFiles = [sourceCodeStringFiles.rac_sequence flattenMap:^__kindof RACSequence *(NSURL *fileURL) {
         NSURL *zh_hans = [[NSFProjectParseConfigration projectZh_HansLprojURLIn:projectRoot]
                           URLByAppendingPathComponent:NSFMainStringFileName];
         NSURL *zh_hant = [[NSFProjectParseConfigration projectZh_HantLprojURLIn:projectRoot]
@@ -44,7 +44,7 @@
     }].array;
     
     NSArray<NSURL *> *IBFiles = [self nsf_IBFilesIn:projectRoot];
-    NSArray<NSURL *> *IBStringFiles = [IBFiles.rac_sequence flattenMap:^RACStream *(NSURL *fileURL) {
+    NSArray<NSURL *> *IBStringFiles = [IBFiles.rac_sequence flattenMap:^__kindof RACSequence *(NSURL *fileURL) {
         NSURL *stringFile = [self stringFileFromInterfaceBuilderFile:fileURL adjustKeys:NO];
         if (stringFile)
         {
@@ -126,7 +126,7 @@
     
     [[[duplicatedLineModels.allValues.rac_sequence filter:^BOOL(NSMutableArray<NSFStringsLineModel *> *lineModels) {
         return lineModels.count > 0;
-    }] flattenMap:^RACStream *(NSMutableArray<NSFStringsLineModel *> *lineModels) {
+    }] flattenMap:^__kindof RACSequence *(NSMutableArray<NSFStringsLineModel *> *lineModels) {
         return lineModels.rac_sequence;
     }].array enumerateObjectsUsingBlock:^(NSFStringsLineModel *lineModel, NSUInteger idx, BOOL *stop) {
         [lineModels removeObject:lineModel];

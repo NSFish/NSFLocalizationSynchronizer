@@ -9,7 +9,7 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
-#import <ReactiveCocoa.h>
+#import <ReactiveObjC.h>
 #import "NSObject+NSFExt.h"
 #import "NSFileManager+NSFExt.h"
 #import "NSURL+NSFExt.h"

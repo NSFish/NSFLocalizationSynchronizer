@@ -39,7 +39,7 @@
 
 + (NSArray<NSFKeyValueModel *> *)lineModelsFrom:(NSArray<NSFStringsLanguageModel *> *)languageModels
 {
-    return [languageModels.rac_sequence flattenMap:^RACStream *(NSFStringsLanguageModel *languageModel) {
+    return [languageModels.rac_sequence flattenMap:^__kindof RACSequence *(NSFStringsLanguageModel *languageModel) {
         NSFKeyValueModel *zhHans = [NSFKeyValueModel modelAtFile:languageModel.fileURLs[ZH_HANS]
                                                            order:NSNotFound
                                                              key:languageModel.key

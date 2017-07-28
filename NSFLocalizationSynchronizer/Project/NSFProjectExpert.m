@@ -20,7 +20,7 @@
 /**
  暂存lineModels，以保证写回.strings文件时每行位置不变
  */
-@property (nonatomic, strong) NSArray<NSFStringsLineModel *> *lineModels;
+@property (nonatomic, strong) NSArray<__kindof NSFStringsLineModel *> *lineModels;
 
 @end
 
@@ -47,7 +47,7 @@
 {
     NSArray<NSURL *> *stringFiles = unified ? [self unifiedStringFiles] : [self stringFiles];
     
-    self.lineModels = [stringFiles.rac_sequence flattenMap:^RACStream *(NSURL *fileURL) {
+    self.lineModels = [stringFiles.rac_sequence flattenMap:^__kindof RACSequence *(NSURL *fileURL) {
         return [NSFStringsFileAndLineModelTransformer lineModelsFrom:fileURL].rac_sequence;
     }].array;
     

@@ -38,7 +38,8 @@
 + (NSArray<NSFStringsLanguageModel *> *)languageModelsFrom:(NSArray<NSFStringsCompareModel *> *)compareModels
 {
     NSArray<NSFStringsSideCompareModel *> *stringSideCompareModels = (NSArray<NSFStringsSideCompareModel *> *) compareModels;
-    return [stringSideCompareModels.rac_sequence flattenMap:^RACStream *(NSFStringsSideCompareModel *compareModel) {
+    
+    return [stringSideCompareModels.rac_sequence flattenMap:^__kindof RACSequence *(NSFStringsSideCompareModel *compareModel) {
         NSArray *lanModels = [compareModel.keys.rac_sequence map:^id(NSString *key) {
             NSFStringsLanguageModel *languageModel = [NSFStringsLanguageModel new];
             languageModel.key = key;
