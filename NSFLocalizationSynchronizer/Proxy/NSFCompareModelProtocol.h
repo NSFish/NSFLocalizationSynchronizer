@@ -10,10 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ 用于比较语言包和工程中文案的中间model都要实现此protocol
+ */
 @protocol NSFCompareModel<NSObject>
-@property (nonatomic, copy) NSString *zh_Hans;
-@property (nonatomic, copy) NSString *zh_Hant;
-@property (nonatomic, copy) NSString *en;
+@property (nonatomic, copy) NSDictionary<NSNumber *, NSString *> *translations;
+
+- (NSString *)translation4Language:(NSFLanguage)language;
+- (void)setTranslation:(NSString *)translation forLanguage:(NSFLanguage)language;
 
 @optional
 - (NSDictionary *)toDictionary;

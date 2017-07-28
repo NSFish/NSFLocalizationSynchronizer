@@ -9,6 +9,7 @@
 #import "NSFProjectParseConfigration.h"
 
 NSString * const NSFMainStringFileName = @"Localizable.strings";
+NSString * const NSFSchoolVersionPrefix = @"school_";
 
 @implementation NSFProjectParseConfigration
 

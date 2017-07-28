@@ -20,7 +20,7 @@
                       order:(NSUInteger)order
                         key:(NSString *)key
                       value:(NSString *)value
-                   language:(NSString *)language
+                   language:(NSFLanguage)language
 {
     NSFKeyValueModel *model = [super modelAtFile:file order:order content:@""];
     model.key = key;
@@ -51,7 +51,7 @@
 {
     if (!_UUID)
     {
-        _UUID = [NSString stringWithFormat:@"%@_%@_%@", self.file, self.key, self.language];
+        _UUID = [NSString stringWithFormat:@"%@_%@_%@", self.file, self.key, @(self.language)];
     }
     
     return _UUID;
@@ -59,7 +59,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"key = %@, value = %@, language = %@", self.key, self.value, self.language];
+    return [NSString stringWithFormat:@"key = %@, value = %@, language = %@", self.key, self.value, @(self.language)];
 }
 
 @end

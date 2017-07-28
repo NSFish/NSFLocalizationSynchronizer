@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 extern NSString * const NSFMainStringFileName;
+extern NSString * const NSFSchoolVersionPrefix;
 
 @interface NSFProjectParseConfigration: NSObject
 

@@ -19,15 +19,9 @@
 {
     [[NSFileManager defaultManager] removeItemAtURL:[NSFProjectParseConfigration tempFolder] error:nil];
     
-    NSArray<NSURL *> *infoPlistStrings = [NSFileManager nsf_filesThatMatch:^BOOL(NSURL *URL) {
-        return [[URL lastPathComponent] hasSuffix:@"InfoPlist.strings"];
-    } inFolder:projectRoot ignoreSubFolderThatMatch:^BOOL(NSURL *URL) {
-        return [[URL absoluteString] containsString:@"Carthage"]
-        || [[URL path] containsString:@"Pods"]
-        || [[URL path] containsString:@"CoolOffice_UnitTests"];
-    }];
+    NSArray<NSURL *> *infoPlistStrings = [self nsf_stringFilesFromInfoPlistIn:projectRoot];
     
-    NSArray<NSURL *> *sourceCodeStringFiles = [self stringFilesFromSourceCodeIn:projectRoot];
+    NSArray<NSURL *> *sourceCodeStringFiles = [self nsf_stringFilesFromSourceCodeIn:projectRoot];
     sourceCodeStringFiles = [sourceCodeStringFiles.rac_sequence flattenMap:^__kindof RACSequence *(NSURL *fileURL) {
         NSURL *zh_hans = [[NSFProjectParseConfigration projectZh_HansLprojURLIn:projectRoot]
                           URLByAppendingPathComponent:NSFMainStringFileName];
@@ -45,7 +39,7 @@
     
     NSArray<NSURL *> *IBFiles = [self nsf_IBFilesIn:projectRoot];
     NSArray<NSURL *> *IBStringFiles = [IBFiles.rac_sequence flattenMap:^__kindof RACSequence *(NSURL *fileURL) {
-        NSURL *stringFile = [self stringFileFromInterfaceBuilderFile:fileURL adjustKeys:NO];
+        NSURL *stringFile = [self nsf_stringFileFromInterfaceBuilderFile:fileURL adjustKeys:NO];
         if (stringFile)
         {
             NSURL *baseURL = [[fileURL URLByDeletingLastPathComponent] URLByDeletingLastPathComponent];
@@ -66,7 +60,9 @@
     [[NSFileManager defaultManager] removeItemAtURL:[NSFProjectParseConfigration tempFolder] error:nil];
     
     return [infoPlistStrings.rac_sequence
-            concat:[sourceCodeStringFiles.rac_sequence
+            concat:[[[sourceCodeStringFiles.rac_sequence
+                      concat:[self nsf_schoolVersionStringsFilesFrom:sourceCodeStringFiles].rac_sequence]
+                     concat:[self nsf_schoolVersionStringsFilesFrom:IBStringFiles].rac_sequence]
                     concat:IBStringFiles.rac_sequence]].array;
 }
 
@@ -74,8 +70,8 @@
 {
     [[NSFileManager defaultManager] removeItemAtURL:[NSFProjectParseConfigration tempFolder] error:nil];
     
-    NSArray<NSURL *> *fileURLs = [[self stringFilesFromSourceCodeIn:projectRoot].rac_sequence
-                                  concat:[self stringFilesFromInterfaceBuilderFilesIn:projectRoot].rac_sequence].array;
+    NSArray<NSURL *> *fileURLs = [[self nsf_stringFilesFromSourceCodeIn:projectRoot].rac_sequence
+                                  concat:[self nsf_stringFilesFromInterfaceBuilderFilesIn:projectRoot].rac_sequence].array;
     
     NSMutableArray<NSFStringsLineModel *> *lineModels = [NSMutableArray array];
     [fileURLs enumerateObjectsUsingBlock:^(NSURL *fileURL, NSUInteger idx, BOOL *stop) {
@@ -143,7 +139,18 @@
 }
 
 #pragma mark - Private
-+ (NSArray<NSURL *> *)stringFilesFromSourceCodeIn:(NSURL *)projectRoot
++ (NSArray<NSURL *> *)nsf_stringFilesFromInfoPlistIn:(NSURL *)projectRoot
+{
+    return [NSFileManager nsf_filesThatMatch:^BOOL(NSURL *URL) {
+        return [[URL lastPathComponent] hasSuffix:@"InfoPlist.strings"];
+    } inFolder:projectRoot ignoreSubFolderThatMatch:^BOOL(NSURL *URL) {
+        return [[URL absoluteString] containsString:@"Carthage"]
+        || [[URL path] containsString:@"Pods"]
+        || [[URL path] containsString:@"CoolOffice_UnitTests"];
+    }];
+}
+
++ (NSArray<NSURL *> *)nsf_stringFilesFromSourceCodeIn:(NSURL *)projectRoot
 {
     NSTask *task = [NSTask new];
     task.currentDirectoryPath = [projectRoot path];
@@ -171,13 +178,13 @@
     return fileURLs;
 }
 
-+ (NSArray<NSURL *> *)stringFilesFromInterfaceBuilderFilesIn:(NSURL *)projectRoot
++ (NSArray<NSURL *> *)nsf_stringFilesFromInterfaceBuilderFilesIn:(NSURL *)projectRoot
 {
     NSArray<NSURL *> *files = [self nsf_IBFilesIn:projectRoot];
     
     NSMutableArray<NSURL *> *stringFiles = [NSMutableArray array];
     [files enumerateObjectsUsingBlock:^(NSURL *URL, NSUInteger idx, BOOL *stop) {
-        NSURL *stringFile = [self stringFileFromInterfaceBuilderFile:URL adjustKeys:YES];
+        NSURL *stringFile = [self nsf_stringFileFromInterfaceBuilderFile:URL adjustKeys:YES];
         if (stringFile)
         {
             [stringFiles addObject:stringFile];
@@ -187,8 +194,8 @@
     return stringFiles;
 }
 
-+ (NSURL *)stringFileFromInterfaceBuilderFile:(NSURL *)fileURL
-                                   adjustKeys:(BOOL)adjustKeys
++ (NSURL *)nsf_stringFileFromInterfaceBuilderFile:(NSURL *)fileURL
+                                       adjustKeys:(BOOL)adjustKeys
 {
     NSURL *folderURL = [NSFProjectParseConfigration tempZh_HansLprojURL];
     NSString *stringFileName = [[[fileURL lastPathComponent] stringByDeletingPathExtension] stringByAppendingPathExtension:@"strings"];
@@ -230,6 +237,19 @@
         && ![[URL path] containsString:@"IDVerify"]
         && ![[URL path] containsString:@"QBImagePicker"];
     } inFolder:projectRoot ignoreSubFolderThatMatch:nil];
+}
+
++ (NSArray<NSURL *> *)nsf_schoolVersionStringsFilesFrom:(NSArray<NSURL *> *)stringFiles
+{
+    return [stringFiles.rac_sequence map:^id(NSURL *fileURL) {
+        NSString *name = [NSString stringWithFormat:@"%@%@", NSFSchoolVersionPrefix, [fileURL lastPathComponent]];
+        NSURL *schoolURL = [fileURL nsf_URLByReplacingLastPathComponentWith:name];
+        
+        NSString *content = [[NSString alloc] initWithContentsOfURL:fileURL usedEncoding:nil error:nil];
+        [content writeToURL:schoolURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        
+        return schoolURL;
+    }].array;
 }
 
 @end

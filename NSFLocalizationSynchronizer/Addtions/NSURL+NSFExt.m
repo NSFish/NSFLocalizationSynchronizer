@@ -17,4 +17,10 @@
     return [[pathComponents firstObject] stringByAppendingPathComponent:[pathComponents lastObject]];
 }
 
+- (NSURL *)nsf_URLByReplacingLastPathComponentWith:(NSString *)component
+{
+    return [[self URLByDeletingLastPathComponent]
+            URLByAppendingPathComponent:component];
+}
+
 @end

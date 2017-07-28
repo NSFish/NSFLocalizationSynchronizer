@@ -55,25 +55,45 @@
     
     //先解析标题行，区分出不同语言在哪一列
     NSUInteger currentRow = 2;
-    NSUInteger zh_HansIndex = NSNotFound, zh_HantIndex = NSNotFound, enIndex = NSNotFound, keyIndex = NSNotFound, platformIndex = NSNotFound;
+    NSUInteger keyIndex = NSNotFound,
+    simplifiedChineseIndex = NSNotFound,
+    traditionalChineseIndex = NSNotFound,
+    EnglishIndex = NSNotFound,
+    schoolizedSimplifiedChineseIndex = NSNotFound,
+    schoolizedTraditionalChineseIndex = NSNotFound,
+    schoolizedEnglishIndex = NSNotFound,
+    platformIndex = NSNotFound;
     for (NSInteger col = 1; col < cols; ++col)
     {
         NSString *content = [sheet nsf_cellAtRow:currentRow col:col].stringValue;
-        if ([content isEqualToString:@"中文"])
+        
+        if ([content isEqualToString:@"Key"])
         {
-            zh_HansIndex = col;
+            keyIndex = col;
         }
-        else if ([content isEqualToString:@"英文"])
+        else if ([content isEqualToString:@"中文"])
         {
-            enIndex = col;
+            simplifiedChineseIndex = col;
         }
         else if ([content isEqualToString:@"繁体"])
         {
-            zh_HantIndex = col;
+            traditionalChineseIndex = col;
         }
-        else if ([content isEqualToString:@"Key"])
+        else if ([content isEqualToString:@"英文"])
         {
-            keyIndex = col;
+            EnglishIndex = col;
+        }
+        else if ([content isEqualToString:@"高校版中文"])
+        {
+            schoolizedSimplifiedChineseIndex = col;
+        }
+        else if ([content isEqualToString:@"高校版繁体"])
+        {
+            schoolizedTraditionalChineseIndex = col;
+        }
+        else if ([content isEqualToString:@"高校版英文"])
+        {
+            schoolizedEnglishIndex = col;
         }
         else if ([content isEqualToString:@"Platform"])
         {
@@ -110,19 +130,55 @@
                 }
             }
             
-            if (zh_HansIndex != NSNotFound)
+            if (simplifiedChineseIndex != NSNotFound)
             {
-                model.zh_Hans = [sheet nsf_cellAtRow:row col:zh_HansIndex].stringValue;
+                [model setTranslation:[sheet nsf_cellAtRow:row col:simplifiedChineseIndex].stringValue
+                          forLanguage:NSFLanguageSimplifiedChinese];
             }
             
-            if (zh_HantIndex != NSNotFound)
+            if (traditionalChineseIndex != NSNotFound)
             {
-                model.zh_Hant = [sheet nsf_cellAtRow:row col:zh_HantIndex].stringValue;
+                [model setTranslation:[sheet nsf_cellAtRow:row col:traditionalChineseIndex].stringValue
+                          forLanguage:NSFLanguageTraditionalChinese];
             }
             
-            if (enIndex != NSNotFound)
+            if (EnglishIndex != NSNotFound)
             {
-                model.en = [sheet nsf_cellAtRow:row col:enIndex].stringValue;
+                [model setTranslation:[sheet nsf_cellAtRow:row col:EnglishIndex].stringValue
+                          forLanguage:NSFLanguageEnglish];
+            }
+            
+            if (schoolizedSimplifiedChineseIndex != NSNotFound)
+            {
+                NSString *translation = [sheet nsf_cellAtRow:row col:schoolizedSimplifiedChineseIndex].stringValue;
+                if (translation.length == 0)
+                {
+                    translation = [model translation4Language:NSFLanguageSimplifiedChinese];
+                }
+                
+                [model setTranslation:translation forLanguage:NSFLanguageSchoolizedSimplifiedChinese];
+            }
+            
+            if (schoolizedTraditionalChineseIndex != NSNotFound)
+            {
+                NSString *translation = [sheet nsf_cellAtRow:row col:schoolizedTraditionalChineseIndex].stringValue;
+                if (translation.length == 0)
+                {
+                    translation = [model translation4Language:NSFLanguageTraditionalChinese];
+                }
+                
+                [model setTranslation:translation forLanguage:NSFLanguageSchoolizedTraditionalChinese];
+            }
+            
+            if (schoolizedEnglishIndex != NSNotFound)
+            {
+                NSString *translation = [sheet nsf_cellAtRow:row col:schoolizedEnglishIndex].stringValue;
+                if (translation.length == 0)
+                {
+                    translation = [model translation4Language:NSFLanguageEnglish];
+                }
+                
+                [model setTranslation:translation forLanguage:NSFLanguageSchoolizedEnglish];
             }
             
             if (platformIndex != NSNotFound)
@@ -142,64 +198,7 @@
 
 - (void)updateCompareModels:(NSArray<NSFLanguagePackLineModel *> *)compareModels
 {
-    //读取原语言包的样式
-    NSString *syncXlsxFilePath = [NSFSetting languageFilePath];
-    BRAOfficeDocumentPackage *syncXlsxFile = [BRAOfficeDocumentPackage open:syncXlsxFilePath];
-    BRAWorksheet *syncSheet = [syncXlsxFile.workbook.worksheets firstObject];
-    BRACellFill *keyFill = [[syncSheet nsf_cellAtRow:10 col:1] cellFill];
-    
-    //构造新的语言包文件
-    {
-        BRAWorksheet *sheet = [self.xlsxFile.workbook.worksheets firstObject];
-        
-        NSUInteger cols = sheet.columns.count;
-        NSUInteger currentRow = 2;
-        
-        //根据列标题读取各列index
-        NSUInteger zh_HansIndex = NSNotFound, zh_HantIndex = NSNotFound, enIndex = NSNotFound, keyIndex = NSNotFound, platformIndex = NSNotFound;
-        for (NSInteger col = 1; col < cols; ++col)
-        {
-            NSString *content = [sheet nsf_cellAtRow:currentRow col:col].stringValue;
-            if ([content isEqualToString:@"中文"])
-            {
-                zh_HansIndex = col;
-            }
-            else if ([content isEqualToString:@"英文"])
-            {
-                enIndex = col;
-            }
-            else if ([content isEqualToString:@"繁体"])
-            {
-                zh_HantIndex = col;
-            }
-            else if ([content isEqualToString:@"Key"])
-            {
-                keyIndex = col;
-            }
-            else if ([content isEqualToString:@"Platform"])
-            {
-                platformIndex = col;
-            }
-        }
-        
-        //xlsx模板中只有1行，需要补足
-        NSUInteger lackRows = syncSheet.rows.count - sheet.rows.count;
-        if (lackRows > 0)
-        {
-            [sheet addRowsAt:sheet.rows.count count:lackRows];
-        }
-        
-        [compareModels enumerateObjectsUsingBlock:^(NSFLanguagePackLineModel *model, NSUInteger idx, BOOL *stop) {
-            [sheet nsf_cellAtRow:model.row col:keyIndex].stringValue = model.key;
-            [sheet nsf_cellAtRow:model.row col:zh_HansIndex].stringValue = model.zh_Hans;
-            [sheet nsf_cellAtRow:model.row col:zh_HantIndex].stringValue = model.zh_Hant;
-            [sheet nsf_cellAtRow:model.row col:enIndex].stringValue = model.en;
-            [sheet nsf_cellAtRow:model.row col:platformIndex].stringValue = model.platform;
-            [sheet nsf_cellAtRow:model.row col:keyIndex].cellFill = keyFill;
-        }];
-    }
-    
-    [self.xlsxFile save];
+    //todo:
 }
 
 #pragma mark - 扫描
@@ -223,10 +222,11 @@
             [strictLineModels addObject:lineModel];
         }
         
-        NSMutableArray *normalLineModels = normalLanguageModels[lineModel.zh_Hans];
+        NSString *simplifiedChinese = [lineModel translation4Language:NSFLanguageSimplifiedChinese];
+        NSMutableArray *normalLineModels = normalLanguageModels[simplifiedChinese];
         if (!normalLineModels)
         {
-            normalLanguageModels[lineModel.zh_Hans] = [@[lineModel] mutableCopy];
+            normalLanguageModels[simplifiedChinese] = [@[lineModel] mutableCopy];
         }
         else
         {
@@ -290,10 +290,12 @@
     
     NSMutableDictionary<NSString *, NSMutableArray<NSFLanguagePackLineModel *> *> *languageModels = [NSMutableDictionary dictionary];
     [self.lineModels enumerateObjectsUsingBlock:^(NSFLanguagePackLineModel *lineModel, NSUInteger idx, BOOL *stop) {
-        NSMutableArray *strictLineModels = languageModels[lineModel.zh_Hans];
+        NSString *simplifiedChinese = [lineModel translation4Language:NSFLanguageSimplifiedChinese];
+        
+        NSMutableArray *strictLineModels = languageModels[simplifiedChinese];
         if (!strictLineModels)
         {
-            languageModels[lineModel.zh_Hans] = [@[lineModel] mutableCopy];
+            languageModels[simplifiedChinese] = [@[lineModel] mutableCopy];
         }
         else
         {

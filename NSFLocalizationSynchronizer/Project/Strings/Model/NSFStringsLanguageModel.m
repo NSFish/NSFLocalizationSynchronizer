@@ -10,46 +10,55 @@
 #import "NSFKeyValueModel.h"
 
 @interface NSFStringsLanguageModel()
-@property (nonatomic, strong) NSMutableDictionary<NSString *, NSURL *> *fileURLs;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSURL *> *fileURLs;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSString *> *internalTranslations;
 
 @end
 
 
 @implementation NSFStringsLanguageModel
-@synthesize zh_Hans = _zh_Hans, zh_Hant = _zh_Hant, en = _en;
 
 - (instancetype)init
 {
     if (self = [super init])
     {
         self.fileURLs = [NSMutableDictionary new];
+        self.translations = [NSMutableDictionary new];
     }
     
     return self;
 }
 
+#pragma mark - Public
 - (NSString *)UUID
 {
-    return [NSString stringWithFormat:@"%@_%@_%@", self.zh_Hans, self.zh_Hant, self.en];
+    return [self.translations.allValues componentsJoinedByString:@"_"];
 }
 
 - (void)integrate:(NSFKeyValueModel *)keyValueModel
 {
-    if ([keyValueModel.language isEqualToString:ZH_HANS])
-    {
-        self.zh_Hans = keyValueModel.value;
-        self.fileURLs[ZH_HANS] = keyValueModel.file;
-    }
-    else if ([keyValueModel.language isEqualToString:ZH_HANT])
-    {
-        self.zh_Hant = keyValueModel.value;
-        self.fileURLs[ZH_HANT] = keyValueModel.file;
-    }
-    else if ([keyValueModel.language isEqualToString:EN])
-    {
-        self.en = keyValueModel.value;
-        self.fileURLs[EN] = keyValueModel.file;
-    }
+    [self setTranslation:keyValueModel.value forLanguage:keyValueModel.language];
+    self.fileURLs[@(keyValueModel.language)] = keyValueModel.file;
+}
+
+- (NSDictionary<NSNumber *, NSString *> *)translations
+{
+    return self.internalTranslations;
+}
+
+- (void)setTranslations:(NSDictionary<NSNumber *,NSString *> *)translations
+{
+    self.internalTranslations = [translations mutableCopy];
+}
+
+- (NSString *)translation4Language:(NSFLanguage)language
+{
+    return self.internalTranslations[@(language)];
+}
+
+- (void)setTranslation:(NSString *)translation forLanguage:(NSFLanguage)language
+{
+    self.internalTranslations[@(language)] = translation;
 }
 
 @end

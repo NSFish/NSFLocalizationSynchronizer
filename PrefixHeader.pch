@@ -11,9 +11,6 @@
 
 #import <ReactiveObjC.h>
 #import "NSFUltils.h"
-
-#define ZH_HANS @"zh-Hans"
-#define ZH_HANT @"zh-Hant"
-#define EN      @"en"
+#import "NSFCommonTypes.h"
 
 #endif /* PrefixHeader_pch */

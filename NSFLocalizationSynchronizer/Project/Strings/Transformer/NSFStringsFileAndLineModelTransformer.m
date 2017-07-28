@@ -78,25 +78,49 @@
 }
 
 #pragma mark - Private
-+ (NSString *)yfy_languageRepresentByFile:(NSURL *)URL
-{
++ (NSFLanguage)yfy_languageRepresentByFile:(NSURL *)URL
+{    
+    BOOL schoolized = [[URL lastPathComponent] hasPrefix:@"school_"];
     NSString *path = [URL absoluteString];
     if ([path containsString:@"zh-Hans.lproj"])
     {
-        return ZH_HANS;
+        if (schoolized)
+        {
+            return NSFLanguageSchoolizedSimplifiedChinese;
+        }
+        else
+        {
+            return NSFLanguageSimplifiedChinese;
+        }
     }
     else if ([path containsString:@"zh-Hant.lproj"])
     {
-        return ZH_HANT;
+        if (schoolized)
+        {
+            return NSFLanguageSchoolizedTraditionalChinese;
+        }
+        else
+        {
+            return NSFLanguageTraditionalChinese;
+        }
     }
-    
-    return EN;
+    else
+    {
+        if (schoolized)
+        {
+            return NSFLanguageSchoolizedEnglish;
+        }
+        else
+        {
+            return NSFLanguageEnglish;
+        }
+    }
 }
 
 + (NSArray<__kindof NSFStringsLineModel *> *)yfy_lineModelsFrom:(NSURL *)stringsFileURL
                                            adjustIBGeneratedKey:(BOOL)adjustIBGeneratedKey
 {
-    NSString *language = [self yfy_languageRepresentByFile:stringsFileURL];
+    NSFLanguage language = [self yfy_languageRepresentByFile:stringsFileURL];
     
     NSString *content = [NSString stringWithContentsOfURL:stringsFileURL encoding:NSUTF8StringEncoding error:nil];
     NSArray<NSString *> *lines = [content componentsSeparatedByString:@"\n"];

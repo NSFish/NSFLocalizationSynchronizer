@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  .strings文件的不同语言版本的路径
  */
-@property (readonly) NSMutableDictionary<NSString *, NSURL *> *fileURLs;
+@property (readonly) NSMutableDictionary<NSNumber *, NSURL *> *fileURLs;
 
 /**
  根据简体中文、繁体中文和英文三种翻译文案生成key

@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)nsf_last2PathComponents;
 
+- (NSURL *)nsf_URLByReplacingLastPathComponentWith:(NSString *)component;
+
 @end
 
 NS_ASSUME_NONNULL_END

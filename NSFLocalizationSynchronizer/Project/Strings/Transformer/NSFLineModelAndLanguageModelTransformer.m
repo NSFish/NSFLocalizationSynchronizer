@@ -40,25 +40,25 @@
 + (NSArray<NSFKeyValueModel *> *)lineModelsFrom:(NSArray<NSFStringsLanguageModel *> *)languageModels
 {
     return [languageModels.rac_sequence flattenMap:^__kindof RACSequence *(NSFStringsLanguageModel *languageModel) {
-        NSFKeyValueModel *zhHans = [NSFKeyValueModel modelAtFile:languageModel.fileURLs[ZH_HANS]
-                                                           order:NSNotFound
-                                                             key:languageModel.key
-                                                           value:languageModel.zh_Hans
-                                                        language:ZH_HANS];
+        NSMutableArray<NSFKeyValueModel *> *lineModels = [NSMutableArray array];
         
-        NSFKeyValueModel *zhHant = [NSFKeyValueModel modelAtFile:languageModel.fileURLs[ZH_HANT]
-                                                           order:NSNotFound
-                                                             key:languageModel.key
-                                                           value:languageModel.zh_Hant
-                                                        language:ZH_HANT];
+        [languageModel.translations enumerateKeysAndObjectsUsingBlock:^(NSNumber *language, NSString *obj, BOOL *stop) {
+            NSFKeyValueModel *lineModel = [NSFKeyValueModel modelAtFile:languageModel.fileURLs[language]
+                                                                  order:NSNotFound
+                                                                    key:languageModel.key
+                                                                  value:obj
+                                                               language:language.integerValue];
+            
+            //某些从语言包中生成的行在工程中没有对应的lineModel是合理的
+            //比如Info.plist是不生成高校版.strings文件的，因此就不会有对应的lineModel
+            //这些lineModel简单地抛弃掉即可
+            if (lineModel.file)
+            {
+                [lineModels addObject:lineModel];
+            }
+        }];
         
-        NSFKeyValueModel *en = [NSFKeyValueModel modelAtFile:languageModel.fileURLs[EN]
-                                                       order:NSNotFound
-                                                         key:languageModel.key
-                                                       value:languageModel.en
-                                                    language:EN];
-        
-        return @[zhHans, zhHant, en].rac_sequence;
+        return lineModels.rac_sequence;
     }].array;
 }
 

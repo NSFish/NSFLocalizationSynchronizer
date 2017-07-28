@@ -20,12 +20,10 @@
         NSFStringsSideCompareModel *compareModel = [NSFStringsSideCompareModel new];
         [array enumerateObjectsUsingBlock:^(NSFStringsLanguageModel *languageModel, NSUInteger idx, BOOL *stop) {
             [compareModel.keys addObject:languageModel.key];
-            compareModel.zh_Hans = languageModel.zh_Hans;
-            compareModel.zh_Hant = languageModel.zh_Hant;
-            compareModel.en = languageModel.en;
+            compareModel.translations = languageModel.translations;
             
-            [languageModel.fileURLs enumerateKeysAndObjectsUsingBlock:^(NSString *language, NSURL *fileURL, BOOL *stop) {
-                compareModel.fileURLs[[self fileURLKeyWith:languageModel.key language:language]] = fileURL;
+            [languageModel.fileURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *language, NSURL *fileURL, BOOL *stop) {
+                compareModel.fileURLs[[self nsf_fileURLKeyWith:languageModel.key language:language]] = fileURL;
             }];
         }];
         
@@ -43,15 +41,14 @@
         NSArray *lanModels = [compareModel.keys.rac_sequence map:^id(NSString *key) {
             NSFStringsLanguageModel *languageModel = [NSFStringsLanguageModel new];
             languageModel.key = key;
-            languageModel.zh_Hans = compareModel.zh_Hans;
-            languageModel.zh_Hant = compareModel.zh_Hant;
-            languageModel.en = compareModel.en;
+            languageModel.translations = compareModel.translations;
             
-            languageModel.fileURLs[ZH_HANS] = compareModel.fileURLs[[self fileURLKeyWith:key language:ZH_HANS]];
-            languageModel.fileURLs[ZH_HANT] = compareModel.fileURLs[[self fileURLKeyWith:key language:ZH_HANT]];
-            languageModel.fileURLs[EN] = compareModel.fileURLs[[self fileURLKeyWith:key language:EN]];
+            [compareModel.fileURLs enumerateKeysAndObjectsUsingBlock:^(NSString *fileURLKey, NSURL *fileURL, BOOL *stop) {
+                NSFLanguage language = [self nsf_languageFromFileURLKey:fileURLKey];
+                languageModel.fileURLs[@(language)] = fileURL;
+            }];
             
-            NSAssert(languageModel.fileURLs.count == 3, @"从strings文件中解析出的每个Key，对应的语言必须是3种");
+            NSAssert(languageModel.fileURLs.count % 3 == 0, @"从strings文件中解析出的每个Key，对应的语言必须是3的整数倍(含高校版)");
             
             return languageModel;
         }].array;
@@ -84,9 +81,17 @@
     return dict.allValues;
 }
 
-+ (NSString *)fileURLKeyWith:(NSString *)key language:(NSString *)language
+/**
+ 工程端最终生成的compareModel里需要记录每个翻译文案是从哪个strings文件来的，用翻译的Key和文案所属语言类型一起作为fileURL的key
+ */
++ (NSString *)nsf_fileURLKeyWith:(NSString *)key language:(NSNumber *)language
 {
     return [NSString stringWithFormat:@"%@_%@", key, language];
+}
+
++ (NSFLanguage)nsf_languageFromFileURLKey:(NSString *)key
+{
+    return [[[key componentsSeparatedByString:@"_"] lastObject] integerValue];
 }
 
 @end

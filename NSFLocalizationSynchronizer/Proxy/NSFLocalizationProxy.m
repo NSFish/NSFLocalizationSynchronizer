@@ -158,14 +158,7 @@
         
         if (languagePackModel)
         {
-            if (![stringModel.zh_Hans isEqualToString:languagePackModel.zh_Hans]
-                || ![stringModel.zh_Hant isEqualToString:languagePackModel.zh_Hant]
-                || ![stringModel.en isEqualToString:languagePackModel.en])
-            {
-                stringModel.zh_Hans = languagePackModel.zh_Hans;
-                stringModel.zh_Hant = languagePackModel.zh_Hant;
-                stringModel.en = languagePackModel.en;
-            }
+            stringModel.translations = languagePackModel.translations;
         }
         else
         {
@@ -195,10 +188,11 @@
             [strictLineModels addObject:lineModel];
         }
         
-        NSMutableArray *normalLineModels = normalLanguageModels[lineModel.zh_Hans];
+        NSString *simplifiedChinese = [lineModel translation4Language:NSFLanguageSimplifiedChinese];
+        NSMutableArray *normalLineModels = normalLanguageModels[simplifiedChinese];
         if (!normalLineModels)
         {
-            normalLanguageModels[lineModel.zh_Hans] = [@[lineModel] mutableCopy];
+            normalLanguageModels[simplifiedChinese] = [@[lineModel] mutableCopy];
         }
         else
         {
@@ -219,14 +213,7 @@
         
         if (languagePackModel)
         {
-            if (![stringModel.zh_Hans isEqualToString:languagePackModel.zh_Hans]
-                || ![stringModel.zh_Hant isEqualToString:languagePackModel.zh_Hant]
-                || ![stringModel.en isEqualToString:languagePackModel.en])
-            {
-                stringModel.zh_Hans = languagePackModel.zh_Hans;
-                stringModel.zh_Hant = languagePackModel.zh_Hant;
-                stringModel.en = languagePackModel.en;
-            }
+            stringModel.translations = languagePackModel.translations;
         }
         else
         {
@@ -258,7 +245,8 @@
 + (NSFLanguagePackLineModel *)findLanguageModelMatch:(NSFStringsCompareModel *)stringsModel
                                                 from:(NSDictionary<NSString *, NSArray<NSFLanguagePackLineModel *> *> *)languageModels
 {
-    NSArray<NSFLanguagePackLineModel *> *lineModels = languageModels[stringsModel.zh_Hans];
+    NSString *simplifiedChinese = [stringsModel translation4Language:NSFLanguageSimplifiedChinese];
+    NSArray<NSFLanguagePackLineModel *> *lineModels = languageModels[simplifiedChinese];
     if (lineModels.count == 1)//只找到一行匹配到的翻译，就是它了
     {
         return [lineModels firstObject];

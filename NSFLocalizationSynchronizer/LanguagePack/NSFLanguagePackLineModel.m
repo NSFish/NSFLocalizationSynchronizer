@@ -10,35 +10,68 @@
 
 @interface NSFLanguagePackLineModel()
 @property (nonatomic, strong) NSString *UUID;
+@property (nonatomic, strong) NSMutableDictionary *internalTranslations;
 
 @end
 
 
 @implementation NSFLanguagePackLineModel
-@synthesize zh_Hans = _zh_Hans, zh_Hant = _zh_Hant, en = _en;
+
+- (instancetype)init
+{
+    if (self = [super init])
+    {
+        self.internalTranslations = [NSMutableDictionary new];
+    }
+    
+    return self;
+}
 
 - (NSString *)UUID
 {
     if (!_UUID)
     {
-        _UUID = [NSString stringWithFormat:@"%@_%@_%@", self.zh_Hans, self.zh_Hant, self.en];
+        _UUID = [self.translations.allValues componentsJoinedByString:@"_"];
     }
     
     return _UUID;
 }
 
+- (NSDictionary<NSNumber *, NSString *> *)translations
+{
+    return self.internalTranslations;
+}
+
+- (void)setTranslations:(NSDictionary<NSNumber *,NSString *> *)translations
+{
+    self.internalTranslations = [translations mutableCopy];
+}
+
+- (NSString *)translation4Language:(NSFLanguage)language
+{
+    return self.internalTranslations[@(language)];
+}
+
+- (void)setTranslation:(NSString *)translation forLanguage:(NSFLanguage)language
+{
+    self.internalTranslations[@(language)] = translation;
+}
+
+#pragma mark - Printable
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"%@, %@, %@", self.zh_Hans, self.zh_Hant, self.en];
+    return [self.translations.allValues componentsJoinedByString:@", "];
 }
 
 - (NSDictionary *)toDictionary
 {
-    return @{@"key": self.isKeyMadeup ? @"" : self.key,
-             @"row": @(self.row - 1).stringValue,
-             @"zh-Hans": self.zh_Hans,
-             @"zh-Hant": self.zh_Hant,
-             @"en": self.en};
+    NSMutableDictionary *dict = [@{@"key": self.isKeyMadeup ? @"" : self.key,
+                                   @"row": @(self.row - 1)} mutableCopy];
+    [self.translations enumerateKeysAndObjectsUsingBlock:^(NSNumber *language, NSString *translation, BOOL *stop) {
+        dict[HumanReadable(language.integerValue)] = translation;
+    }];
+    
+    return dict;
 }
 
 @end
