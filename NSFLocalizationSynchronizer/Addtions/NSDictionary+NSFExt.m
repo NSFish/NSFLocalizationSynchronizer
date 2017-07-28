@@ -20,9 +20,8 @@
     
     [[NSFileManager defaultManager] createFileAtPath:[URL path] contents:nil attributes:nil];
     
-    NSXMLDocument *document = [[NSXMLDocument alloc] initWithXMLString:[self XMLString] options:0 error:nil];
-    NSData *xmlData = [document XMLDataWithOptions:NSXMLNodePrettyPrint];
-    [xmlData writeToURL:URL atomically:YES];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:nil];
+    [data writeToURL:URL atomically:YES];
 }
 
 @end

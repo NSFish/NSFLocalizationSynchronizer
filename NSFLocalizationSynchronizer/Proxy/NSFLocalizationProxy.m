@@ -13,6 +13,7 @@
 #import "NSFSourceCodeScanner.h"
 #import "NSFProjectExpert.h"
 #import "NSFStringsCompareModel.h"
+#import "NSFLogger.h"
 
 @implementation NSFLocalizationProxy
 
@@ -24,17 +25,11 @@
             NSFProjectExpert *expert = [[NSFProjectExpert alloc] initWithProjectRoot:projectRoot];
             NSArray<NSFSourceCodeFragment *> *fragments = [expert scanUnlocalizedStringInSourceCode];
             
-            if (fragments.count > 0)
-            {
-                NSArray<NSDictionary *> *unlocalizedStrings = [fragments.rac_sequence map:^id(NSFSourceCodeFragment *fragment) {
-                    return [fragment toDictionary];
-                }].array;
-                [subscriber sendNext:unlocalizedStrings];
-            }
-            else
-            {
-                [subscriber sendNext:nil];
-            }
+            NSArray<NSDictionary *> *unlocalizedStrings = [fragments.rac_sequence map:^id(NSFSourceCodeFragment *fragment) {
+                return [fragment toDictionary];
+            }].array;
+            
+            [subscriber sendNext:[NSFLogger logIfNeeded:unlocalizedStrings withName:@"工程中未国际化的字符串"]];
             
             [subscriber sendCompleted];
         });
@@ -55,7 +50,7 @@
             NSFLanguagePackageExpert *languagePackExpert = [NSFLanguagePackageExpert load:languageFileURL];
             NSArray<NSFLanguagePackLineModel *> *languagePackModels = [languagePackExpert compareModels];
             
-            RACTuple *result = nil;
+            NSArray<NSDictionary *> *result = nil;
             if (strict)
             {
                 result = [self strictlyCompareStringsModels:stringsModels withLanguagePackModels:languagePackModels];
@@ -66,7 +61,9 @@
             }
             [projectExpert updateCompareModels:stringsModels];
             
-            [subscriber sendNext:result];
+            NSString *mode = strict ? @"严格" : @"兼容";
+            [subscriber sendNext:[NSFLogger logIfNeeded:result
+                                               withName:[NSString stringWithFormat:@"【%@】工程中用到了语言包中不存在的文案", mode]]];
             [subscriber sendCompleted];
         });
         
@@ -86,7 +83,7 @@
             NSFLanguagePackageExpert *languagePackExpert = [NSFLanguagePackageExpert load:languageFileURL];
             NSArray<NSFLanguagePackLineModel *> *languagePackModels = [languagePackExpert compareModels];
             
-            RACTuple *result = nil;
+            NSArray<NSDictionary *> *result = nil;
             if (strict)
             {
                 result = [self strictlyCompareStringsModels:stringsModels withLanguagePackModels:languagePackModels];
@@ -97,7 +94,9 @@
             }
             [projectExpert updateCompareModels:stringsModels];
             
-            [subscriber sendNext:result];
+            NSString *mode = strict ? @"严格" : @"兼容";
+            [subscriber sendNext:[NSFLogger logIfNeeded:result
+                                               withName:[NSString stringWithFormat:@"【%@】工程中用到了语言包中不存在的文案", mode]]];
             [subscriber sendCompleted];
         });
         
@@ -106,10 +105,9 @@
 }
 
 #pragma mark - Private(Compare)
-+ (RACTuple *)strictlyCompareStringsModels:(NSArray<NSFStringsCompareModel *> *)stringsModels
-                    withLanguagePackModels:(NSArray<NSFLanguagePackLineModel *> *)languagePackModels
++ (NSArray<NSDictionary *> *)strictlyCompareStringsModels:(NSArray<NSFStringsCompareModel *> *)stringsModels
+                                   withLanguagePackModels:(NSArray<NSFLanguagePackLineModel *> *)languagePackModels
 {
-    NSUInteger updatedTranslationsCount = 0;
     NSMutableArray<NSDictionary *> *mismatchedStringModels = [NSMutableArray array];
     
     NSMutableDictionary<NSString *, NSMutableArray<NSFLanguagePackLineModel *> *> *strictLanguageModels = [NSMutableDictionary dictionary];
@@ -140,8 +138,6 @@
                 stringModel.zh_Hans = languagePackModel.zh_Hans;
                 stringModel.zh_Hant = languagePackModel.zh_Hant;
                 stringModel.en = languagePackModel.en;
-                
-                updatedTranslationsCount++;
             }
         }
         else
@@ -151,13 +147,12 @@
         }
     }
     
-    return RACTuplePack(@(updatedTranslationsCount), mismatchedStringModels);
+    return mismatchedStringModels;
 }
 
-+ (RACTuple *)compareStringsModels:(NSArray<NSFStringsCompareModel *> *)stringsModels
-            withLanguagePackModels:(NSArray<NSFLanguagePackLineModel *> *)languagePackModels
++ (NSArray<NSDictionary *> *)compareStringsModels:(NSArray<NSFStringsCompareModel *> *)stringsModels
+                           withLanguagePackModels:(NSArray<NSFLanguagePackLineModel *> *)languagePackModels
 {
-    NSUInteger updatedTranslationsCount = 0;
     NSMutableArray<NSDictionary *> *mismatchedStringModels = [NSMutableArray array];
     
     NSMutableDictionary<NSString *, NSMutableArray<NSFLanguagePackLineModel *> *> *strictLanguageModels = [NSMutableDictionary dictionary];
@@ -204,8 +199,6 @@
                 stringModel.zh_Hans = languagePackModel.zh_Hans;
                 stringModel.zh_Hant = languagePackModel.zh_Hant;
                 stringModel.en = languagePackModel.en;
-                
-                updatedTranslationsCount++;
             }
         }
         else
@@ -215,7 +208,7 @@
         }
     }
     
-    return RACTuplePack(@(updatedTranslationsCount), mismatchedStringModels);
+    return mismatchedStringModels;
 }
 
 + (NSFLanguagePackLineModel *)strictlyFindLanguageModelMatch:(NSFStringsCompareModel *)stringsModel

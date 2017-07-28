@@ -47,5 +47,16 @@ static NSString *NSFOutputDirectoryPathKey = @"NSFOutputDirectoryPathKey";
     [[NSUserDefaults standardUserDefaults] setObject:path forKey:NSFOutputDirectoryPathKey];
 }
 
++ (NSURL *)logFolder
+{
+    NSString *mainFolder = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+    NSURL *URL = [NSURL fileURLWithPath:[[NSTemporaryDirectory() stringByAppendingPathComponent:mainFolder] stringByAppendingPathComponent:@"Log"]];
+    [[NSFileManager defaultManager] createDirectoryAtPath:[URL path]
+                              withIntermediateDirectories:YES
+                                               attributes:nil
+                                                    error:nil];
+    
+    return URL;
+}
 
 @end

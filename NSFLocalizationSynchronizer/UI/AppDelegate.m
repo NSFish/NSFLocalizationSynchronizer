@@ -55,7 +55,7 @@
 {
     if (!self.settingWC)
     {
-        self.settingWC = [[NSFSettingWindowController alloc] initWithWindowNibName:@"NSFSettingWindowController"];
+        self.settingWC = [[NSFSettingWindowController alloc] initWithWindowNibName:NSStringFromClass([NSFSettingWindowController class])];
     }
     [self.settingWC showWindow:nil];
     
@@ -64,22 +64,17 @@
 
 - (void)scanUnlocalizedStringInSourceCode
 {
-    [[NSFLocalizationProxy scanUnlocalizedStringInSourceCode] subscribeNext:^(NSArray *unlocalizedStrings) {
+    [[NSFLocalizationProxy scanUnlocalizedStringInSourceCode] subscribeNext:^(NSURL *log) {
         NSUserNotification *userNotification = [NSUserNotification new];
         userNotification.title = @"扫描完毕";
-        if (unlocalizedStrings.count == 0)
+        if (!log)
         {
             userNotification.subtitle = @"所有的字符串都国际化了";
         }
         else
         {
-            userNotification.subtitle = [NSString stringWithFormat:@"发现%@条未国际化的字符串，点击查看", @(unlocalizedStrings.count)];
-            
-            NSString *logPath = [NSHomeDirectory() stringByAppendingPathComponent:@"/Desktop/工程中未国际化的字符串.xml"];
-            [@{@"count": @(unlocalizedStrings.count),
-               @"strings": unlocalizedStrings} nsf_writeToURL:[NSURL fileURLWithPath:logPath]];
-            
-            userNotification.userInfo = @{@"paths": @[logPath]};
+            userNotification.subtitle = @"发现未国际化的字符串，点击查看";
+            userNotification.userInfo = @{@"path": [log path]};
         }
         
         userNotification.soundName = NSUserNotificationDefaultSoundName;
@@ -92,40 +87,40 @@
 - (void)strictlyUpdateStringFiles
 {
     @weakify(self);
-    [[NSFLocalizationProxy updateStringsFiles:YES] subscribeNext:^(RACTuple *result) {
+    [[NSFLocalizationProxy updateStringsFiles:YES] subscribeNext:^(NSURL *log) {
         @strongify(self);
         
-        [self response2UpdateStringsFiles:result strict:YES];
+        [self response2UpdateStringsFiles:log strict:YES];
     }];
 }
 
 - (void)updateStringFiles
 {
     @weakify(self);
-    [[NSFLocalizationProxy updateStringsFiles:NO] subscribeNext:^(RACTuple *result) {
+    [[NSFLocalizationProxy updateStringsFiles:NO] subscribeNext:^(NSURL *log) {
         @strongify(self);
         
-        [self response2UpdateStringsFiles:result strict:NO];
+        [self response2UpdateStringsFiles:log strict:NO];
     }];
 }
 
 - (void)strictlyUpdateUnifiedStringsFiles
 {
     @weakify(self);
-    [[NSFLocalizationProxy updateUnifiedStringFiles:YES] subscribeNext:^(RACTuple *result) {
+    [[NSFLocalizationProxy updateUnifiedStringFiles:YES] subscribeNext:^(NSURL *log) {
         @strongify(self);
         
-        [self response2UpdateStringsFiles:result strict:YES];
+        [self response2UpdateStringsFiles:log strict:YES];
     }];
 }
 
 - (void)updateUnifiedStringsFiles
 {
     @weakify(self);
-    [[NSFLocalizationProxy updateUnifiedStringFiles:NO] subscribeNext:^(RACTuple *result) {
+    [[NSFLocalizationProxy updateUnifiedStringFiles:NO] subscribeNext:^(NSURL *log) {
         @strongify(self);
         
-        [self response2UpdateStringsFiles:result strict:NO];
+        [self response2UpdateStringsFiles:log strict:NO];
     }];
 }
 
@@ -144,27 +139,14 @@
 }
 
 #pragma mark - Private
-- (void)response2UpdateStringsFiles:(RACTuple *)result strict:(BOOL)strict
+- (void)response2UpdateStringsFiles:(NSURL *)log strict:(BOOL)strict
 {
-    NSUInteger updatedCount = [[result first] integerValue];
-    NSMutableArray<NSDictionary *> *mismatchedStringModels = [result second];
-    
-    NSString *xmlPath = nil;
-    if (mismatchedStringModels.count > 0)
-    {
-        NSString *mode = strict ? @"严格模式" : @"兼容模式";
-        xmlPath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"/Desktop/【%@】更新失败的文案.xml", mode]];
-        [@{@"count": @(mismatchedStringModels.count),
-           @"Models": mismatchedStringModels} nsf_writeToURL:[NSURL fileURLWithPath:xmlPath]];
-    }
-    
     NSUserNotification *userNotification = [NSUserNotification new];
-    userNotification.title = [NSString stringWithFormat:@"更新了%@条文案", @(updatedCount)];
     
-    if (xmlPath)
+    if (log)
     {
         userNotification.informativeText = @"发现工程中存在语言包里没有的文案，点击查看";
-        userNotification.userInfo = @{@"path": xmlPath};
+        userNotification.userInfo = @{@"path": [log path]};
     }
     
     userNotification.soundName = NSUserNotificationDefaultSoundName;

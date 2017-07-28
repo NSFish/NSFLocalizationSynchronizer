@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSFSetting : NSObject
+NS_ASSUME_NONNULL_BEGIN
+
+@interface NSFSetting: NSObject
 
 /**
  *  工程根目录
@@ -28,4 +30,8 @@
 + (NSString *)outputDirectoryPath;
 + (void)setOutputDirectoryPath:(NSString *)path;
 
++ (NSURL *)logFolder;
+
 @end
+
+NS_ASSUME_NONNULL_END
