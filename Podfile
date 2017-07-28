@@ -7,5 +7,4 @@ target 'NSFLocalizationSynchronizer' do
 
   # Pods for NSFLocalizationSynchronizer
   pod "ReactiveCocoa", "2.5"
-  pod "XMLDictionary"
 end

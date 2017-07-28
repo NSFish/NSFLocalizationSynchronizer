@@ -7,7 +7,6 @@
 //
 
 #import "NSDictionary+NSFExt.h"
-#import <XMLDictionary.h>
 
 @implementation NSDictionary(NSFExt)
 

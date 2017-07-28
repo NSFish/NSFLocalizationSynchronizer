@@ -6,16 +6,13 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
-  - XMLDictionary (1.4)
 
 DEPENDENCIES:
   - ReactiveCocoa (= 2.5)
-  - XMLDictionary
 
 SPEC CHECKSUMS:
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
-  XMLDictionary: f9f51601ba76678b594ab485f2b00ec1fed23724
 
-PODFILE CHECKSUM: dd360549edcda2e5757ed2b3f300649e32b95b2a
+PODFILE CHECKSUM: 74bc5aa0d0d26f3d04ac2532f5209397d74e85cd
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.1

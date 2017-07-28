@@ -9,7 +9,6 @@
 #import "NSFLocalizationProxy.h"
 #import "NSFSetting.h"
 #import "NSFLanguagePackageExpert.h"
-#import <XMLDictionary.h>
 #import "NSFSourceCodeScanner.h"
 #import "NSFProjectExpert.h"
 #import "NSFStringsCompareModel.h"
