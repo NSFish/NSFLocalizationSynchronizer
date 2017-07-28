@@ -10,11 +10,7 @@
 #define PrefixHeader_pch
 
 #import <ReactiveObjC.h>
-#import "NSObject+NSFExt.h"
-#import "NSFileManager+NSFExt.h"
-#import "NSURL+NSFExt.h"
-#import "NSDictionary+NSFExt.h"
-#import "NSFParameters.h"
+#import "NSFUltils.h"
 
 #define ZH_HANS @"zh-Hans"
 #define ZH_HANT @"zh-Hant"

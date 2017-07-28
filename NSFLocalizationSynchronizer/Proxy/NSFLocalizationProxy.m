@@ -26,22 +26,13 @@
             
             NSMutableArray<NSURL *> *logs = [NSMutableArray array];
             NSURL *log = [NSFLogger logIfNeeded:[expert scanKeyDuplicatedRows] withName:@"语言包中重复的Key"];
-            if (log)
-            {
-                [logs addObject:log];
-            }
+            [logs nsf_addObjectIfNotNil:log];
             
             log = [NSFLogger logIfNeeded:[expert scanTranslationDuplicatedRows] withName:@"语言包中重复的翻译"];;
-            if (log)
-            {
-                [logs addObject:log];
-            }
+            [logs nsf_addObjectIfNotNil:log];
             
             log = [NSFLogger logIfNeeded:[expert scanZh_HansDuplicatedOnlyRows] withName:@"语言包中简体中文相同但其他翻译不同的行"];
-            if (log)
-            {
-                [logs addObject:log];
-            }
+            [logs nsf_addObjectIfNotNil:log];
             
             [subscriber sendNext:logs];
             [subscriber sendCompleted];

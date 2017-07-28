@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSFLanguagePackageExpert : NSObject
+@interface NSFLanguagePackageExpert: NSObject
 
 + (instancetype)create:(NSURL *)URL;
 + (instancetype)load:(NSURL *)URL;

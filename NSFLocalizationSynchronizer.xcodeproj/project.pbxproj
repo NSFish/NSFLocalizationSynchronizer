@@ -39,6 +39,7 @@
 		A9DB56171F2AE31A00B82FF1 /* NSFSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DB56161F2AE31A00B82FF1 /* NSFSetting.m */; };
 		A9DB561A1F2AE32B00B82FF1 /* NSFLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DB56191F2AE32B00B82FF1 /* NSFLogger.m */; };
 		A9DB561D1F2AECF200B82FF1 /* NSFParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DB561C1F2AECF200B82FF1 /* NSFParameters.m */; };
+		A9DB56201F2B1E6900B82FF1 /* NSMutableArray+NSFExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A9DB561F1F2B1E6900B82FF1 /* NSMutableArray+NSFExt.m */; };
 		FBCB8A2668C2AC141AA4458B /* libPods-NSFLocalizationSynchronizer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44D5820086847BB4FEB82B29 /* libPods-NSFLocalizationSynchronizer.a */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +121,9 @@
 		A9DB56191F2AE32B00B82FF1 /* NSFLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFLogger.m; sourceTree = "<group>"; };
 		A9DB561B1F2AECF200B82FF1 /* NSFParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFParameters.h; sourceTree = "<group>"; };
 		A9DB561C1F2AECF200B82FF1 /* NSFParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFParameters.m; sourceTree = "<group>"; };
+		A9DB561E1F2B1E6900B82FF1 /* NSMutableArray+NSFExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+NSFExt.h"; sourceTree = "<group>"; };
+		A9DB561F1F2B1E6900B82FF1 /* NSMutableArray+NSFExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+NSFExt.m"; sourceTree = "<group>"; };
+		A9DB56211F2B1EBA00B82FF1 /* NSFUltils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSFUltils.h; sourceTree = "<group>"; };
 		F32202EC7C727AF8A41A40DE /* Pods-NSFLocalizationSynchronizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NSFLocalizationSynchronizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-NSFLocalizationSynchronizer/Pods-NSFLocalizationSynchronizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +155,9 @@
 				A9152D151F20A3DD00DF77BB /* NSFileManager+NSFExt.m */,
 				A9DB561B1F2AECF200B82FF1 /* NSFParameters.h */,
 				A9DB561C1F2AECF200B82FF1 /* NSFParameters.m */,
+				A9DB561E1F2B1E6900B82FF1 /* NSMutableArray+NSFExt.h */,
+				A9DB561F1F2B1E6900B82FF1 /* NSMutableArray+NSFExt.m */,
+				A9DB56211F2B1EBA00B82FF1 /* NSFUltils.h */,
 			);
 			path = Addtions;
 			sourceTree = "<group>";
@@ -461,6 +468,7 @@
 				A924316E1F26E26E00985F0D /* NSFProjectExpert.m in Sources */,
 				A9DB561D1F2AECF200B82FF1 /* NSFParameters.m in Sources */,
 				A9DB56171F2AE31A00B82FF1 /* NSFSetting.m in Sources */,
+				A9DB56201F2B1E6900B82FF1 /* NSMutableArray+NSFExt.m in Sources */,
 				A98926681F162284006EF4CE /* NSFStringsCompareModel.m in Sources */,
 				A9152D121F209D7700DF77BB /* NSFStringFilesMixTransformer.m in Sources */,
 				A956B9EA1F14ADFB00AA81C7 /* NSObject+NSFExt.m in Sources */,
