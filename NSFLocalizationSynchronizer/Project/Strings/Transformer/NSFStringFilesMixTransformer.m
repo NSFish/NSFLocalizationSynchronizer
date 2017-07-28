@@ -149,6 +149,10 @@
     task.currentDirectoryPath = [projectRoot path];
     [task setLaunchPath:@"/bin/sh"];
     
+    //防止在Console中输出error log
+    NSPipe *pipe = [NSPipe pipe];
+    [task setStandardError:pipe];
+    
     NSURL *folderURL = [NSFProjectParseConfigration tempZh_HansLprojURL];
     [[NSFileManager defaultManager] createDirectoryAtPath:[folderURL path] withIntermediateDirectories:YES attributes:nil error:nil];
     
