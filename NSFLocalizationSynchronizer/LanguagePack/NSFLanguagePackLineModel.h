@@ -6,15 +6,22 @@
 //  Copyright © 2016年 乐星宇. All rights reserved.
 //
 
-#import "NSFIntermediaModelProtocol.h"
+#import "NSFCompareModelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSFLanguagePackLineModel: NSObject<NSFIntermediaModel>
-@property (nonatomic, copy)   NSURL     *file;
+@interface NSFLanguagePackLineModel: NSObject<NSFCompareModel>
+@property (nonatomic, copy) NSString  *key;
+
+/**
+ 目前语言包里还存在key为空的行，此时会用[NSUUID UUID]生成一个临时的key
+ */
+@property (nonatomic, assign) BOOL isKeyMadeup;
+
 @property (nonatomic, assign) NSInteger row;
-@property (nonatomic, copy)   NSString  *key;
 @property (nonatomic, copy)   NSString  *platform;
+
+@property (readonly) NSString *UUID;
 
 @end
 

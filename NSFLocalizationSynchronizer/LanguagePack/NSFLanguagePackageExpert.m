@@ -48,8 +48,95 @@
 
 - (NSArray<NSFLanguagePackLineModel *> *)compareModels
 {
-    self.lineModels = [self lineModelsFromExcel:self.URL];
-    return [self.lineModels copy];
+    BRAWorksheet *sheet = [self.xlsxFile.workbook.worksheets firstObject];
+    
+    NSInteger rows = sheet.rows.count;
+    NSInteger cols = sheet.columns.count;
+    
+    //先解析标题行，区分出不同语言在哪一列
+    NSUInteger currentRow = 2;
+    NSUInteger zh_HansIndex = NSNotFound, zh_HantIndex = NSNotFound, enIndex = NSNotFound, keyIndex = NSNotFound, platformIndex = NSNotFound;
+    for (NSInteger col = 1; col < cols; ++col)
+    {
+        NSString *content = [sheet cellAtRow:currentRow col:col].stringValue;
+        if ([content isEqualToString:@"中文"])
+        {
+            zh_HansIndex = col;
+        }
+        else if ([content isEqualToString:@"英文"])
+        {
+            enIndex = col;
+        }
+        else if ([content isEqualToString:@"繁体"])
+        {
+            zh_HantIndex = col;
+        }
+        else if ([content isEqualToString:@"Key"])
+        {
+            keyIndex = col;
+        }
+        else if ([content isEqualToString:@"Platform"])
+        {
+            platformIndex = col;
+        }
+    }
+    
+    currentRow++;
+    NSUInteger totalRows = rows - currentRow + 1;
+    NSUInteger batchs = 4;
+    NSUInteger batchNum = totalRows / batchs;
+    NSMutableArray<RACTuple *> *iterations = [NSMutableArray array];
+    for (NSUInteger row = currentRow; row <= rows; row+= batchNum)
+    {
+        [iterations addObject:RACTuplePack(@(row), @(MIN(row + batchNum - 1, rows)))];
+    }
+    
+    NSMutableArray *models = [NSMutableArray array];
+    dispatch_apply([iterations count], dispatch_get_global_queue(0, 0), ^(size_t index) {
+        RACTuple *iteration = iterations[index];
+        
+        for (NSUInteger row = [[iteration first] integerValue]; row <= [[iteration second] integerValue]; ++row)
+        {
+            NSFLanguagePackLineModel *model = [NSFLanguagePackLineModel new];
+            model.row = row;
+            
+            if (keyIndex != NSNotFound)
+            {
+                model.key = [sheet cellAtRow:row col:keyIndex].stringValue;
+                if (model.key.length == 0)//没有key的新文案，生成一个临时key占位
+                {
+                    model.key = [[NSUUID UUID] UUIDString];
+                }
+            }
+            
+            if (zh_HansIndex != NSNotFound)
+            {
+                model.zh_Hans = [sheet cellAtRow:row col:zh_HansIndex].stringValue;
+            }
+            
+            if (zh_HantIndex != NSNotFound)
+            {
+                model.zh_Hant = [sheet cellAtRow:row col:zh_HantIndex].stringValue;
+            }
+            
+            if (enIndex != NSNotFound)
+            {
+                model.en = [sheet cellAtRow:row col:enIndex].stringValue;
+            }
+            
+            if (platformIndex != NSNotFound)
+            {
+                model.platform = [sheet cellAtRow:row col:platformIndex].stringValue;
+            }
+            
+            @synchronized (models) {
+                [models addObject:model];
+            }
+        }
+    });
+    
+    self.lineModels = [NSArray arrayWithArray:models];
+    return self.lineModels;
 }
 
 - (void)updateCompareModels:(NSArray<NSFLanguagePackLineModel *> *)compareModels
@@ -115,98 +202,83 @@
     [self.xlsxFile save];
 }
 
-#pragma mark - Private
-- (NSArray<NSFLanguagePackLineModel *> *)lineModelsFromExcel:(NSURL *)URL
+#pragma mark - 扫描
+- (NSDictionary *)scanKeyDuplicatedRows
 {
-    BRAWorksheet *sheet = [self.xlsxFile.workbook.worksheets firstObject];
-    
-    NSInteger rows = sheet.rows.count;
-    NSInteger cols = sheet.columns.count;
-    
-    //先解析标题行，区分出不同语言在哪一列
-    NSUInteger currentRow = 2;
-    NSUInteger zh_HansIndex = NSNotFound, zh_HantIndex = NSNotFound, enIndex = NSNotFound, keyIndex = NSNotFound, platformIndex = NSNotFound;
-    for (NSInteger col = 1; col < cols; ++col)
+    if (!self.lineModels)
     {
-        NSString *content = [sheet cellAtRow:currentRow col:col].stringValue;
-        if ([content isEqualToString:@"中文"])
-        {
-            zh_HansIndex = col;
-        }
-        else if ([content isEqualToString:@"英文"])
-        {
-            enIndex = col;
-        }
-        else if ([content isEqualToString:@"繁体"])
-        {
-            zh_HantIndex = col;
-        }
-        else if ([content isEqualToString:@"Key"])
-        {
-            keyIndex = col;
-        }
-        else if ([content isEqualToString:@"Platform"])
-        {
-            platformIndex = col;
-        }
-    }
-        
-    currentRow++;
-    NSUInteger totalRows = rows - currentRow + 1;
-    NSUInteger batchs = 4;
-    NSUInteger batchNum = totalRows / batchs;
-    NSMutableArray<RACTuple *> *iterations = [NSMutableArray array];
-    for (NSUInteger row = currentRow; row <= rows; row+= batchNum)
-    {
-        [iterations addObject:RACTuplePack(@(row), @(MIN(row + batchNum - 1, rows)))];
+        self.lineModels = [self compareModels];
     }
     
-    NSMutableArray *models = [NSMutableArray array];
-    dispatch_apply([iterations count], dispatch_get_global_queue(0, 0), ^(size_t index) {
-        RACTuple *iteration = iterations[index];
-        
-        for (NSUInteger row = [[iteration first] integerValue]; row <= [[iteration second] integerValue]; ++row)
+    NSMutableDictionary<NSString *, NSMutableArray<NSFLanguagePackLineModel *> *> *strictLanguageModels = [NSMutableDictionary dictionary];
+    NSMutableDictionary<NSString *, NSMutableArray<NSFLanguagePackLineModel *> *> *normalLanguageModels = [NSMutableDictionary dictionary];
+    [self.lineModels enumerateObjectsUsingBlock:^(NSFLanguagePackLineModel *lineModel, NSUInteger idx, BOOL *stop) {
+        NSMutableArray *strictLineModels = strictLanguageModels[lineModel.key];
+        if (!strictLineModels)
         {
-            NSFLanguagePackLineModel *model = [NSFLanguagePackLineModel new];
-            model.file = URL;
-            model.row = row;
-            
-            if (keyIndex != NSNotFound)
-            {
-                model.key = [sheet cellAtRow:row col:keyIndex].stringValue;
-                if (model.key.length == 0)//没有key的新文案，生成一个临时key占位
-                {
-                    model.key = [[NSUUID UUID] UUIDString];
-                }
-            }
-            
-            if (zh_HansIndex != NSNotFound)
-            {
-                model.zh_Hans = [sheet cellAtRow:row col:zh_HansIndex].stringValue;
-            }
-            
-            if (zh_HantIndex != NSNotFound)
-            {
-                model.zh_Hant = [sheet cellAtRow:row col:zh_HantIndex].stringValue;
-            }
-            
-            if (enIndex != NSNotFound)
-            {
-                model.en = [sheet cellAtRow:row col:enIndex].stringValue;
-            }
-            
-            if (platformIndex != NSNotFound)
-            {
-                model.platform = [sheet cellAtRow:row col:platformIndex].stringValue;
-            }
-            
-            @synchronized (models) {
-                [models addObject:model];
-            }
+            strictLanguageModels[lineModel.key] = [@[lineModel] mutableCopy];
         }
-    });
+        else
+        {
+            [strictLineModels addObject:lineModel];
+        }
+        
+        NSMutableArray *normalLineModels = normalLanguageModels[lineModel.zh_Hans];
+        if (!normalLineModels)
+        {
+            normalLanguageModels[lineModel.zh_Hans] = [@[lineModel] mutableCopy];
+        }
+        else
+        {
+            [normalLineModels addObject:lineModel];
+        }
+    }];
     
-    return [NSArray arrayWithArray:models];
+    NSMutableDictionary<NSString *, NSArray *> *duplicates = [NSMutableDictionary dictionary];
+    [strictLanguageModels enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSMutableArray<NSFLanguagePackLineModel *> *models, BOOL *stop) {
+        if (models.count > 1)
+        {
+            duplicates[key] = [models.rac_sequence map:^id(NSFLanguagePackLineModel *model) {
+                return [model toDictionary];
+            }].array;
+        }
+    }];
+    
+    return duplicates.count > 0 ? duplicates : nil;
+}
+
+- (NSDictionary *)scanTranslationDuplicatedRows
+{
+    if (!self.lineModels)
+    {
+        self.lineModels = [self compareModels];
+    }
+    
+    NSMutableDictionary<NSString *, NSMutableArray<NSFLanguagePackLineModel *> *> *languageModels = [NSMutableDictionary dictionary];
+    [self.lineModels enumerateObjectsUsingBlock:^(NSFLanguagePackLineModel *lineModel, NSUInteger idx, BOOL *stop) {
+        NSMutableArray *strictLineModels = languageModels[lineModel.UUID];
+        if (!strictLineModels)
+        {
+            languageModels[lineModel.UUID] = [@[lineModel] mutableCopy];
+        }
+        else
+        {
+            [strictLineModels addObject:lineModel];
+        }
+    }];
+    
+    NSMutableDictionary<NSString *, NSArray *> *duplicates = [NSMutableDictionary dictionary];
+    [languageModels enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSMutableArray<NSFLanguagePackLineModel *> *models, BOOL *stop) {
+        if (models.count > 1)
+        {
+            duplicates[key] = [models.rac_sequence map:^id(NSFLanguagePackLineModel *model) {
+                return @{@"Key": model.isKeyMadeup ? @"" : model.key,
+                         @"Row": @(model.row)};
+            }].array;
+        }
+    }];
+    
+    return duplicates.count > 0 ? duplicates : nil;
 }
 
 @end

@@ -19,6 +19,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<NSFLanguagePackLineModel *> *)compareModels;
 - (void)updateCompareModels:(NSArray<NSFLanguagePackLineModel *> *)compareModels;
 
+/**
+ 扫描语言包中Key重复的行
+ 
+ @return 有则返回log路径，没有则返回nil
+ */
+- (nullable NSDictionary *)scanKeyDuplicatedRows;
+
+/**
+ 扫描语言包中翻译文案一致的多行(Key可能一致也可能不一致)
+ */
+- (nullable NSDictionary *)scanTranslationDuplicatedRows;
+
 @end
 
 NS_ASSUME_NONNULL_END

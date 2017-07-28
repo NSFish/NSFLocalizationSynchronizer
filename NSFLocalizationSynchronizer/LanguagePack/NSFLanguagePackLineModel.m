@@ -8,8 +8,24 @@
 
 #import "NSFLanguagePackLineModel.h"
 
+@interface NSFLanguagePackLineModel()
+@property (nonatomic, strong) NSString *UUID;
+
+@end
+
+
 @implementation NSFLanguagePackLineModel
 @synthesize zh_Hans = _zh_Hans, zh_Hant = _zh_Hant, en = _en;
+
+- (NSString *)UUID
+{
+    if (!_UUID)
+    {
+        _UUID = [NSString stringWithFormat:@"%@_%@_%@", self.zh_Hans, self.zh_Hant, self.en];
+    }
+    
+    return _UUID;
+}
 
 - (NSString *)description
 {
@@ -18,12 +34,11 @@
 
 - (NSDictionary *)toDictionary
 {
-    return @{@"row": @(self.row - 1).stringValue,
-             @"key": self.key,
+    return @{@"key": self.isKeyMadeup ? @"" : self.key,
+             @"row": @(self.row - 1).stringValue,
              @"zh-Hans": self.zh_Hans,
              @"zh-Hant": self.zh_Hant,
-             @"en": self.en,
-             @"file": @""};
+             @"en": self.en};
 }
 
 @end

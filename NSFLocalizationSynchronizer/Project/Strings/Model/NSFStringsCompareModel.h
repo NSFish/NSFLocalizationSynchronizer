@@ -6,11 +6,11 @@
 //  Copyright © 2016年 乐星宇. All rights reserved.
 //
 
-#import "NSFIntermediaModelProtocol.h"
+#import "NSFCompareModelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSFStringsCompareModel: NSObject<NSFIntermediaModel>
+@interface NSFStringsCompareModel: NSObject<NSFCompareModel>
 @property (readonly) NSMutableArray<NSString *> *keys;
 
 @end

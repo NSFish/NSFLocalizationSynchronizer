@@ -16,6 +16,36 @@
 
 @implementation NSFLocalizationProxy
 
+#pragma mark - 语言包
++ (RACSignal<NSArray<NSURL *> *> *)scanLanguagePack
+{
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            NSURL *languageFileURL = [NSURL fileURLWithPath:[NSFSetting languageFilePath]];
+            NSFLanguagePackageExpert *expert = [NSFLanguagePackageExpert load:languageFileURL];
+            
+            NSMutableArray<NSURL *> *logs = [NSMutableArray array];
+            NSURL *log = [NSFLogger logIfNeeded:[expert scanKeyDuplicatedRows] withName:@"语言包中重复的Key"];
+            if (log)
+            {
+                [logs addObject:log];
+            }
+            
+            log = [NSFLogger logIfNeeded:[expert scanTranslationDuplicatedRows] withName:@"语言包中重复的翻译"];;
+            if (log)
+            {
+                [logs addObject:log];
+            }
+            
+            [subscriber sendNext:logs];
+            [subscriber sendCompleted];
+        });
+        
+        return nil;
+    }];
+}
+
+#pragma mark - Project
 + (RACSignal *)scanUnlocalizedStringInSourceCode
 {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -37,6 +67,7 @@
     }];
 }
 
+#pragma mark - 同步
 + (RACSignal *)updateStringsFiles:(BOOL)strict
 {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -103,7 +134,7 @@
     }];
 }
 
-#pragma mark - Private(Compare)
+#pragma mark - Private(同步)
 + (NSArray<NSDictionary *> *)strictlyCompareStringsModels:(NSArray<NSFStringsCompareModel *> *)stringsModels
                                    withLanguagePackModels:(NSArray<NSFLanguagePackLineModel *> *)languagePackModels
 {

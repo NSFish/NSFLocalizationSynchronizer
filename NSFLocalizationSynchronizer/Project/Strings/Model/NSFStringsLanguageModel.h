@@ -6,7 +6,7 @@
 //  Copyright © 2016年 乐星宇. All rights reserved.
 //
 
-#import "NSFIntermediaModelProtocol.h"
+#import "NSFCompareModelProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
  将同名的、不同语言的.strings文件的lineModels整合起来
  同名但实际上不属于同一个多语言bundle的会被区分开，比如Main App和Extension的info.plist对应的.strings文件是分开整合的
  */
-@interface NSFStringsLanguageModel: NSObject<NSFIntermediaModel>
+@interface NSFStringsLanguageModel: NSObject<NSFCompareModel>
 @property (nonatomic, copy) NSString *key;
 
 /**

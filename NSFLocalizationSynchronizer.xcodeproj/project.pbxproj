@@ -105,7 +105,7 @@
 		A98926641F162244006EF4CE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A98926661F162284006EF4CE /* NSFStringsCompareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFStringsCompareModel.h; sourceTree = "<group>"; };
 		A98926671F162284006EF4CE /* NSFStringsCompareModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFStringsCompareModel.m; sourceTree = "<group>"; };
-		A98926691F1622A3006EF4CE /* NSFIntermediaModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFIntermediaModelProtocol.h; sourceTree = "<group>"; };
+		A98926691F1622A3006EF4CE /* NSFCompareModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFCompareModelProtocol.h; sourceTree = "<group>"; };
 		A99A13BC1D07EA8E0088ACFA /* NSFLocalizationSynchronizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSFLocalizationSynchronizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A99A13C31D07EA8E0088ACFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A99A13C51D07EA8E0088ACFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 		A956B9EB1F14AE2700AA81C7 /* Proxy */ = {
 			isa = PBXGroup;
 			children = (
-				A98926691F1622A3006EF4CE /* NSFIntermediaModelProtocol.h */,
+				A98926691F1622A3006EF4CE /* NSFCompareModelProtocol.h */,
 				A956B9ED1F14AE3900AA81C7 /* NSFLocalizationProxy.h */,
 				A956B9EC1F14AE3900AA81C7 /* NSFLocalizationProxy.m */,
 			);
