@@ -14,7 +14,7 @@
 		A924316F1F26E26E00985F0D /* NSFProjectParseConfigration.m in Sources */ = {isa = PBXBuildFile; fileRef = A924316B1F26E26E00985F0D /* NSFProjectParseConfigration.m */; };
 		A92431751F27493300985F0D /* NSDictionary+NSFExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A92431741F27493300985F0D /* NSDictionary+NSFExt.m */; };
 		A929A7001D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A929A6FF1D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m */; };
-		A92C98581D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98491D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m */; };
+		A92C98581D0FE85900CA4E29 /* BRAWorksheet+NSFExt.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98491D0FE85900CA4E29 /* BRAWorksheet+NSFExt.m */; };
 		A92C98631D0FE87E00CA4E29 /* NSFSettingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98611D0FE87E00CA4E29 /* NSFSettingWindowController.m */; };
 		A92C98641D0FE87E00CA4E29 /* NSFSettingWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A92C98621D0FE87E00CA4E29 /* NSFSettingWindowController.xib */; };
 		A92C98681D0FE8C500CA4E29 /* NSFLanguagePackageExpert.m in Sources */ = {isa = PBXBuildFile; fileRef = A92C98671D0FE8C500CA4E29 /* NSFLanguagePackageExpert.m */; };
@@ -73,8 +73,8 @@
 		A92431741F27493300985F0D /* NSDictionary+NSFExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+NSFExt.m"; sourceTree = "<group>"; };
 		A929A6FE1D110A7A00F4E5E1 /* NSFLanguagePackLineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFLanguagePackLineModel.h; sourceTree = "<group>"; };
 		A929A6FF1D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFLanguagePackLineModel.m; sourceTree = "<group>"; };
-		A92C98481D0FE85900CA4E29 /* BRAWorksheet+YFYExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BRAWorksheet+YFYExt.h"; sourceTree = "<group>"; };
-		A92C98491D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BRAWorksheet+YFYExt.m"; sourceTree = "<group>"; };
+		A92C98481D0FE85900CA4E29 /* BRAWorksheet+NSFExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BRAWorksheet+NSFExt.h"; sourceTree = "<group>"; };
+		A92C98491D0FE85900CA4E29 /* BRAWorksheet+NSFExt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BRAWorksheet+NSFExt.m"; sourceTree = "<group>"; };
 		A92C98601D0FE87E00CA4E29 /* NSFSettingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFSettingWindowController.h; sourceTree = "<group>"; };
 		A92C98611D0FE87E00CA4E29 /* NSFSettingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFSettingWindowController.m; sourceTree = "<group>"; };
 		A92C98621D0FE87E00CA4E29 /* NSFSettingWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NSFSettingWindowController.xib; sourceTree = "<group>"; };
@@ -145,8 +145,8 @@
 				A956B9E91F14ADFB00AA81C7 /* NSObject+NSFExt.m */,
 				A92431651F25D68F00985F0D /* NSURL+NSFExt.h */,
 				A92431661F25D68F00985F0D /* NSURL+NSFExt.m */,
-				A92C98481D0FE85900CA4E29 /* BRAWorksheet+YFYExt.h */,
-				A92C98491D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m */,
+				A92C98481D0FE85900CA4E29 /* BRAWorksheet+NSFExt.h */,
+				A92C98491D0FE85900CA4E29 /* BRAWorksheet+NSFExt.m */,
 				A9152D141F20A3DD00DF77BB /* NSFileManager+NSFExt.h */,
 				A9152D151F20A3DD00DF77BB /* NSFileManager+NSFExt.m */,
 				A9DB561B1F2AECF200B82FF1 /* NSFParameters.h */,
@@ -466,7 +466,7 @@
 				A956B9EA1F14ADFB00AA81C7 /* NSObject+NSFExt.m in Sources */,
 				A9DB561A1F2AE32B00B82FF1 /* NSFLogger.m in Sources */,
 				A929A7001D110A7A00F4E5E1 /* NSFLanguagePackLineModel.m in Sources */,
-				A92C98581D0FE85900CA4E29 /* BRAWorksheet+YFYExt.m in Sources */,
+				A92C98581D0FE85900CA4E29 /* BRAWorksheet+NSFExt.m in Sources */,
 				A9440C581F1607B4002E6C46 /* NSFLanguageModelAndCompareModelTransformer.m in Sources */,
 				A92431671F25D68F00985F0D /* NSURL+NSFExt.m in Sources */,
 				A92C98631D0FE87E00CA4E29 /* NSFSettingWindowController.m in Sources */,

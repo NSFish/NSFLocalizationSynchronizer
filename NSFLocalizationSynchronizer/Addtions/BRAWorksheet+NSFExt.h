@@ -1,15 +1,19 @@
 //
-//  BRAWorksheet+YFYExt.h
+//  BRAWorksheet+NSFExt.h
 //  BidirectionLocalization
 //
 //  Created by 乐星宇 on 16/6/7.
 //  Copyright © 2016年 乐星宇. All rights reserved.
 //
+
 #import <XlsxReaderWriter/XlsxReaderWriter.h>
 
-@interface BRAWorksheet (YFYExt)
+NS_ASSUME_NONNULL_BEGIN
 
-- (BRACell *)cellAtRow:(NSUInteger)row col:(NSUInteger)col;
+@interface BRAWorksheet(NSFExt)
 
+- (BRACell *)nsf_cellAtRow:(NSUInteger)row col:(NSUInteger)col;
 
 @end
+
+NS_ASSUME_NONNULL_END

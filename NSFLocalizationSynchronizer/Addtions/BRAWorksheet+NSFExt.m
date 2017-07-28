@@ -6,11 +6,11 @@
 //  Copyright © 2016年 乐星宇. All rights reserved.
 //
 
-#import "BRAWorksheet+YFYExt.h"
+#import "BRAWorksheet+NSFExt.h"
 
-@implementation BRAWorksheet (YFYExt)
+@implementation BRAWorksheet(NSFExt)
 
-- (BRACell *)cellAtRow:(NSUInteger)row col:(NSUInteger)col
+- (BRACell *)nsf_cellAtRow:(NSUInteger)row col:(NSUInteger)col
 {
     NSString *reference = [BRACell cellReferenceForColumnIndex:col andRowIndex:row];
     return [self cellForCellReference:reference];

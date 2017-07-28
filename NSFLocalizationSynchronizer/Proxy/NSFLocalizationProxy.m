@@ -37,6 +37,12 @@
                 [logs addObject:log];
             }
             
+            log = [NSFLogger logIfNeeded:[expert scanZh_HansDuplicatedOnlyRows] withName:@"语言包中简体中文相同但其他翻译不同的行"];
+            if (log)
+            {
+                [logs addObject:log];
+            }
+            
             [subscriber sendNext:logs];
             [subscriber sendCompleted];
         });

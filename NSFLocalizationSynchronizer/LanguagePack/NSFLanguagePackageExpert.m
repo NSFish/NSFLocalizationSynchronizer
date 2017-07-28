@@ -8,7 +8,7 @@
 
 #import "NSFLanguagePackageExpert.h"
 #import <XlsxReaderWriter/XlsxReaderWriter.h>
-#import "BRAWorksheet+YFYExt.h"
+#import "BRAWorksheet+NSFExt.h"
 #import "NSFSetting.h"
 
 #define _(X) (uint32_t)(X)
@@ -58,7 +58,7 @@
     NSUInteger zh_HansIndex = NSNotFound, zh_HantIndex = NSNotFound, enIndex = NSNotFound, keyIndex = NSNotFound, platformIndex = NSNotFound;
     for (NSInteger col = 1; col < cols; ++col)
     {
-        NSString *content = [sheet cellAtRow:currentRow col:col].stringValue;
+        NSString *content = [sheet nsf_cellAtRow:currentRow col:col].stringValue;
         if ([content isEqualToString:@"中文"])
         {
             zh_HansIndex = col;
@@ -102,31 +102,32 @@
             
             if (keyIndex != NSNotFound)
             {
-                model.key = [sheet cellAtRow:row col:keyIndex].stringValue;
+                model.key = [sheet nsf_cellAtRow:row col:keyIndex].stringValue;
                 if (model.key.length == 0)//没有key的新文案，生成一个临时key占位
                 {
                     model.key = [[NSUUID UUID] UUIDString];
+                    model.isKeyMadeup = YES;
                 }
             }
             
             if (zh_HansIndex != NSNotFound)
             {
-                model.zh_Hans = [sheet cellAtRow:row col:zh_HansIndex].stringValue;
+                model.zh_Hans = [sheet nsf_cellAtRow:row col:zh_HansIndex].stringValue;
             }
             
             if (zh_HantIndex != NSNotFound)
             {
-                model.zh_Hant = [sheet cellAtRow:row col:zh_HantIndex].stringValue;
+                model.zh_Hant = [sheet nsf_cellAtRow:row col:zh_HantIndex].stringValue;
             }
             
             if (enIndex != NSNotFound)
             {
-                model.en = [sheet cellAtRow:row col:enIndex].stringValue;
+                model.en = [sheet nsf_cellAtRow:row col:enIndex].stringValue;
             }
             
             if (platformIndex != NSNotFound)
             {
-                model.platform = [sheet cellAtRow:row col:platformIndex].stringValue;
+                model.platform = [sheet nsf_cellAtRow:row col:platformIndex].stringValue;
             }
             
             @synchronized (models) {
@@ -145,7 +146,7 @@
     NSString *syncXlsxFilePath = [NSFSetting languageFilePath];
     BRAOfficeDocumentPackage *syncXlsxFile = [BRAOfficeDocumentPackage open:syncXlsxFilePath];
     BRAWorksheet *syncSheet = [syncXlsxFile.workbook.worksheets firstObject];
-    BRACellFill *keyFill = [[syncSheet cellAtRow:10 col:1] cellFill];
+    BRACellFill *keyFill = [[syncSheet nsf_cellAtRow:10 col:1] cellFill];
     
     //构造新的语言包文件
     {
@@ -158,7 +159,7 @@
         NSUInteger zh_HansIndex = NSNotFound, zh_HantIndex = NSNotFound, enIndex = NSNotFound, keyIndex = NSNotFound, platformIndex = NSNotFound;
         for (NSInteger col = 1; col < cols; ++col)
         {
-            NSString *content = [sheet cellAtRow:currentRow col:col].stringValue;
+            NSString *content = [sheet nsf_cellAtRow:currentRow col:col].stringValue;
             if ([content isEqualToString:@"中文"])
             {
                 zh_HansIndex = col;
@@ -189,13 +190,12 @@
         }
         
         [compareModels enumerateObjectsUsingBlock:^(NSFLanguagePackLineModel *model, NSUInteger idx, BOOL *stop) {
-            [sheet cellAtRow:model.row col:keyIndex].stringValue = model.key;
-            [sheet cellAtRow:model.row col:zh_HansIndex].stringValue = model.zh_Hans;
-            [sheet cellAtRow:model.row col:zh_HantIndex].stringValue = model.zh_Hant;
-            [sheet cellAtRow:model.row col:enIndex].stringValue = model.en;
-            [sheet cellAtRow:model.row col:platformIndex].stringValue = model.platform;
-            
-            [sheet cellAtRow:model.row col:keyIndex].cellFill = keyFill;
+            [sheet nsf_cellAtRow:model.row col:keyIndex].stringValue = model.key;
+            [sheet nsf_cellAtRow:model.row col:zh_HansIndex].stringValue = model.zh_Hans;
+            [sheet nsf_cellAtRow:model.row col:zh_HantIndex].stringValue = model.zh_Hant;
+            [sheet nsf_cellAtRow:model.row col:enIndex].stringValue = model.en;
+            [sheet nsf_cellAtRow:model.row col:platformIndex].stringValue = model.platform;
+            [sheet nsf_cellAtRow:model.row col:keyIndex].cellFill = keyFill;
         }];
     }
     
@@ -274,6 +274,47 @@
             duplicates[key] = [models.rac_sequence map:^id(NSFLanguagePackLineModel *model) {
                 return @{@"Key": model.isKeyMadeup ? @"" : model.key,
                          @"Row": @(model.row)};
+            }].array;
+        }
+    }];
+    
+    return duplicates.count > 0 ? duplicates : nil;
+}
+
+- (NSDictionary *)scanZh_HansDuplicatedOnlyRows
+{
+    if (!self.lineModels)
+    {
+        self.lineModels = [self compareModels];
+    }
+    
+    NSMutableDictionary<NSString *, NSMutableArray<NSFLanguagePackLineModel *> *> *languageModels = [NSMutableDictionary dictionary];
+    [self.lineModels enumerateObjectsUsingBlock:^(NSFLanguagePackLineModel *lineModel, NSUInteger idx, BOOL *stop) {
+        NSMutableArray *strictLineModels = languageModels[lineModel.zh_Hans];
+        if (!strictLineModels)
+        {
+            languageModels[lineModel.zh_Hans] = [@[lineModel] mutableCopy];
+        }
+        else
+        {
+            //只记录翻译不同的行
+            BOOL sameTranslationsExist = [strictLineModels.rac_sequence any:^BOOL(NSFLanguagePackLineModel *model) {
+                return [model.UUID isEqualToString:lineModel.UUID];
+            }];
+            
+            if (!sameTranslationsExist)
+            {
+                [strictLineModels addObject:lineModel];
+            }
+        }
+    }];
+    
+    NSMutableDictionary<NSString *, NSArray *> *duplicates = [NSMutableDictionary dictionary];
+    [languageModels enumerateKeysAndObjectsUsingBlock:^(NSString *key, NSMutableArray<NSFLanguagePackLineModel *> *models, BOOL *stop) {
+        if (models.count > 1)
+        {
+            duplicates[key] = [models.rac_sequence map:^id(NSFLanguagePackLineModel *model) {
+                return [model toDictionary];
             }].array;
         }
     }];
