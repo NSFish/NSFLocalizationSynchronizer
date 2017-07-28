@@ -74,7 +74,9 @@
         else
         {
             userNotification.subtitle = @"发现未国际化的字符串，点击查看";
-            userNotification.userInfo = @{@"path": [log path]};
+            //NSUserNotification会对userInfo做encoding(NSCoding)，而NSURL不支持NSCoding
+            //因此传入后会在encoding时crash，故统一使用path
+            userNotification.userInfo = @{P.path: [log path]};
         }
         
         userNotification.soundName = NSUserNotificationDefaultSoundName;
@@ -127,10 +129,19 @@
 #pragma mark - NSUserNotificationCenterDelegate
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification
 {
-    NSString *path = notification.userInfo[@"path"];
-    [[NSWorkspace sharedWorkspace] openFile:path
-                            withApplication:nil
-                              andDeactivate:YES];
+    NSString *path = notification.userInfo[P.path];
+    NSArray<NSString *> *paths = notification.userInfo[P.paths];
+    
+    if (path)
+    {
+        [[NSWorkspace sharedWorkspace] openFile:path withApplication:nil andDeactivate:YES];
+    }
+    else if (paths.count > 0)
+    {
+        [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:[paths.rac_sequence map:^id(NSString *path) {
+            return [NSURL fileURLWithPath:path];
+        }].array];
+    }
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
@@ -146,7 +157,7 @@
     if (log)
     {
         userNotification.informativeText = @"发现工程中存在语言包里没有的文案，点击查看";
-        userNotification.userInfo = @{@"path": [log path]};
+        userNotification.userInfo = @{P.path: [log path]};
     }
     
     userNotification.soundName = NSUserNotificationDefaultSoundName;

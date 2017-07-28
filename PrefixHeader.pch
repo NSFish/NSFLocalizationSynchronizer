@@ -14,6 +14,7 @@
 #import "NSFileManager+NSFExt.h"
 #import "NSURL+NSFExt.h"
 #import "NSDictionary+NSFExt.h"
+#import "NSFParameters.h"
 
 #define ZH_HANS @"zh-Hans"
 #define ZH_HANT @"zh-Hant"
