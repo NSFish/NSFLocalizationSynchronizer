@@ -529,6 +529,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C386519EA89660720EDE9C3D /* Pods-NSFLocalizationSynchronizerCLI.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEVELOPMENT_TEAM = 7Z99KN5R29;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(TARGET_NAME)/PrefixHeader.pch";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -540,6 +541,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B9D153DE1F221277E8053E7C /* Pods-NSFLocalizationSynchronizerCLI.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				DEVELOPMENT_TEAM = 7Z99KN5R29;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(TARGET_NAME)/PrefixHeader.pch";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
