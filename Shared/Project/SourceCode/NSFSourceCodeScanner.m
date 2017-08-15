@@ -70,7 +70,8 @@
         return [[URL absoluteString] containsString:@"Carthage"]
         || [[URL path] containsString:@"Pods"]
         || [[URL path] containsString:@"CoolOffice_UnitTests"]
-        || [[URL path] containsString:@"IDVerify"];
+        || [[URL path] containsString:@"IDVerify"]
+        || [[URL path] containsString:@"KF5SDK"];
     }];
 }
 
@@ -95,6 +96,7 @@
     }].array;
     
     NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:@"(^|[^'])(@?\"([^\"\\\\]|(\\\\.)|(\\\\\n)|(\"\\s*@?\"))*\")" options:NSRegularExpressionAnchorsMatchLines error:nil];
+    
     [lines enumerateObjectsUsingBlock:^(NSString *line, NSUInteger idx, BOOL *stop) {
         if ([line containsString:@"NSLog"])
         {
@@ -149,7 +151,6 @@
                                                                                                        lineNumber:idx
                                                                                                           fileURL:fileURL];
                                      [fragments addObject:fragment];
-                                     NSLog(@"%@\n\n", string);
                                  }
                              }];
     }];
