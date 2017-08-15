@@ -6,6 +6,6 @@ macOS App下载点[这里](https://github.com/NSFish/NSFLocalizationSynchronizer
 Command Line Tool推荐通过Homebrew安装
 ```shell
 brew tap NSFish/tap
-brew install nsflocalizationsynchronizer
+brew install nsflocalizer
 ```
 下载点[这里](https://github.com/NSFish/NSFLocalizationSynchronizer/releases/download/1.0/NSFLocalizerCLI)
