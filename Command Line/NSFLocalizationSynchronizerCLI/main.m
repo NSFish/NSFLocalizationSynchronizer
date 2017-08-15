@@ -15,7 +15,7 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         if (argc == 1)
         {
-            NSLog(@"Usage: NSFLocalizationSynchronizerCLI -l /Path/to/语言包 -p /Path/to/工程根目录");
+            printf("Usage: nsflocalizer -l /Path/to/语言包 -p /Path/to/工程根目录");
             return 0;
         }
         
@@ -41,12 +41,12 @@ int main(int argc, const char * argv[]) {
         if (!languagePackPath)
         {
             inputInvalid = YES;
-            NSLog(@"请输入语言包路径");
+            printf("请输入语言包路径");
         }
         else if (!projectRoot)
         {
             inputInvalid = YES;
-            NSLog(@"请输入工程根目录");
+            printf("请输入工程根目录");
         }
         
         if (inputInvalid)
@@ -61,7 +61,7 @@ int main(int argc, const char * argv[]) {
         [[NSFLocalizationProxy updateStringsFiles:NO] subscribeNext:^(NSURL *log) {
             if (log)
             {
-                NSLog(@"发现工程中存在语言包里没有的文案，log位于%@", [log path]);
+                printf("发现工程中存在语言包里没有的文案，log位于%s", [[log path] cStringUsingEncoding:NSUTF8StringEncoding]);
             }
             
             dispatch_semaphore_signal(sema);
