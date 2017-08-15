@@ -144,11 +144,11 @@
                                                                   content:line];
             [models addObject:model];
             
-            if ([line isStartOfCStyleComment])
+            if ([line isStartOfCStyleCommentBlock])
             {
                 inTheMiddleOfCStyleComment = YES;
             }
-            else if ([line isEndOfCStyleComment])
+            else if ([line isEndOfCStyleCommentBlock])
             {
                 inTheMiddleOfCStyleComment = NO;
             }

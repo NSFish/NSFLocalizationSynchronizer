@@ -44,8 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)possibleKey;
 
-- (BOOL)isStartOfCStyleComment;
-- (BOOL)isEndOfCStyleComment;
+- (BOOL)isStartOfCStyleCommentBlock;
+- (BOOL)isEndOfCStyleCommentBlock;
 
 - (RACTuple *)keyAndValue;
 

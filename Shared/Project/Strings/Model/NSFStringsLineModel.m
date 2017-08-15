@@ -51,7 +51,10 @@
 
 - (BOOL)isComment
 {
-    return [self hasPrefix:@"/*"] || [self hasPrefix:@"//"] || [self hasSuffix:@"*/"];
+    return [self hasPrefix:@"//"]
+    || [self isCStyleComment]
+    || [self isStartOfCStyleCommentBlock]
+    || [self isEndOfCStyleCommentBlock];
 }
 
 - (BOOL)isUsefulComment
@@ -74,14 +77,45 @@
     return string;
 }
 
-- (BOOL)isStartOfCStyleComment
+- (BOOL)isCStyleComment
 {
-    return [self hasPrefix:@"/*"] && ![self hasSuffix:@"*/"];
+    NSString *trimedSelf = [self trim];
+    return [trimedSelf hasSuffix:@"/*"]
+    && [trimedSelf hasSuffix:@"*/"];
 }
 
-- (BOOL)isEndOfCStyleComment
+- (BOOL)isStartOfCStyleCommentBlock
 {
-    return ![self hasPrefix:@"/*"] && [self hasSuffix:@"*/"];
+    NSString *trimedSelf = [self trim];
+    if (![trimedSelf hasPrefix:@"/*"])
+    {
+        return NO;
+    }
+    
+    NSRange range = [trimedSelf rangeOfString:@"*/" options:NSBackwardsSearch];
+    if (range.location + range.length <= trimedSelf.length)
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)isEndOfCStyleCommentBlock
+{
+    NSString *trimedSelf = [self trim];
+    if (![trimedSelf hasSuffix:@"*/"])
+    {
+        return NO;
+    }
+    
+    NSRange range = [trimedSelf rangeOfString:@"/*" options:NSLiteralSearch];
+    if (range.location > 0)
+    {
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (RACTuple *)keyAndValue

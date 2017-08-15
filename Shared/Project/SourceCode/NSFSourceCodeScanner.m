@@ -8,6 +8,7 @@
 
 #import "NSFSourceCodeScanner.h"
 #import "NSFSetting.h"
+#import "NSFStringsLineModel.h"
 
 @interface NSFSourceCodeFragment()
 @property (nonatomic, copy) NSString *content;
@@ -97,7 +98,28 @@
     
     NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:@"(^|[^'])(@?\"([^\"\\\\]|(\\\\.)|(\\\\\n)|(\"\\s*@?\"))*\")" options:NSRegularExpressionAnchorsMatchLines error:nil];
     
+    __block BOOL insideCStyleCommentArea = NO;
     [lines enumerateObjectsUsingBlock:^(NSString *line, NSUInteger idx, BOOL *stop) {
+        if (insideCStyleCommentArea)
+        {
+            return;
+        }
+        
+        if ([line isStartOfCStyleCommentBlock])
+        {
+            insideCStyleCommentArea = YES;
+            return;
+        }
+        else if ([line isEndOfCStyleCommentBlock])
+        {
+            insideCStyleCommentArea = NO;
+            return;
+        }
+        else if ([line isComment])
+        {
+            return;
+        }
+        
         if ([line containsString:@"NSLog"])
         {
             return;
@@ -124,7 +146,6 @@
                                      return;
                                  }
                                  
-                                 
                                  NSString *stringContent = string;
                                  if ([stringContent hasPrefix:@"@"])
                                  {
@@ -138,17 +159,20 @@
                                  NSString *NLS = [NSString stringWithFormat:@"NLS(%@", string];
                                  NSString *localizedString = [NSString stringWithFormat:@"NSLocalizedString(%@", string];
                                  NSString *MTATrackEvent = [NSString stringWithFormat:@"MTATrackEvent(%@", string];
+                                 NSString *MTACustomTrackEvent = [NSString stringWithFormat:@"trackCustomKeyValueEvent:%@", string];
+                                 NSString *languageModel = [NSString stringWithFormat:@"YFYLanguage(%@", string];
                                  
-                                 if ([stringContent stringByTrimmingCharactersInSet:[NSCharacterSet alphanumericCharacterSet]].length != 0
-                                     && ![stringContent hasSuffix:@".h"]
+                                 if (![stringContent hasSuffix:@".h"]
                                      && ![line containsString:image]
                                      && ![line containsString:NLS]
                                      && ![line containsString:localizedString]
                                      && ![line containsString:MTATrackEvent]
+                                     && ![line containsString:MTACustomTrackEvent]
+                                     && ![line containsString:languageModel]
                                      && ![self insideWhiteList:stringContent])
                                  {
                                      NSFSourceCodeFragment *fragment = [NSFSourceCodeFragment instanceWithContent:stringContent
-                                                                                                       lineNumber:idx
+                                                                                                       lineNumber:idx + 1
                                                                                                           fileURL:fileURL];
                                      [fragments addObject:fragment];
                                  }
@@ -175,7 +199,13 @@
                            @"YFYPDFConfiguration 配置出错啦 ！！！",
                            @"出错了，这里不是主线程",
                            @"不存在invited = false但ownedByExternalUser = true的case",
-                           @"要先调用setContext传入workingContext!"
+                           @"要先调用setContext传入workingContext!",
+                           @"邀请同事",
+                           @"选择协作者级别",
+                           @"添加常用",
+                           @"邀请协作成员",
+                           @"快速跳转",
+                           @"筛选消息类型"
                            ];
     
     return [whiteList containsObject:string];
