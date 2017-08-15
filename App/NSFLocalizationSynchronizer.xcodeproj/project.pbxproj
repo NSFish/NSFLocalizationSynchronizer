@@ -377,6 +377,7 @@
 					A99A13BB1D07EA8E0088ACFA = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 7Z99KN5R29;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -616,8 +617,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.egeio.lxy.NSFLocalizationSynchronizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "a5c7b99e-de7a-41cf-a028-152888f4d181";
+				PROVISIONING_PROFILE_SPECIFIER = "Mac Development";
 			};
 			name = Debug;
 		};
@@ -639,6 +640,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.egeio.lxy.NSFLocalizationSynchronizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
