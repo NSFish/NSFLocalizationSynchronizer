@@ -50,7 +50,7 @@
 
 /* Begin PBXFileReference section */
 		3C52704023BD360CE2CBEBFE /* libPods-NSFLocalizationSynchronizerCLI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NSFLocalizationSynchronizerCLI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9B0FCF41F418C7100BC57E1 /* NSFLocalizationSynchronizerCLI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NSFLocalizationSynchronizerCLI; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9B0FCF41F418C7100BC57E1 /* NSFLocalizerCLI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NSFLocalizerCLI; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B0FCF71F418C7100BC57E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A9B0FE531F41920000BC57E1 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A9B0FF951F42992700BC57E1 /* BRAWorksheet+NSFExt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BRAWorksheet+NSFExt.h"; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 		A9B0FCF51F418C7100BC57E1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A9B0FCF41F418C7100BC57E1 /* NSFLocalizationSynchronizerCLI */,
+				A9B0FCF41F418C7100BC57E1 /* NSFLocalizerCLI */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -327,7 +327,7 @@
 			);
 			name = NSFLocalizationSynchronizerCLI;
 			productName = NSFLocalizationSynchronizerCLI;
-			productReference = A9B0FCF41F418C7100BC57E1 /* NSFLocalizationSynchronizerCLI */;
+			productReference = A9B0FCF41F418C7100BC57E1 /* NSFLocalizerCLI */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -533,7 +533,7 @@
 				DEVELOPMENT_TEAM = 7Z99KN5R29;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(TARGET_NAME)/PrefixHeader.pch";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NSFLocalizerCLI;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
@@ -546,7 +546,7 @@
 				DEVELOPMENT_TEAM = 7Z99KN5R29;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(TARGET_NAME)/PrefixHeader.pch";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = NSFLocalizerCLI;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
