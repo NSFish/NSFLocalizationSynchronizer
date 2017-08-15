@@ -13,6 +13,12 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        if (argc == 1)
+        {
+            NSLog(@"Usage: NSFLocalizationSynchronizerCLI -l /Path/to/语言包 -p /Path/to/工程根目录");
+            return 0;
+        }
+        
         NSString *languagePackPath = nil;
         NSString *projectRoot = nil;
                                  

@@ -39,6 +39,7 @@
 		A9B0FF901F4298F500BC57E1 /* NSFLocalizationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B0FF741F4298F500BC57E1 /* NSFLocalizationProxy.m */; };
 		A9B0FF911F4298F500BC57E1 /* NSFLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B0FF771F4298F500BC57E1 /* NSFLogger.m */; };
 		A9B0FF921F4298F500BC57E1 /* NSFSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = A9B0FF791F4298F500BC57E1 /* NSFSetting.m */; };
+		A9B0FFEF1F42A54900BC57E1 /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A9B0FFEE1F42A54900BC57E1 /* icon.iconset */; };
 		A9D3CD991D0E989D00300F30 /* template.xlsx in Resources */ = {isa = PBXBuildFile; fileRef = A9D3CD981D0E989D00300F30 /* template.xlsx */; };
 /* End PBXBuildFile section */
 
@@ -122,6 +123,7 @@
 		A9B0FF771F4298F500BC57E1 /* NSFLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFLogger.m; sourceTree = "<group>"; };
 		A9B0FF781F4298F500BC57E1 /* NSFSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFSetting.h; sourceTree = "<group>"; };
 		A9B0FF791F4298F500BC57E1 /* NSFSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFSetting.m; sourceTree = "<group>"; };
+		A9B0FFEE1F42A54900BC57E1 /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icon.iconset; sourceTree = "<group>"; };
 		A9D3CD981D0E989D00300F30 /* template.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; path = template.xlsx; sourceTree = "<group>"; };
 		C9A2309037A4A96F26F5E0CC /* libPods-NSFLocalizationSynchronizer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NSFLocalizationSynchronizer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -181,6 +183,7 @@
 		A99A13C21D07EA8E0088ACFA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A9B0FFEE1F42A54900BC57E1 /* icon.iconset */,
 				A9B0FF3A1F42975700BC57E1 /* PrefixHeader.pch */,
 				A99A13C51D07EA8E0088ACFA /* Assets.xcassets */,
 				A99A13C71D07EA8E0088ACFA /* MainMenu.xib */,
@@ -406,6 +409,7 @@
 			files = (
 				A92C98641D0FE87E00CA4E29 /* NSFSettingWindowController.xib in Resources */,
 				A99A13C61D07EA8E0088ACFA /* Assets.xcassets in Resources */,
+				A9B0FFEF1F42A54900BC57E1 /* icon.iconset in Resources */,
 				A99A13C91D07EA8E0088ACFA /* MainMenu.xib in Resources */,
 				A9D3CD991D0E989D00300F30 /* template.xlsx in Resources */,
 			);
