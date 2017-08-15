@@ -1,0 +1,32 @@
+{
+  "name": "XlsxReaderWriter",
+  "version": "2.3.3",
+  "summary": "XlsxReaderWriter is an Objective-C library for iPhone / iPad and Mac. It parses and writes Excel OpenXml files (XLSX).",
+  "homepage": "https://github.com/renebigot/XlsxReaderWriter",
+  "license": "MIT",
+  "authors": "René Bigot",
+  "social_media_url": "https://www.linkedin.com/in/renebigot",
+  "platforms": {
+    "ios": "7.0",
+    "osx": "10.10"
+  },
+  "source": {
+    "git": "https://github.com/renebigot/XlsxReaderWriter.git",
+    "tag": "2.3.3"
+  },
+  "source_files": "XlsxReaderWriter/*.{h,m}",
+  "osx": {
+    "source_files": "XlsxReaderWriterMac/*.h"
+  },
+  "exclude_files": "ThirdParties",
+  "frameworks": "Foundation",
+  "requires_arc": true,
+  "dependencies": {
+    "SSZipArchive": [
+      "~> 1.1"
+    ],
+    "XMLDictionary": [
+      "~> 1.4"
+    ]
+  }
+}

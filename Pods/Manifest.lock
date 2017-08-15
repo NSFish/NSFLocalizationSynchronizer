@@ -1,12 +1,31 @@
 PODS:
   - ReactiveObjC (3.0.0)
+  - SSZipArchive (1.8.1)
+  - XlsxReaderWriter (2.3.3):
+    - SSZipArchive (~> 1.1)
+    - XMLDictionary (~> 1.4)
+  - XMLDictionary (1.4.1)
 
 DEPENDENCIES:
   - ReactiveObjC
+  - XlsxReaderWriter (from `https://github.com/NSFish/XlsxReaderWriter.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  XlsxReaderWriter:
+    :branch: master
+    :git: https://github.com/NSFish/XlsxReaderWriter.git
+
+CHECKOUT OPTIONS:
+  XlsxReaderWriter:
+    :commit: cb316931a57a26de905b596eb6b4cd5a8ec5af04
+    :git: https://github.com/NSFish/XlsxReaderWriter.git
 
 SPEC CHECKSUMS:
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
+  SSZipArchive: 04547dfa448be5ed7ecbaf7eaf8a6e9eb9b42997
+  XlsxReaderWriter: 948a84bbbf0f72aa50478a3dec2e3801bf020874
+  XMLDictionary: fa07b6ff422b3a91d47a5de9bc82e3fc04fbd167
 
-PODFILE CHECKSUM: b07421aa3432631b9211ee6ee5cc545e6400b671
+PODFILE CHECKSUM: d056275dddddde43c80ba3239890615dc61524c2
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
