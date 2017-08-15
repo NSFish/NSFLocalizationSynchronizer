@@ -22,7 +22,8 @@
         //比如多个target的infoPlist.strings文件中可能都有CFBundleDisplayName
         //因此这里将文件路径【去掉/language.proj/.strings部分要相同】也作为uniquekey的一部分
         NSString *prefixPath = [[[lineModel.file absoluteString] stringByDeletingLastPathComponent] stringByDeletingLastPathComponent];
-        NSString *uniqueKey = [NSString stringWithFormat:@"%@_%@", lineModel.key, prefixPath];
+        NSString *fileName = [[lineModel.file lastPathComponent] stringByReplacingOccurrencesOfString:@"school_" withString:@""];
+        NSString *uniqueKey = [NSString stringWithFormat:@"%@_%@_%@", lineModel.key, prefixPath, fileName];
         NSFStringsLanguageModel *model = dict[uniqueKey];
         if (!model)
         {

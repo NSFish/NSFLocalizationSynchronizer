@@ -23,7 +23,8 @@
             compareModel.translations = languageModel.translations;
             
             [languageModel.fileURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *language, NSURL *fileURL, BOOL *stop) {
-                compareModel.fileURLs[[self nsf_fileURLKeyWith:languageModel.key language:language]] = fileURL;
+                NSString *key = [self nsf_fileURLKeyWith:languageModel.key language:language];
+                compareModel.fileURLs[key] = fileURL;
             }];
         }];
         
@@ -44,8 +45,11 @@
             languageModel.translations = compareModel.translations;
             
             [compareModel.fileURLs enumerateKeysAndObjectsUsingBlock:^(NSString *fileURLKey, NSURL *fileURL, BOOL *stop) {
-                NSFLanguage language = [self nsf_languageFromFileURLKey:fileURLKey];
-                languageModel.fileURLs[@(language)] = fileURL;
+                if ([fileURLKey hasPrefix:key])
+                {
+                    NSFLanguage language = [self nsf_languageFromFileURLKey:fileURLKey];
+                    languageModel.fileURLs[@(language)] = fileURL;
+                }
             }];
             
             NSAssert(languageModel.fileURLs.count % 3 == 0, @"从strings文件中解析出的每个Key，对应的语言必须是3的整数倍(含高校版)");
