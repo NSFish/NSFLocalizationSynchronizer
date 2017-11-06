@@ -163,7 +163,7 @@
     NSURL *folderURL = [NSFProjectParseConfigration tempZh_HansLprojURL];
     [[NSFileManager defaultManager] createDirectoryAtPath:[folderURL path] withIntermediateDirectories:YES attributes:nil error:nil];
     
-    NSString *command = [NSString stringWithFormat:@"find . -type f \\( -iname \\*.h -o -iname \\*.m -o -iname \\*.swift \\) -not -path '*/Pods/*' | xargs genstrings -o %@ -s NLS", [folderURL path]];
+    NSString *command = [NSString stringWithFormat:@"find . -type f \\( -iname \\*.h -o -iname \\*.m -o -iname \\*.swift \\) -not -path '*/Pods/*' -not -path '*/Carthage/*' | xargs genstrings -o %@ -s NLS", [folderURL path]];
     task.arguments = @[@"-c", command];
     
     [task launch];
@@ -236,7 +236,10 @@
         && ![[URL path] containsString:@"LivenessDetection"]
         && ![[URL path] containsString:@"IDVerify"]
         && ![[URL path] containsString:@"QBImagePicker"];
-    } inFolder:projectRoot ignoreSubFolderThatMatch:nil];
+    } inFolder:projectRoot ignoreSubFolderThatMatch:^BOOL(NSURL *URL) {
+        return [[URL absoluteString] containsString:@"Carthage"]
+        || [[URL path] containsString:@"Pods"];
+    }];
 }
 
 + (NSArray<NSURL *> *)nsf_schoolVersionStringsFilesFrom:(NSArray<NSURL *> *)stringFiles
