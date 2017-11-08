@@ -63,7 +63,7 @@
 
 #pragma mark - Private
 /**
- 同一个文案可能同时出现在Localizable.strings、xib.strings和storyboard.strings中，而storyboard.strings和xib.strings文件中的key都是自动生成的objectID，因此会出现文案完全一致但key不一样的情况。对语言包而言这只能算是一条翻译，需要进一步把这些compundModels整合到一起
+ 同一个文案可能同时出现在Localizable.strings、xib.strings和storyboard.strings中，而storyboard.strings和xib.strings文件中的key都是自动生成的objectID，因此会出现文案完全一致但key不一样的情况。对语言包而言这只能算是一条翻译，需要进一步把这些compoundModels整合到一起
  */
 + (NSArray<NSArray<NSFStringsLanguageModel *> *> *)compoundLineModelsCompatibleWithStoryboardsAndXibs:(NSArray<NSFStringsLanguageModel *> *)languageModels
 {

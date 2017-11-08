@@ -13,7 +13,7 @@
 
 + (NSArray<__kindof NSFStringsLineModel *> *)lineModelsFrom:(NSURL *)stringsFileURL
 {
-    return [self yfy_lineModelsFrom:stringsFileURL adjustIBGeneratedKey:NO];
+    return [self nsf_lineModelsFrom:stringsFileURL adjustIBGeneratedKey:NO];
 }
 
 + (NSString *)stringsFileContentFrom:(NSArray<__kindof NSFStringsLineModel *> *)lineModels
@@ -36,9 +36,7 @@
                                                     options:NSStringEnumerationByComposedCharacterSequences
                                                  usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
                                                      if ([substring isEqualToString:@"\""]
-                                                         && ![previousSubstring isEqualToString:@"\\"]
-                                                         && !(substringRange.location == 0
-                                                              || substringRange.location + substringRange.length == keyValueModel.value.length))
+                                                         && ![previousSubstring isEqualToString:@"\\"])
                                                      {
                                                          [value appendString:@"\\\""];
                                                      }
@@ -69,7 +67,7 @@
 
 + (NSString *)adjustedStringFileContentFromIBFile:(NSURL *)fileURL
 {
-    NSArray<NSFStringsLineModel *> *lineModels = [NSFStringsFileAndLineModelTransformer yfy_lineModelsFrom:fileURL
+    NSArray<NSFStringsLineModel *> *lineModels = [NSFStringsFileAndLineModelTransformer nsf_lineModelsFrom:fileURL
                                                                                       adjustIBGeneratedKey:YES];
     NSString *content = [self stringsFileContentFrom:lineModels];
     [content writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
@@ -117,7 +115,7 @@
     }
 }
 
-+ (NSArray<__kindof NSFStringsLineModel *> *)yfy_lineModelsFrom:(NSURL *)stringsFileURL
++ (NSArray<__kindof NSFStringsLineModel *> *)nsf_lineModelsFrom:(NSURL *)stringsFileURL
                                            adjustIBGeneratedKey:(BOOL)adjustIBGeneratedKey
 {
     NSFLanguage language = [self yfy_languageRepresentByFile:stringsFileURL];
