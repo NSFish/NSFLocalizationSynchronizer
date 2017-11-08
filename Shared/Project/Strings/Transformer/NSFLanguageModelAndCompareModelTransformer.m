@@ -14,7 +14,7 @@
 
 + (NSArray<NSFStringsCompareModel *> *)compareModelsFrom:(NSArray<NSFStringsLanguageModel *> *)languageModels
 {
-    NSArray<NSArray<NSFStringsLanguageModel *> *> *compoundLanguageModels = [self compoundLineModelsCompatibleWithStoryboardsAndXibs:languageModels];
+    NSArray<NSArray<NSFStringsLanguageModel *> *> *compoundLanguageModels = [self p_compoundLineModelsCompatibleWithStoryboardsAndXibs:languageModels];
     
     NSArray *result = [compoundLanguageModels.rac_sequence map:^id(NSArray<NSFStringsLanguageModel *> *array) {
         NSFStringsSideCompareModel *compareModel = [NSFStringsSideCompareModel new];
@@ -23,7 +23,7 @@
             compareModel.translations = languageModel.translations;
             
             [languageModel.fileURLs enumerateKeysAndObjectsUsingBlock:^(NSNumber *language, NSURL *fileURL, BOOL *stop) {
-                NSString *key = [self nsf_fileURLKeyWith:languageModel.key language:language];
+                NSString *key = [self p_fileURLKeyWith:languageModel.key language:language];
                 compareModel.fileURLs[key] = fileURL;
             }];
         }];
@@ -47,7 +47,7 @@
             [compareModel.fileURLs enumerateKeysAndObjectsUsingBlock:^(NSString *fileURLKey, NSURL *fileURL, BOOL *stop) {
                 if ([fileURLKey hasPrefix:key])
                 {
-                    NSFLanguage language = [self nsf_languageFromFileURLKey:fileURLKey];
+                    NSFLanguage language = [self p_languageFromFileURLKey:fileURLKey];
                     languageModel.fileURLs[@(language)] = fileURL;
                 }
             }];
@@ -65,7 +65,7 @@
 /**
  同一个文案可能同时出现在Localizable.strings、xib.strings和storyboard.strings中，而storyboard.strings和xib.strings文件中的key都是自动生成的objectID，因此会出现文案完全一致但key不一样的情况。对语言包而言这只能算是一条翻译，需要进一步把这些compoundModels整合到一起
  */
-+ (NSArray<NSArray<NSFStringsLanguageModel *> *> *)compoundLineModelsCompatibleWithStoryboardsAndXibs:(NSArray<NSFStringsLanguageModel *> *)languageModels
++ (NSArray<NSArray<NSFStringsLanguageModel *> *> *)p_compoundLineModelsCompatibleWithStoryboardsAndXibs:(NSArray<NSFStringsLanguageModel *> *)languageModels
 {
     NSMutableDictionary<NSString *, NSMutableArray *> *dict = [NSMutableDictionary dictionary];
     for (NSFStringsLanguageModel *reduntantableIntermediaModel in languageModels)
@@ -88,12 +88,12 @@
 /**
  工程端最终生成的compareModel里需要记录每个翻译文案是从哪个strings文件来的，用翻译的Key和文案所属语言类型一起作为fileURL的key
  */
-+ (NSString *)nsf_fileURLKeyWith:(NSString *)key language:(NSNumber *)language
++ (NSString *)p_fileURLKeyWith:(NSString *)key language:(NSNumber *)language
 {
     return [NSString stringWithFormat:@"%@_%@", key, language];
 }
 
-+ (NSFLanguage)nsf_languageFromFileURLKey:(NSString *)key
++ (NSFLanguage)p_languageFromFileURLKey:(NSString *)key
 {
     return [[[key componentsSeparatedByString:@"_"] lastObject] integerValue];
 }

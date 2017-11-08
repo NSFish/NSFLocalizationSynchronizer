@@ -13,7 +13,7 @@
 
 + (NSArray<__kindof NSFStringsLineModel *> *)lineModelsFrom:(NSURL *)stringsFileURL
 {
-    return [self nsf_lineModelsFrom:stringsFileURL adjustIBGeneratedKey:NO];
+    return [self p_lineModelsFrom:stringsFileURL adjustIBGeneratedKey:NO];
 }
 
 + (NSString *)stringsFileContentFrom:(NSArray<__kindof NSFStringsLineModel *> *)lineModels
@@ -67,7 +67,7 @@
 
 + (NSString *)adjustedStringFileContentFromIBFile:(NSURL *)fileURL
 {
-    NSArray<NSFStringsLineModel *> *lineModels = [NSFStringsFileAndLineModelTransformer nsf_lineModelsFrom:fileURL
+    NSArray<NSFStringsLineModel *> *lineModels = [NSFStringsFileAndLineModelTransformer p_lineModelsFrom:fileURL
                                                                                       adjustIBGeneratedKey:YES];
     NSString *content = [self stringsFileContentFrom:lineModels];
     [content writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:nil];
@@ -76,7 +76,7 @@
 }
 
 #pragma mark - Private
-+ (NSFLanguage)yfy_languageRepresentByFile:(NSURL *)URL
++ (NSFLanguage)p_languageRepresentByFile:(NSURL *)URL
 {    
     BOOL schoolized = [[URL lastPathComponent] hasPrefix:@"school_"];
     NSString *path = [URL absoluteString];
@@ -115,10 +115,10 @@
     }
 }
 
-+ (NSArray<__kindof NSFStringsLineModel *> *)nsf_lineModelsFrom:(NSURL *)stringsFileURL
++ (NSArray<__kindof NSFStringsLineModel *> *)p_lineModelsFrom:(NSURL *)stringsFileURL
                                            adjustIBGeneratedKey:(BOOL)adjustIBGeneratedKey
 {
-    NSFLanguage language = [self yfy_languageRepresentByFile:stringsFileURL];
+    NSFLanguage language = [self p_languageRepresentByFile:stringsFileURL];
     
     NSString *content = [NSString stringWithContentsOfURL:stringsFileURL encoding:NSUTF8StringEncoding error:nil];
     NSArray<NSString *> *lines = [content componentsSeparatedByString:@"\n"];

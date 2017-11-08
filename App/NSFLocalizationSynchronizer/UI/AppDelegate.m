@@ -121,7 +121,7 @@
     [[NSFLocalizationProxy updateStringsFiles:YES] subscribeNext:^(NSURL *log) {
         @strongify(self);
         
-        [self response2UpdateStringsFiles:log strict:YES];
+        [self p_response2UpdateStringsFiles:log strict:YES];
     }];
 }
 
@@ -131,7 +131,7 @@
     [[NSFLocalizationProxy updateStringsFiles:NO] subscribeNext:^(NSURL *log) {
         @strongify(self);
         
-        [self response2UpdateStringsFiles:log strict:NO];
+        [self p_response2UpdateStringsFiles:log strict:NO];
     }];
 }
 
@@ -141,7 +141,7 @@
     [[NSFLocalizationProxy updateUnifiedStringFiles:YES] subscribeNext:^(NSURL *log) {
         @strongify(self);
         
-        [self response2UpdateStringsFiles:log strict:YES];
+        [self p_response2UpdateStringsFiles:log strict:YES];
     }];
 }
 
@@ -151,7 +151,7 @@
     [[NSFLocalizationProxy updateUnifiedStringFiles:NO] subscribeNext:^(NSURL *log) {
         @strongify(self);
         
-        [self response2UpdateStringsFiles:log strict:NO];
+        [self p_response2UpdateStringsFiles:log strict:NO];
     }];
 }
 
@@ -185,7 +185,7 @@
 }
 
 #pragma mark - Private
-- (void)response2UpdateStringsFiles:(NSURL *)log strict:(BOOL)strict
+- (void)p_response2UpdateStringsFiles:(NSURL *)log strict:(BOOL)strict
 {
     NSUserNotification *userNotification = [NSUserNotification new];
     

@@ -52,16 +52,16 @@
 {
     NSMutableArray<NSFSourceCodeFragment *> *fragments = [NSMutableArray array];
     
-    NSArray<NSURL *> *sourceFiles = [self allSourceFilesIn:projectURL];
+    NSArray<NSURL *> *sourceFiles = [self p_allSourceFilesIn:projectURL];
     [sourceFiles enumerateObjectsUsingBlock:^(NSURL *fileURL, NSUInteger idx, BOOL *stop) {
-        [fragments addObjectsFromArray:[self nonLocalizedStringsIn:fileURL]];
+        [fragments addObjectsFromArray:[self p_nonLocalizedStringsIn:fileURL]];
     }];
     
     return fragments;
 }
 
 #pragma mark - Private
-+ (NSArray<NSURL *> *)allSourceFilesIn:(NSURL *)directoryURL
++ (NSArray<NSURL *> *)p_allSourceFilesIn:(NSURL *)directoryURL
 {
     return [NSFileManager nsf_filesThatMatch:^BOOL(NSURL *URL) {
         return [[URL lastPathComponent] hasSuffix:@".h"]
@@ -76,7 +76,7 @@
     }];
 }
 
-+ (NSArray<NSFSourceCodeFragment *> *)nonLocalizedStringsIn:(NSURL *)fileURL
++ (NSArray<NSFSourceCodeFragment *> *)p_nonLocalizedStringsIn:(NSURL *)fileURL
 {
     NSMutableArray<NSFSourceCodeFragment *> *fragments = [NSMutableArray array];
     
@@ -169,7 +169,7 @@
                                      && ![line containsString:MTATrackEvent]
                                      && ![line containsString:MTACustomTrackEvent]
                                      && ![line containsString:languageModel]
-                                     && ![self insideWhiteList:stringContent])
+                                     && ![self p_insideWhiteList:stringContent])
                                  {
                                      NSFSourceCodeFragment *fragment = [NSFSourceCodeFragment instanceWithContent:stringContent
                                                                                                        lineNumber:idx + 1
@@ -182,7 +182,7 @@
     return fragments;
 }
 
-+ (BOOL)insideWhiteList:(NSString *)string
++ (BOOL)p_insideWhiteList:(NSString *)string
 {
     NSArray *whiteList = @[@"useless:只用于开发时方便处理边界值",
                            @"uploader:上传者",

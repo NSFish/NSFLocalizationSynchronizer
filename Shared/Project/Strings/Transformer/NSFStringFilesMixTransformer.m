@@ -19,9 +19,9 @@
 {
     [[NSFileManager defaultManager] removeItemAtURL:[NSFProjectParseConfigration tempFolder] error:nil];
     
-    NSArray<NSURL *> *infoPlistStrings = [self nsf_stringFilesFromInfoPlistIn:projectRoot];
+    NSArray<NSURL *> *infoPlistStrings = [self p_stringFilesFromInfoPlistIn:projectRoot];
     
-    NSArray<NSURL *> *sourceCodeStringFiles = [self nsf_stringFilesFromSourceCodeIn:projectRoot];
+    NSArray<NSURL *> *sourceCodeStringFiles = [self p_stringFilesFromSourceCodeIn:projectRoot];
     sourceCodeStringFiles = [sourceCodeStringFiles.rac_sequence flattenMap:^__kindof RACSequence *(NSURL *fileURL) {
         NSURL *zh_hans = [[NSFProjectParseConfigration projectZh_HansLprojURLIn:projectRoot]
                           URLByAppendingPathComponent:NSFMainStringFileName];
@@ -37,9 +37,9 @@
         return @[zh_hans, zh_hant, en].rac_sequence;
     }].array;
     
-    NSArray<NSURL *> *IBFiles = [self nsf_IBFilesIn:projectRoot];
+    NSArray<NSURL *> *IBFiles = [self p_IBFilesIn:projectRoot];
     NSArray<NSURL *> *IBStringFiles = [IBFiles.rac_sequence flattenMap:^__kindof RACSequence *(NSURL *fileURL) {
-        NSURL *stringFile = [self nsf_stringFileFromInterfaceBuilderFile:fileURL adjustKeys:NO];
+        NSURL *stringFile = [self p_stringFileFromInterfaceBuilderFile:fileURL adjustKeys:NO];
         if (stringFile)
         {
             NSURL *baseURL = [[fileURL URLByDeletingLastPathComponent] URLByDeletingLastPathComponent];
@@ -61,8 +61,8 @@
     
     return [infoPlistStrings.rac_sequence
             concat:[[[sourceCodeStringFiles.rac_sequence
-                      concat:[self nsf_schoolVersionStringsFilesFrom:sourceCodeStringFiles].rac_sequence]
-                     concat:[self nsf_schoolVersionStringsFilesFrom:IBStringFiles].rac_sequence]
+                      concat:[self p_schoolVersionStringsFilesFrom:sourceCodeStringFiles].rac_sequence]
+                     concat:[self p_schoolVersionStringsFilesFrom:IBStringFiles].rac_sequence]
                     concat:IBStringFiles.rac_sequence]].array;
 }
 
@@ -70,8 +70,8 @@
 {
     [[NSFileManager defaultManager] removeItemAtURL:[NSFProjectParseConfigration tempFolder] error:nil];
     
-    NSArray<NSURL *> *fileURLs = [[self nsf_stringFilesFromSourceCodeIn:projectRoot].rac_sequence
-                                  concat:[self nsf_stringFilesFromInterfaceBuilderFilesIn:projectRoot].rac_sequence].array;
+    NSArray<NSURL *> *fileURLs = [[self p_stringFilesFromSourceCodeIn:projectRoot].rac_sequence
+                                  concat:[self p_stringFilesFromInterfaceBuilderFilesIn:projectRoot].rac_sequence].array;
     
     NSMutableArray<NSFStringsLineModel *> *lineModels = [NSMutableArray array];
     [fileURLs enumerateObjectsUsingBlock:^(NSURL *fileURL, NSUInteger idx, BOOL *stop) {
@@ -139,7 +139,7 @@
 }
 
 #pragma mark - Private
-+ (NSArray<NSURL *> *)nsf_stringFilesFromInfoPlistIn:(NSURL *)projectRoot
++ (NSArray<NSURL *> *)p_stringFilesFromInfoPlistIn:(NSURL *)projectRoot
 {
     return [NSFileManager nsf_filesThatMatch:^BOOL(NSURL *URL) {
         return [[URL lastPathComponent] hasSuffix:@"InfoPlist.strings"];
@@ -150,7 +150,7 @@
     }];
 }
 
-+ (NSArray<NSURL *> *)nsf_stringFilesFromSourceCodeIn:(NSURL *)projectRoot
++ (NSArray<NSURL *> *)p_stringFilesFromSourceCodeIn:(NSURL *)projectRoot
 {
     NSTask *task = [NSTask new];
     task.currentDirectoryPath = [projectRoot path];
@@ -178,13 +178,13 @@
     return fileURLs;
 }
 
-+ (NSArray<NSURL *> *)nsf_stringFilesFromInterfaceBuilderFilesIn:(NSURL *)projectRoot
++ (NSArray<NSURL *> *)p_stringFilesFromInterfaceBuilderFilesIn:(NSURL *)projectRoot
 {
-    NSArray<NSURL *> *files = [self nsf_IBFilesIn:projectRoot];
+    NSArray<NSURL *> *files = [self p_IBFilesIn:projectRoot];
     
     NSMutableArray<NSURL *> *stringFiles = [NSMutableArray array];
     [files enumerateObjectsUsingBlock:^(NSURL *URL, NSUInteger idx, BOOL *stop) {
-        NSURL *stringFile = [self nsf_stringFileFromInterfaceBuilderFile:URL adjustKeys:YES];
+        NSURL *stringFile = [self p_stringFileFromInterfaceBuilderFile:URL adjustKeys:YES];
         if (stringFile)
         {
             [stringFiles addObject:stringFile];
@@ -194,7 +194,7 @@
     return stringFiles;
 }
 
-+ (NSURL *)nsf_stringFileFromInterfaceBuilderFile:(NSURL *)fileURL
++ (NSURL *)p_stringFileFromInterfaceBuilderFile:(NSURL *)fileURL
                                        adjustKeys:(BOOL)adjustKeys
 {
     NSURL *folderURL = [NSFProjectParseConfigration tempZh_HansLprojURL];
@@ -229,7 +229,7 @@
     return stringFile;
 }
 
-+ (NSArray<NSURL *> *)nsf_IBFilesIn:(NSURL *)projectRoot
++ (NSArray<NSURL *> *)p_IBFilesIn:(NSURL *)projectRoot
 {
     return [NSFileManager nsf_filesThatMatch:^BOOL(NSURL *URL) {
         return [[[URL path] pathExtension] isEqualToString:@"storyboard"]
@@ -242,7 +242,7 @@
     }];
 }
 
-+ (NSArray<NSURL *> *)nsf_schoolVersionStringsFilesFrom:(NSArray<NSURL *> *)stringFiles
++ (NSArray<NSURL *> *)p_schoolVersionStringsFilesFrom:(NSArray<NSURL *> *)stringFiles
 {
     return [stringFiles.rac_sequence map:^id(NSURL *fileURL) {
         NSString *name = [NSString stringWithFormat:@"%@%@", NSFSchoolVersionPrefix, [fileURL lastPathComponent]];

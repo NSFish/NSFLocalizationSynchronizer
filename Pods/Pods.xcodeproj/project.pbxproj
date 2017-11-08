@@ -379,7 +379,7 @@
 		08E507F5A1C58D0D592A95E040D1E8C7 /* Pods-NSFLocalizationSynchronizer-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NSFLocalizationSynchronizer-acknowledgements.markdown"; sourceTree = "<group>"; };
 		0DA79E67D9DE37034711AAE8B855ACC5 /* RACScheduler+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RACScheduler+Private.h"; path = "ReactiveObjC/RACScheduler+Private.h"; sourceTree = "<group>"; };
 		0E94EE4741B2A69BD7A4035744729961 /* BRAColumn.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRAColumn.h; path = XlsxReaderWriter/BRAColumn.h; sourceTree = "<group>"; };
-		10B1482E33B11C973F0349516550E369 /* libReactiveObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libReactiveObjC.a; path = libReactiveObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		10B1482E33B11C973F0349516550E369 /* libReactiveObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libReactiveObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		11E8CE5F0673CBA9DEF3D71980F1BEB5 /* NSString+RACKeyPathUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+RACKeyPathUtilities.m"; path = "ReactiveObjC/NSString+RACKeyPathUtilities.m"; sourceTree = "<group>"; };
 		13B0A9069557434724226519141F1FF5 /* RACBehaviorSubject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACBehaviorSubject.m; path = ReactiveObjC/RACBehaviorSubject.m; sourceTree = "<group>"; };
 		14C8AE08282F14FD58B4F28999BC2800 /* RACSignal+Operations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RACSignal+Operations.h"; path = "ReactiveObjC/RACSignal+Operations.h"; sourceTree = "<group>"; };
@@ -392,7 +392,7 @@
 		19D80B43F5A0955BB5A2D680A7842A9D /* BRACell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRACell.h; path = XlsxReaderWriter/BRACell.h; sourceTree = "<group>"; };
 		1C06C3055BFC100D2F7748BA5D024346 /* NativeFont+BoldItalic.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NativeFont+BoldItalic.h"; path = "XlsxReaderWriter/NativeFont+BoldItalic.h"; sourceTree = "<group>"; };
 		1CDA4A7D5B06FD2D9774AEB7357834FD /* SSZipArchive-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SSZipArchive-prefix.pch"; sourceTree = "<group>"; };
-		1D71489D4C715C76495E89301F5E7E0B /* libPods-NSFLocalizationSynchronizer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-NSFLocalizationSynchronizer.a"; path = "libPods-NSFLocalizationSynchronizer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D71489D4C715C76495E89301F5E7E0B /* libPods-NSFLocalizationSynchronizer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NSFLocalizationSynchronizer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D9BA041032175ECA0F32505C8E4B7FC /* BRAComment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRAComment.h; path = XlsxReaderWriter/BRAComment.h; sourceTree = "<group>"; };
 		1DCA1FF500BFDEB428CAA69A3B8F9E86 /* BRAOpenXmlElement.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRAOpenXmlElement.m; path = XlsxReaderWriter/BRAOpenXmlElement.m; sourceTree = "<group>"; };
 		1DE1C0AE59161FFBE7A7B4A344692277 /* BRACellFill.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRACellFill.m; path = XlsxReaderWriter/BRACellFill.m; sourceTree = "<group>"; };
@@ -463,14 +463,14 @@
 		4D9AE2742CA492B738F14FD43A07608E /* BRACalcChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRACalcChain.h; path = XlsxReaderWriter/BRACalcChain.h; sourceTree = "<group>"; };
 		4DAD17065A6737F55996268672FB9934 /* NSIndexSet+RACSequenceAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSIndexSet+RACSequenceAdditions.h"; path = "ReactiveObjC/NSIndexSet+RACSequenceAdditions.h"; sourceTree = "<group>"; };
 		4DFB384BBFEF88523CBAD8A8E8834D62 /* NSObject+RACLifting.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RACLifting.h"; path = "ReactiveObjC/NSObject+RACLifting.h"; sourceTree = "<group>"; };
-		4F329C79CF21599440198D3BC182E9F7 /* libXMLDictionary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libXMLDictionary.a; path = libXMLDictionary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F329C79CF21599440198D3BC182E9F7 /* libXMLDictionary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXMLDictionary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F4073BDEC95C9BEFFFA975247224FD0 /* RACSubscriber+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RACSubscriber+Private.h"; path = "ReactiveObjC/RACSubscriber+Private.h"; sourceTree = "<group>"; };
 		4FB65B41470E1B266EECFF7B70DCD0D7 /* BRARow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRARow.h; path = XlsxReaderWriter/BRARow.h; sourceTree = "<group>"; };
 		4FDAC45D790488DD2765A7E284797A31 /* XMLDictionary.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = XMLDictionary.xcconfig; sourceTree = "<group>"; };
 		50F1B99A7265FBDAA81357ADC06EF4F5 /* BRAImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRAImage.h; path = XlsxReaderWriter/BRAImage.h; sourceTree = "<group>"; };
 		52D309F70FEA61B65005EA94254469AB /* aestab.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = aestab.h; path = SSZipArchive/aes/aestab.h; sourceTree = "<group>"; };
 		534D0795621847C401749833589D4850 /* RACReplaySubject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACReplaySubject.m; path = ReactiveObjC/RACReplaySubject.m; sourceTree = "<group>"; };
-		574C639CC99D01E893DDC2FC4F5758D0 /* RACSignalProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; name = RACSignalProvider.d; path = ReactiveObjC/RACSignalProvider.d; sourceTree = "<group>"; };
+		574C639CC99D01E893DDC2FC4F5758D0 /* RACSignalProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.dtrace; name = RACSignalProvider.d; path = ReactiveObjC/RACSignalProvider.d; sourceTree = "<group>"; };
 		579D266C17EF7F47BE4097470788DCF0 /* RACKVOProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACKVOProxy.h; path = ReactiveObjC/RACKVOProxy.h; sourceTree = "<group>"; };
 		590716473E9EF06E3345217D61983A02 /* BRAComments.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRAComments.h; path = XlsxReaderWriter/BRAComments.h; sourceTree = "<group>"; };
 		5996B81890AE457A999E3DDB51FCE88D /* NSObject+RACKVOWrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RACKVOWrapper.h"; path = "ReactiveObjC/NSObject+RACKVOWrapper.h"; sourceTree = "<group>"; };
@@ -482,7 +482,7 @@
 		5C72D825D3E4D10185ECF1143F496C13 /* BRATheme.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRATheme.h; path = XlsxReaderWriter/BRATheme.h; sourceTree = "<group>"; };
 		5C81DAC42A5981CE9B33BB942C95665B /* BRAOpenXmlSubElement.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRAOpenXmlSubElement.m; path = XlsxReaderWriter/BRAOpenXmlSubElement.m; sourceTree = "<group>"; };
 		5E3D5A09AA087358280121CAF2DB8CE9 /* RACBlockTrampoline.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACBlockTrampoline.m; path = ReactiveObjC/RACBlockTrampoline.m; sourceTree = "<group>"; };
-		5F46E0062ACD7F29AA95A102E163CF41 /* libSSZipArchive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSSZipArchive.a; path = libSSZipArchive.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F46E0062ACD7F29AA95A102E163CF41 /* libSSZipArchive.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSSZipArchive.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F7E59DA3FEB279F9C4873E6648A706A /* BRAColumn.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRAColumn.m; path = XlsxReaderWriter/BRAColumn.m; sourceTree = "<group>"; };
 		5FC5C530BE1B9032BCD36B6235DEF429 /* RACBlockTrampoline.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACBlockTrampoline.h; path = ReactiveObjC/RACBlockTrampoline.h; sourceTree = "<group>"; };
 		607F4CAF1D584C24D62A8886660E4918 /* BRANumberFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRANumberFormat.h; path = XlsxReaderWriter/BRANumberFormat.h; sourceTree = "<group>"; };
@@ -528,9 +528,9 @@
 		81FBDF97DA0423CD08924C6E860C0711 /* Pods-NSFLocalizationSynchronizer-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NSFLocalizationSynchronizer-acknowledgements.plist"; sourceTree = "<group>"; };
 		832A7CC72716866A46A33BDBB0A256E4 /* BRASharedString.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRASharedString.h; path = XlsxReaderWriter/BRASharedString.h; sourceTree = "<group>"; };
 		83810D32813C3C0436257ECD7D1576DD /* NSFileHandle+RACSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSFileHandle+RACSupport.h"; path = "ReactiveObjC/NSFileHandle+RACSupport.h"; sourceTree = "<group>"; };
-		838F33DAE41401F905F5D39BFCC277F0 /* hmac.c */ = {isa = PBXFileReference; includeInIndex = 1; name = hmac.c; path = SSZipArchive/aes/hmac.c; sourceTree = "<group>"; };
+		838F33DAE41401F905F5D39BFCC277F0 /* hmac.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = hmac.c; path = SSZipArchive/aes/hmac.c; sourceTree = "<group>"; };
 		847B18E52B4EB0300FCAB37E606C2F14 /* BRATheme.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRATheme.m; path = XlsxReaderWriter/BRATheme.m; sourceTree = "<group>"; };
-		85496A6CFDC699401A098A996CB64BDC /* entropy.c */ = {isa = PBXFileReference; includeInIndex = 1; name = entropy.c; path = SSZipArchive/aes/entropy.c; sourceTree = "<group>"; };
+		85496A6CFDC699401A098A996CB64BDC /* entropy.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = entropy.c; path = SSZipArchive/aes/entropy.c; sourceTree = "<group>"; };
 		8684EE70ADB9C7B30FF066590C10A83D /* NSInvocation+RACTypeParsing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSInvocation+RACTypeParsing.h"; path = "ReactiveObjC/NSInvocation+RACTypeParsing.h"; sourceTree = "<group>"; };
 		869871E3D8CDFE76E363D693328C1F4F /* XlsxReaderWriter-swift-bridge.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "XlsxReaderWriter-swift-bridge.h"; path = "XlsxReaderWriter/XlsxReaderWriter-swift-bridge.h"; sourceTree = "<group>"; };
 		88B90C6A5AE660E976B1D9BD8C87D1FB /* RACDynamicSignal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACDynamicSignal.h; path = ReactiveObjC/RACDynamicSignal.h; sourceTree = "<group>"; };
@@ -540,7 +540,7 @@
 		8BE5CFD0F3330045AFAECC0A7BEB7AC1 /* NSNotificationCenter+RACSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSNotificationCenter+RACSupport.m"; path = "ReactiveObjC/NSNotificationCenter+RACSupport.m"; sourceTree = "<group>"; };
 		8CCCBF1292C5CD5A41BCECCB146DD797 /* BRAOfficeDocumentPackage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRAOfficeDocumentPackage.m; path = XlsxReaderWriter/BRAOfficeDocumentPackage.m; sourceTree = "<group>"; };
 		8D2747DA6DF3025429498729F9B5BBF8 /* RACTestScheduler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACTestScheduler.h; path = ReactiveObjC/RACTestScheduler.h; sourceTree = "<group>"; };
-		8D30A05F1286B5FAC6BD75BB16D9762B /* libPods-NSFLocalizationSynchronizerCLI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-NSFLocalizationSynchronizerCLI.a"; path = "libPods-NSFLocalizationSynchronizerCLI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D30A05F1286B5FAC6BD75BB16D9762B /* libPods-NSFLocalizationSynchronizerCLI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NSFLocalizationSynchronizerCLI.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D37C732C0053EA9B8D6C46591E4A8F2 /* RACScopedDisposable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACScopedDisposable.m; path = ReactiveObjC/RACScopedDisposable.m; sourceTree = "<group>"; };
 		8E121840D64EB60D79CB834B9888DB59 /* Pods-NSFLocalizationSynchronizer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NSFLocalizationSynchronizer-dummy.m"; sourceTree = "<group>"; };
 		8E84AA28A3EEC1BD3EF574706E223653 /* RACKVOProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACKVOProxy.m; path = ReactiveObjC/RACKVOProxy.m; sourceTree = "<group>"; };
@@ -549,11 +549,11 @@
 		9103AA3EAFF281C22BD0F00E5C00C4F2 /* RACStream+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RACStream+Private.h"; path = "ReactiveObjC/RACStream+Private.h"; sourceTree = "<group>"; };
 		913DDA0D8288543334E6731B575879B0 /* RACValueTransformer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACValueTransformer.m; path = ReactiveObjC/RACValueTransformer.m; sourceTree = "<group>"; };
 		91E38234F185BB907522950C916990E7 /* BRAVmlDrawing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRAVmlDrawing.h; path = XlsxReaderWriter/BRAVmlDrawing.h; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		95CB83AF6FDE4956A036261BC20711ED /* RACStringSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACStringSequence.m; path = ReactiveObjC/RACStringSequence.m; sourceTree = "<group>"; };
 		964E5EA09FBBF205EA90D3133F478CAE /* RACQueueScheduler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACQueueScheduler.h; path = ReactiveObjC/RACQueueScheduler.h; sourceTree = "<group>"; };
 		96C7B86DBC2C32F79F8D1EA576785406 /* BRAWorksheet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRAWorksheet.h; path = XlsxReaderWriter/BRAWorksheet.h; sourceTree = "<group>"; };
-		9727245034161D08192DBF016425F29A /* pwd2key.c */ = {isa = PBXFileReference; includeInIndex = 1; name = pwd2key.c; path = SSZipArchive/aes/pwd2key.c; sourceTree = "<group>"; };
+		9727245034161D08192DBF016425F29A /* pwd2key.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = pwd2key.c; path = SSZipArchive/aes/pwd2key.c; sourceTree = "<group>"; };
 		997C0E57EAC4CAD352BAEFF5C9FBBB4D /* SSZipArchive.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SSZipArchive.xcconfig; sourceTree = "<group>"; };
 		998427296C0E1C9BFBF65AD5B33E0C3F /* BRAContentTypesOverride.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRAContentTypesOverride.h; path = XlsxReaderWriter/BRAContentTypesOverride.h; sourceTree = "<group>"; };
 		9A9F7FA39CD92A8FBBECAD363636D19D /* brg_endian.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = brg_endian.h; path = SSZipArchive/aes/brg_endian.h; sourceTree = "<group>"; };
@@ -594,14 +594,14 @@
 		B5A4F81C3507802930885CF53A764B5F /* XMLDictionary-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "XMLDictionary-prefix.pch"; sourceTree = "<group>"; };
 		B5EFA154FF19F487022CAB788B6CCFB5 /* RACTargetQueueScheduler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACTargetQueueScheduler.m; path = ReactiveObjC/RACTargetQueueScheduler.m; sourceTree = "<group>"; };
 		B6E0983C015D9454997B35C53B12003C /* RACEXTKeyPathCoding.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACEXTKeyPathCoding.h; path = ReactiveObjC/extobjc/RACEXTKeyPathCoding.h; sourceTree = "<group>"; };
-		B81E6D109BE141277E916C5E6856F2D7 /* prng.c */ = {isa = PBXFileReference; includeInIndex = 1; name = prng.c; path = SSZipArchive/aes/prng.c; sourceTree = "<group>"; };
+		B81E6D109BE141277E916C5E6856F2D7 /* prng.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = prng.c; path = SSZipArchive/aes/prng.c; sourceTree = "<group>"; };
 		B8FF4B8F43CF6DE92576B97751ABE519 /* RACTuple.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACTuple.m; path = ReactiveObjC/RACTuple.m; sourceTree = "<group>"; };
-		B90B706AF5CCD62CBF7649B759360132 /* unzip.c */ = {isa = PBXFileReference; includeInIndex = 1; name = unzip.c; path = SSZipArchive/minizip/unzip.c; sourceTree = "<group>"; };
+		B90B706AF5CCD62CBF7649B759360132 /* unzip.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = unzip.c; path = SSZipArchive/minizip/unzip.c; sourceTree = "<group>"; };
 		BD4A50995CF55874297885D6F1B1EA0E /* BRAWorksheetDrawing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRAWorksheetDrawing.h; path = XlsxReaderWriter/BRAWorksheetDrawing.h; sourceTree = "<group>"; };
 		BE2892922367E8341DAD459C773FC1C5 /* fileenc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = fileenc.h; path = SSZipArchive/aes/fileenc.h; sourceTree = "<group>"; };
 		BE3F886C844D142587318BB923C5B1F3 /* NSObject+RACDescription.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+RACDescription.m"; path = "ReactiveObjC/NSObject+RACDescription.m"; sourceTree = "<group>"; };
-		BE701933A18DAD370B0B81A50F71995E /* fileenc.c */ = {isa = PBXFileReference; includeInIndex = 1; name = fileenc.c; path = SSZipArchive/aes/fileenc.c; sourceTree = "<group>"; };
-		BF53D6D3B381369D1F5B39C303DAE3CF /* aestab.c */ = {isa = PBXFileReference; includeInIndex = 1; name = aestab.c; path = SSZipArchive/aes/aestab.c; sourceTree = "<group>"; };
+		BE701933A18DAD370B0B81A50F71995E /* fileenc.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = fileenc.c; path = SSZipArchive/aes/fileenc.c; sourceTree = "<group>"; };
+		BF53D6D3B381369D1F5B39C303DAE3CF /* aestab.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = aestab.c; path = SSZipArchive/aes/aestab.c; sourceTree = "<group>"; };
 		BF6718FEE1D78D6317214DCB489DF49F /* NSSet+RACSequenceAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSSet+RACSequenceAdditions.m"; path = "ReactiveObjC/NSSet+RACSequenceAdditions.m"; sourceTree = "<group>"; };
 		C0980F15E3C81C62F609EEA0834764B4 /* BRAContentTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRAContentTypes.h; path = XlsxReaderWriter/BRAContentTypes.h; sourceTree = "<group>"; };
 		C0F67CC968EDD21AAA775B82AA5643D2 /* RACUnarySequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACUnarySequence.m; path = ReactiveObjC/RACUnarySequence.m; sourceTree = "<group>"; };
@@ -617,21 +617,21 @@
 		C4C5C9CF51DED88488F85A700FE7C3E6 /* BRAMergeCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRAMergeCell.h; path = XlsxReaderWriter/BRAMergeCell.h; sourceTree = "<group>"; };
 		C83930784C23AFA30ED2DCCDA51D8746 /* RACSubject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACSubject.m; path = ReactiveObjC/RACSubject.m; sourceTree = "<group>"; };
 		C93F27F32908D9DE56FBC7C05FBAC888 /* BRAVmlDrawing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRAVmlDrawing.m; path = XlsxReaderWriter/BRAVmlDrawing.m; sourceTree = "<group>"; };
-		CA63A8AD90CEF0AE76B18C7AE31E09CB /* ioapi.c */ = {isa = PBXFileReference; includeInIndex = 1; name = ioapi.c; path = SSZipArchive/minizip/ioapi.c; sourceTree = "<group>"; };
+		CA63A8AD90CEF0AE76B18C7AE31E09CB /* ioapi.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = ioapi.c; path = SSZipArchive/minizip/ioapi.c; sourceTree = "<group>"; };
 		CAFA9D813CB263E625C9ADDE8573D380 /* BRARelationships.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRARelationships.m; path = XlsxReaderWriter/BRARelationships.m; sourceTree = "<group>"; };
 		CBCA701C26E818253C4AF0AFF1FCE29E /* BRAOfficeDocument.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRAOfficeDocument.h; path = XlsxReaderWriter/BRAOfficeDocument.h; sourceTree = "<group>"; };
 		CCC02FEDA0D8A13B39366C6C5D7B2EAD /* Pods-NSFLocalizationSynchronizerCLI-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NSFLocalizationSynchronizerCLI-frameworks.sh"; sourceTree = "<group>"; };
-		CCD3DDF504F9B6860999416E68FB3B6D /* zip.c */ = {isa = PBXFileReference; includeInIndex = 1; name = zip.c; path = SSZipArchive/minizip/zip.c; sourceTree = "<group>"; };
+		CCD3DDF504F9B6860999416E68FB3B6D /* zip.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = zip.c; path = SSZipArchive/minizip/zip.c; sourceTree = "<group>"; };
 		CD0F519B8E46DDB9DE328F32E5C4201F /* RACPassthroughSubscriber.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACPassthroughSubscriber.m; path = ReactiveObjC/RACPassthroughSubscriber.m; sourceTree = "<group>"; };
-		CE38A299C553DC10C37830868CAAE892 /* sha1.c */ = {isa = PBXFileReference; includeInIndex = 1; name = sha1.c; path = SSZipArchive/aes/sha1.c; sourceTree = "<group>"; };
-		CED3720A6DDB1BC6E159F0B290AD1F79 /* aeskey.c */ = {isa = PBXFileReference; includeInIndex = 1; name = aeskey.c; path = SSZipArchive/aes/aeskey.c; sourceTree = "<group>"; };
+		CE38A299C553DC10C37830868CAAE892 /* sha1.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = sha1.c; path = SSZipArchive/aes/sha1.c; sourceTree = "<group>"; };
+		CED3720A6DDB1BC6E159F0B290AD1F79 /* aeskey.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = aeskey.c; path = SSZipArchive/aes/aeskey.c; sourceTree = "<group>"; };
 		CF91AE5272110F811871E9816362055D /* RACQueueScheduler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACQueueScheduler.m; path = ReactiveObjC/RACQueueScheduler.m; sourceTree = "<group>"; };
 		CFB0FE73157C3B4FC7E16D8A3AF98466 /* RACSubscriber.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACSubscriber.h; path = ReactiveObjC/RACSubscriber.h; sourceTree = "<group>"; };
-		D00D5A00BA4EC15E1AD02767FBBD2B10 /* libXlsxReaderWriter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libXlsxReaderWriter.a; path = libXlsxReaderWriter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D00D5A00BA4EC15E1AD02767FBBD2B10 /* libXlsxReaderWriter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXlsxReaderWriter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22E91A16BAF126A9B5C58352141BF11 /* BRACalcChainCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BRACalcChainCell.h; path = XlsxReaderWriter/BRACalcChainCell.h; sourceTree = "<group>"; };
 		D3014865F78CF0E6BC970813B79B7DAC /* BRARelationship.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRARelationship.m; path = XlsxReaderWriter/BRARelationship.m; sourceTree = "<group>"; };
 		D422AEA38A7FFFE53BF9CB0F63CB7701 /* RACStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACStream.h; path = ReactiveObjC/RACStream.h; sourceTree = "<group>"; };
-		D57D49C68936E513FD60517350868C33 /* RACCompoundDisposableProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; name = RACCompoundDisposableProvider.d; path = ReactiveObjC/RACCompoundDisposableProvider.d; sourceTree = "<group>"; };
+		D57D49C68936E513FD60517350868C33 /* RACCompoundDisposableProvider.d */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.dtrace; name = RACCompoundDisposableProvider.d; path = ReactiveObjC/RACCompoundDisposableProvider.d; sourceTree = "<group>"; };
 		D599F5917CFB12C9B56D807EB6253FC8 /* RACEXTScope.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACEXTScope.h; path = ReactiveObjC/extobjc/RACEXTScope.h; sourceTree = "<group>"; };
 		D644E2DD5754D3BF4E93704C71768A8E /* BRACellRange.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BRACellRange.m; path = XlsxReaderWriter/BRACellRange.m; sourceTree = "<group>"; };
 		D7F863BB2D057570680C70DB05AA52E5 /* NSSet+RACSequenceAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSSet+RACSequenceAdditions.h"; path = "ReactiveObjC/NSSet+RACSequenceAdditions.h"; sourceTree = "<group>"; };
@@ -642,7 +642,7 @@
 		DFB854A3A640F55E27D2446603E89C11 /* RACDelegateProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACDelegateProxy.h; path = ReactiveObjC/RACDelegateProxy.h; sourceTree = "<group>"; };
 		E0E67B6F47CAAA578D9C29533FC0A03B /* NativeColor+OpenXML.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NativeColor+OpenXML.m"; path = "XlsxReaderWriter/NativeColor+OpenXML.m"; sourceTree = "<group>"; };
 		E18FE88AA6A2373A5D519A24F4FC8BB6 /* Pods-NSFLocalizationSynchronizerCLI-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NSFLocalizationSynchronizerCLI-resources.sh"; sourceTree = "<group>"; };
-		E2A71372EE9DA65143F9CA7DAB8665EA /* aescrypt.c */ = {isa = PBXFileReference; includeInIndex = 1; name = aescrypt.c; path = SSZipArchive/aes/aescrypt.c; sourceTree = "<group>"; };
+		E2A71372EE9DA65143F9CA7DAB8665EA /* aescrypt.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = aescrypt.c; path = SSZipArchive/aes/aescrypt.c; sourceTree = "<group>"; };
 		E319924CD5F7F053046454FF99638A12 /* RACUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACUnit.h; path = ReactiveObjC/RACUnit.h; sourceTree = "<group>"; };
 		E3EB73EC3915CA909D4678AAA18CBFBB /* crypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = SSZipArchive/minizip/crypt.h; sourceTree = "<group>"; };
 		E3FAE0547967256D545AFD000FC47914 /* NSData+RACSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+RACSupport.m"; path = "ReactiveObjC/NSData+RACSupport.m"; sourceTree = "<group>"; };
@@ -662,7 +662,7 @@
 		F043EE162B13DFA14D1A83EBF8738290 /* SSZipArchive.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SSZipArchive.m; path = SSZipArchive/SSZipArchive.m; sourceTree = "<group>"; };
 		F0D5E573C40D92AC257539941655AEE7 /* RACTupleSequence.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACTupleSequence.h; path = ReactiveObjC/RACTupleSequence.h; sourceTree = "<group>"; };
 		F13BFE86D9686FC1422A376329A23CA5 /* RACEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACEvent.h; path = ReactiveObjC/RACEvent.h; sourceTree = "<group>"; };
-		F191091BB790F88DFAD6AB393E0322DA /* mztools.c */ = {isa = PBXFileReference; includeInIndex = 1; name = mztools.c; path = SSZipArchive/minizip/mztools.c; sourceTree = "<group>"; };
+		F191091BB790F88DFAD6AB393E0322DA /* mztools.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = mztools.c; path = SSZipArchive/minizip/mztools.c; sourceTree = "<group>"; };
 		F1948D570751E093A45F0398726F12B1 /* RACSerialDisposable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACSerialDisposable.h; path = ReactiveObjC/RACSerialDisposable.h; sourceTree = "<group>"; };
 		F1AEA4387DA2D3F22BA39D57C135A93F /* Pods-NSFLocalizationSynchronizer-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NSFLocalizationSynchronizer-frameworks.sh"; sourceTree = "<group>"; };
 		F29A00567F1CA1F215E39C601E7AA75F /* RACChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACChannel.h; path = ReactiveObjC/RACChannel.h; sourceTree = "<group>"; };
@@ -876,7 +876,6 @@
 				4B04A44FB97B17C56EB6245D9E7C4ACF /* ZipArchive.h */,
 				225C3BAAE22B0D40B52B2EA1CE12BB89 /* Support Files */,
 			);
-			name = SSZipArchive;
 			path = SSZipArchive;
 			sourceTree = "<group>";
 		};
@@ -986,7 +985,6 @@
 				869871E3D8CDFE76E363D693328C1F4F /* XlsxReaderWriter-swift-bridge.h */,
 				BEEA8263AD1540D9EE3E1F31DF71C0B1 /* Support Files */,
 			);
-			name = XlsxReaderWriter;
 			path = XlsxReaderWriter;
 			sourceTree = "<group>";
 		};
@@ -1152,7 +1150,6 @@
 				65DCE8FB5C6758D555408858521832E0 /* ReactiveObjC.h */,
 				907A5B95D8C91C1CDAB580743FF925CE /* Support Files */,
 			);
-			name = ReactiveObjC;
 			path = ReactiveObjC;
 			sourceTree = "<group>";
 		};
@@ -1171,7 +1168,6 @@
 				3537719A76358134209C77956363AFB3 /* XMLDictionary.m */,
 				BCCC3F1F1E86FB87114D30145F85F4C0 /* Support Files */,
 			);
-			name = XMLDictionary;
 			path = XMLDictionary;
 			sourceTree = "<group>";
 		};
@@ -1471,7 +1467,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0910;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1897,7 +1893,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1905,15 +1903,21 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_DEBUG=1",
@@ -1946,7 +1950,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1954,14 +1960,20 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_RELEASE=1",
 					"$(inherited)",

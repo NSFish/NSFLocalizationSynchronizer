@@ -32,7 +32,7 @@
 {
     if (!_signatures)
     {
-        _signatures = [self methodSignaturesForProtocol:@protocol(NSFParameters)];
+        _signatures = [self p_methodSignaturesForProtocol:@protocol(NSFParameters)];
     }
     
     NSMethodSignature *signature = CFDictionaryGetValue(_signatures, selector);
@@ -51,7 +51,7 @@
 static CFMutableDictionaryRef _protocolCache = nil;
 static OSSpinLock _lock = OS_SPINLOCK_INIT;
 
-- (CFDictionaryRef)methodSignaturesForProtocol:(Protocol *)protocol
+- (CFDictionaryRef)p_methodSignaturesForProtocol:(Protocol *)protocol
 {
     OSSpinLockLock(&_lock);
     
@@ -65,7 +65,7 @@ static OSSpinLock _lock = OS_SPINLOCK_INIT;
     {
         // Add protocol methods + derived protocol method definitions into protocolCache.
         signatureCache = CFDictionaryCreateMutable(NULL, 0, NULL, &kCFTypeDictionaryValueCallBacks);
-        [self methodSignaturesForProtocol:protocol inDictionary:(CFMutableDictionaryRef)signatureCache];
+        [self p_methodSignaturesForProtocol:protocol inDictionary:(CFMutableDictionaryRef)signatureCache];
         CFDictionarySetValue(_protocolCache, (__bridge const void *)(protocol), signatureCache);
         CFRelease(signatureCache);
     }
@@ -75,8 +75,8 @@ static OSSpinLock _lock = OS_SPINLOCK_INIT;
     return signatureCache;
 }
 
-- (void)methodSignaturesForProtocol:(Protocol *)protocol
-                       inDictionary:(CFMutableDictionaryRef)cache
+- (void)p_methodSignaturesForProtocol:(Protocol *)protocol
+                         inDictionary:(CFMutableDictionaryRef)cache
 {
     void (^enumerateRequiredMethods)(BOOL) = ^(BOOL isRequired) {
         unsigned int methodCount;
@@ -99,7 +99,7 @@ static OSSpinLock _lock = OS_SPINLOCK_INIT;
     Protocol *__unsafe_unretained* inheritedProtocols = protocol_copyProtocolList(protocol, &inheritedProtocolCount);
     for (NSUInteger idx = 0; idx < inheritedProtocolCount; idx++)
     {
-        [self methodSignaturesForProtocol:inheritedProtocols[idx] inDictionary:cache];
+        [self p_methodSignaturesForProtocol:inheritedProtocols[idx] inDictionary:cache];
     }
     
     free(inheritedProtocols);

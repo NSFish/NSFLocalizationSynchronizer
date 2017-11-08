@@ -80,11 +80,11 @@
             NSArray<NSDictionary *> *result = nil;
             if (strict)
             {
-                result = [self strictlyCompareStringsModels:stringsModels withLanguagePackModels:languagePackModels];
+                result = [self p_strictlyCompareStringsModels:stringsModels withLanguagePackModels:languagePackModels];
             }
             else
             {
-                result = [self compareStringsModels:stringsModels withLanguagePackModels:languagePackModels];
+                result = [self p_compareStringsModels:stringsModels withLanguagePackModels:languagePackModels];
             }
             [projectExpert updateCompareModels:stringsModels];
             
@@ -113,11 +113,11 @@
             NSArray<NSDictionary *> *result = nil;
             if (strict)
             {
-                result = [self strictlyCompareStringsModels:stringsModels withLanguagePackModels:languagePackModels];
+                result = [self p_strictlyCompareStringsModels:stringsModels withLanguagePackModels:languagePackModels];
             }
             else
             {
-                result = [self compareStringsModels:stringsModels withLanguagePackModels:languagePackModels];
+                result = [self p_compareStringsModels:stringsModels withLanguagePackModels:languagePackModels];
             }
             [projectExpert updateCompareModels:stringsModels];
             
@@ -132,8 +132,8 @@
 }
 
 #pragma mark - Private(同步)
-+ (NSArray<NSDictionary *> *)strictlyCompareStringsModels:(NSArray<NSFStringsCompareModel *> *)stringsModels
-                                   withLanguagePackModels:(NSArray<NSFLanguagePackLineModel *> *)languagePackModels
++ (NSArray<NSDictionary *> *)p_strictlyCompareStringsModels:(NSArray<NSFStringsCompareModel *> *)stringsModels
+                                     withLanguagePackModels:(NSArray<NSFLanguagePackLineModel *> *)languagePackModels
 {
     NSMutableArray<NSDictionary *> *mismatchedStringModels = [NSMutableArray array];
     
@@ -153,7 +153,7 @@
     for (NSFStringsCompareModel *stringModel in stringsModels)
     {
         //找到语言包中key相同的那一行翻译
-        NSFLanguagePackLineModel *languagePackModel = [self strictlyFindLanguageModelMatch:stringModel
+        NSFLanguagePackLineModel *languagePackModel = [self p_strictlyFindLanguageModelMatch:stringModel
                                                                                       from:strictLanguageModels];
         
         if (languagePackModel)
@@ -170,8 +170,8 @@
     return mismatchedStringModels;
 }
 
-+ (NSArray<NSDictionary *> *)compareStringsModels:(NSArray<NSFStringsCompareModel *> *)stringsModels
-                           withLanguagePackModels:(NSArray<NSFLanguagePackLineModel *> *)languagePackModels
++ (NSArray<NSDictionary *> *)p_compareStringsModels:(NSArray<NSFStringsCompareModel *> *)stringsModels
+                             withLanguagePackModels:(NSArray<NSFLanguagePackLineModel *> *)languagePackModels
 {
     NSMutableArray<NSDictionary *> *mismatchedStringModels = [NSMutableArray array];
     
@@ -202,13 +202,13 @@
     
     for (NSFStringsCompareModel *stringModel in stringsModels)
     {
-        NSFLanguagePackLineModel *languagePackModel = [self strictlyFindLanguageModelMatch:stringModel
+        NSFLanguagePackLineModel *languagePackModel = [self p_strictlyFindLanguageModelMatch:stringModel
                                                                                       from:strictLanguageModels];
         if (!languagePackModel)
         {
             //找不到的话，可能是因为该行翻译还没有key，或者这个文案在语言包里没有，记录下来
             //在兼容模式下直接用简体中文来查找excel中的对应model，以查找到的第一个为准
-            languagePackModel = [self findLanguageModelMatch:stringModel from:normalLanguageModels];
+            languagePackModel = [self p_findLanguageModelMatch:stringModel from:normalLanguageModels];
         }
         
         if (languagePackModel)
@@ -225,8 +225,8 @@
     return mismatchedStringModels;
 }
 
-+ (NSFLanguagePackLineModel *)strictlyFindLanguageModelMatch:(NSFStringsCompareModel *)stringsModel
-                                                        from:(NSDictionary<NSString *, NSArray<NSFLanguagePackLineModel *> *> *)languageModels
++ (NSFLanguagePackLineModel *)p_strictlyFindLanguageModelMatch:(NSFStringsCompareModel *)stringsModel
+                                                          from:(NSDictionary<NSString *, NSArray<NSFLanguagePackLineModel *> *> *)languageModels
 {
     //找到语言包中key相同的那一行翻译
     __block NSFLanguagePackLineModel *languagePackModel = nil;
@@ -242,8 +242,8 @@
     return languagePackModel;
 }
 
-+ (NSFLanguagePackLineModel *)findLanguageModelMatch:(NSFStringsCompareModel *)stringsModel
-                                                from:(NSDictionary<NSString *, NSArray<NSFLanguagePackLineModel *> *> *)languageModels
++ (NSFLanguagePackLineModel *)p_findLanguageModelMatch:(NSFStringsCompareModel *)stringsModel
+                                                  from:(NSDictionary<NSString *, NSArray<NSFLanguagePackLineModel *> *> *)languageModels
 {
     NSString *simplifiedChinese = [stringsModel translation4Language:NSFLanguageSimplifiedChinese];
     NSArray<NSFLanguagePackLineModel *> *lineModels = languageModels[simplifiedChinese];
