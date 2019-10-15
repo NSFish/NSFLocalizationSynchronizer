@@ -1,6 +1,7 @@
 ## NSFLocalizationSynchronizer
 
-我司自用的 .strings 文件和语言包(仅支持 xlsx 文件)之间的双向同步工具。
+我司（亿方云）自用的 .strings 文件和语言包(仅支持 xlsx 文件)之间的双向同步工具，可参考而不可亵玩焉 😂😂😂。
+
 ### macOS App 
 下载点[这里](https://github.com/NSFish/NSFLocalizationSynchronizer/releases/download/1.0/NSFLocalizationSynchronizer.app.zip)。
 
@@ -38,7 +39,7 @@ brew install nsflocalizer
 >ibtool 生成的 .string 文件中，key 是 UUID
 >```C
 >/* Class = "UILabel"; text = "仅在Wi-Fi下上传/下载/离线"; ObjectID = "FHM-6o-Xh7"; */
-"FHM-6o-Xh7.text" = "仅在Wi-Fi下上传/下载/离线";
+>"FHM-6o-Xh7.text" = "仅在Wi-Fi下上传/下载/离线";
 >```
 >需要统一替换为简体中文。
 
