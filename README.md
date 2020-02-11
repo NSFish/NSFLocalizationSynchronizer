@@ -1,6 +1,6 @@
 ## NSFLocalizationSynchronizer
 
-我司（亿方云）自用的 .strings 文件和语言包(仅支持 xlsx 文件)之间的双向同步工具，可参考而不可亵玩焉 😂😂😂。
+（前）我司（亿方云）自用的 .strings 文件和语言包(仅支持 xlsx 文件)之间的双向同步工具，可参考而不可亵玩焉 😂😂😂。
 
 ### macOS App 
 下载点[这里](https://github.com/NSFish/NSFLocalizationSynchronizer/releases/download/1.0/NSFLocalizationSynchronizer.app.zip)。
